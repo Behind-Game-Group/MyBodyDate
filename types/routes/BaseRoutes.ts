@@ -1,0 +1,16 @@
+export type BaseRoutes =
+  | 'SettingsNavigator'
+  | 'SignInNavigator'
+  | 'LogInNavigator'
+  | 'NotificationsNavigator'
+  | 'TabNavigator'
+  | 'RegisterNavigator'
+  | 'DiscoverNavigator'
+  | 'ProfilNavigator'
+  | 'EventNavigator'
+  | 'SearchNavigator'
+  | 'PulseNavigator'
+  | 'PassNavigator'
+  | 'GameNavigator'
+  | 'AppsAffinitairesNavigator'
+  | 'TalkNavigator';

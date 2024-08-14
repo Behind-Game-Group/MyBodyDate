@@ -1,0 +1,103 @@
+import {StyleSheet} from 'react-native';
+const StylesLinksSignIn = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  bgGradient: {
+    resizeMode: 'contain',
+    width: '100%',
+    height: '100%',
+  },
+  ViewText: {
+    flex: 2,
+    top: 30,
+    paddingStart: 40,
+  },
+  textTitle: {
+    color: '#FFF',
+    fontFamily: 'Comfortaa',
+    fontSize: 24,
+    fontStyle: 'normal',
+    fontWeight: '700',
+  },
+  textTitle2: {
+    color: '#FFF',
+    fontFamily: 'Comfortaa-Bold',
+    fontSize: 24,
+    fontStyle: 'normal',
+  },
+  ViewBtnLog: {
+    flex: 3,
+    top: 20,
+    width: '80%',
+    alignSelf: 'center',
+  },
+  btn: {
+    height: 56,
+    width: 331,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+  },
+  textBtn: {
+    color: '#fff',
+    textAlign: 'center',
+    fontFamily: 'Comfortaa-Bold',
+    zIndex: 1,
+    top: 26,
+    fontSize: 18,
+  },
+  textBtn2: {
+    color: '#fff',
+    textAlign: 'center',
+    fontFamily: 'Comfortaa-Bold',
+    zIndex: 2,
+    top: 26,
+    fontSize: 18,
+    left: 10,
+  },
+  linkWhite: {
+    color: '#fff',
+    textAlign: 'center',
+    fontFamily: 'Comfortaa-Bold',
+    zIndex: 1,
+    top: 20,
+    textDecorationLine: 'underline',
+    fontSize: 18,
+  },
+  linkBlue: {
+    color: '#0F0BAE',
+    textAlign: 'center',
+    fontFamily: 'Comfortaa-Bold',
+    zIndex: 1,
+    top: 15,
+    textDecorationLine: 'underline',
+    fontSize: 18,
+  },
+  imgBtn: {
+    width: 331,
+    height: 56,
+    flexShrink: 0,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+    bottom: 14,
+  },
+  textWhite: {
+    color: '#fff',
+    fontSize: 20,
+    textAlign: 'center',
+    alignSelf: 'center',
+    fontFamily: 'Comfortaa-Bold',
+  },
+  line: {
+    backgroundColor: '#0F0BAE',
+    height: 2,
+    width: '70%',
+    alignSelf: 'center',
+    margin: 15,
+    top: 20,
+  },
+});
+
+export default StylesLinksSignIn;

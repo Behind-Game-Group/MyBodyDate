@@ -1,0 +1,108 @@
+import {StyleSheet} from 'react-native';
+const StylesConfirmationNumero = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  bgGradient: {
+    resizeMode: 'contain',
+    width: '100%',
+    height: '100%',
+  },
+  ViewText: {
+    flex: 1,
+  },
+  TxtTitle: {
+    top: 150,
+    left: 40,
+    color: '#FFF',
+    fontFamily: 'Comfortaa-Bold',
+    fontSize: 24,
+    fontStyle: 'normal',
+    fontWeight: '500',
+  },
+  textWhite: {
+    color: '#fff',
+    fontSize: 15,
+    width: '80%',
+    alignSelf: 'center',
+    fontFamily: 'Comfortaa',
+    top: 20,
+  },
+  textWhite1: {
+    color: '#fff',
+    fontSize: 15,
+    width: '80%',
+    alignSelf: 'center',
+    fontFamily: 'Comfortaa',
+    top: 50,
+  },
+  ViewInput: {
+    flex: 2,
+    top: 130,
+  },
+  TextInput: {
+    color: '#FFF',
+    fontSize: 18,
+    alignSelf: 'center',
+    width: '80%',
+    textAlign: 'center',
+    borderWidth: 2,
+    borderColor: '#FFF',
+    borderRadius: 30,
+    padding: 15,
+  },
+  textBtn: {
+    color: '#fff',
+    fontSize: 18,
+    textAlign: 'center',
+    fontFamily: 'Comfortaa-Bold',
+    top: 42,
+    zIndex: 2,
+  },
+  textBtn1: {
+    color: '#fff',
+    fontSize: 18,
+    textAlign: 'center',
+    fontFamily: 'Comfortaa-Bold',
+    top: 42,
+    left: 10,
+    zIndex: 3,
+  },
+  textBtn2: {
+    fontSize: 18,
+    textAlign: 'center',
+    fontFamily: 'Comfortaa-Bold',
+    zIndex: 1,
+    top: 40,
+  },
+  imgBtn: {
+    width: '80%',
+    height: 56,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+  },
+  imgBtn1: {
+    width: '80%',
+    height: 56,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+  },
+  imgBtn2: {
+    width: 331,
+    height: 56,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+  },
+  TxtBtn: {
+    color: '#FFF',
+    textAlign: 'center',
+    fontFamily: 'Comfortaa',
+    fontSize: 16,
+    fontStyle: 'normal',
+    fontWeight: '700',
+    textDecorationLine: 'underline',
+  },
+});
+
+export default StylesConfirmationNumero;

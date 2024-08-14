@@ -1,0 +1,108 @@
+import {StyleSheet} from 'react-native';
+
+const StylesProfilMultiples = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  bgGradient: {
+    resizeMode: 'contain',
+    width: '100%',
+    height: '100%',
+  },
+  TxtTitle: {
+    top: 100,
+    left: 40,
+    color: '#FFF',
+    fontFamily: 'Comfortaa-Bold',
+    fontSize: 24,
+    fontStyle: 'normal',
+    fontWeight: '500',
+  },
+  textWhiteRound: {
+    color: '#fff',
+    textAlign: 'center',
+    fontFamily: 'Comfortaa',
+    width: '80%',
+    padding: 10,
+    height: 50,
+    alignSelf: 'center',
+    fontSize: 20,
+    borderWidth: 2,
+    borderColor: '#fff',
+    borderRadius: 20,
+    top: 140,
+  },
+  textBlueCenter: {
+    top: 180,
+    color: '#0F0BAE',
+    fontSize: 18,
+    fontFamily: 'Comfortaa-Bold',
+    alignSelf: 'center',
+  },
+  textWhite: {
+    top: 200,
+    color: '#fff',
+    fontSize: 18,
+    alignSelf: 'center',
+    fontFamily: 'Comfortaa',
+  },
+  textWhite2: {
+    top: 240,
+    color: '#FFF',
+    textAlign: 'center',
+    fontFamily: 'Comfortaa',
+    fontSize: 12,
+    fontStyle: 'normal',
+    fontWeight: '700',
+    textDecorationLine: 'underline',
+  },
+  ViewRow: {
+    top: 230,
+    flexDirection: 'row',
+    gap: 20,
+    alignSelf: 'center',
+    marginBottom: 20,
+  },
+  btnImgApp: {
+    width: 113,
+    height: 57,
+    resizeMode: 'cover',
+  },
+  radioInputContainerTwo: {
+    top: 220,
+    flexDirection: 'row',
+    width: '80%',
+    alignItems: 'center',
+    marginVertical: 5,
+    alignSelf: 'center',
+  },
+  TextInput: {
+    color: '#FFF',
+    fontSize: 14,
+    padding: 15,
+  },
+  ViewBtn: {
+    top: 280,
+    height: 56,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imgBtn: {
+    height: 56,
+    flexShrink: 0,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+    bottom: 17,
+  },
+  TxtBtn: {
+    color: '#0F0BAE',
+    fontSize: 22,
+    textAlign: 'center',
+    fontFamily: 'Comfortaa',
+    top: 24,
+    zIndex: 1,
+  },
+});
+
+export default StylesProfilMultiples;
