@@ -16,6 +16,7 @@ import StylesPrenom from '../../../assets/style/styleScreens/styleRegister/Style
 import {storeDatas, getData} from '../../services/storage';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Prenom'>;
@@ -114,7 +115,16 @@ export const Prenom: React.FC<HomeProps> = ({navigation}) => {
         style={StylesPrenom.bgGradient}
         source={require('../../../assets/images/Background.png')}>
         <View style={[StylesPrenom.ViewText]}>
-          <Text style={[StylesPrenom.TxtTitle]}>IDENTIFIANT</Text>
+          <TitreUneLigne
+            txtTitle="IDENTIFIANT"
+            textAlign="center"
+            top={50}
+            left={undefined}
+            fontFamily={undefined}
+            color={undefined}
+            fontWeight={undefined}
+            fontSize={24}
+          />
           <Text style={[StylesPrenom.textWhite]}>
             Sur MyBodyDate votre vrai prénom est visible de tous les membres
             sauf si vous préférez afficher votre pseudo. Les modérateurs passent

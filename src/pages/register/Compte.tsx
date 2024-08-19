@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {View, Text, ImageBackground} from 'react-native';
+import {View, ImageBackground} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import StylesCompte from '../../../assets/style/styleScreens/styleRegister/StyleCompte';
 import RegisterNumero from '../../components/register/RegisterNumero';
@@ -9,6 +9,7 @@ import LoginNumero from '../../components/login/LoginNumero';
 import {getData} from '../../services/storage';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Compte'>;
@@ -65,9 +66,16 @@ export const Compte: React.FC<HomeProps> = ({navigation}) => {
       <ImageBackground
         style={[StylesCompte.bgGradient]}
         source={require('../../../assets/images/Background.png')}>
-        <View style={[StylesCompte.ViewText]}>
-          <Text style={[StylesCompte.TxtTitle]}>MON COMPTE</Text>
-        </View>
+        <TitreUneLigne
+          txtTitle="MON COMPTE"
+          textAlign="center"
+          top={130}
+          left={undefined}
+          fontFamily={undefined}
+          color={undefined}
+          fontWeight={undefined}
+          fontSize={24}
+        />
         <View style={[{flex: 2, top: 180}]}>
           {routeChoice === 'inscription numero' ? (
             <RegisterNumero navigation={navigation} />

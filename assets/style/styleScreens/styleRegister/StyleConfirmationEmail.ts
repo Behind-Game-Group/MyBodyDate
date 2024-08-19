@@ -19,7 +19,7 @@ const StylesConfirmationEmail = StyleSheet.create({
     fontWeight: '500',
   },
   BlockImg: {
-    bottom: 280,
+    top: 200,
     width: 130,
     height: 130,
     borderRadius: 100,
@@ -34,7 +34,7 @@ const StylesConfirmationEmail = StyleSheet.create({
     alignSelf: 'center',
   },
   textWhite: {
-    bottom: 220,
+    top: 260,
     color: '#fff',
     fontSize: 12,
     width: '70%',
@@ -42,7 +42,7 @@ const StylesConfirmationEmail = StyleSheet.create({
     fontFamily: 'Comfortaa',
   },
   textWhite2: {
-    bottom: 120,
+    top: 100,
     color: '#fff',
     fontSize: 12,
     width: '70%',
@@ -50,7 +50,7 @@ const StylesConfirmationEmail = StyleSheet.create({
     fontFamily: 'Comfortaa',
   },
   btn: {
-    bottom: 160,
+    top: 250,
     height: 56,
   },
   btnUn: {

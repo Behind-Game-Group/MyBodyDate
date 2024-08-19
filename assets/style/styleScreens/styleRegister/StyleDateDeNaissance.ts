@@ -26,11 +26,11 @@ const StylesDateDeNaissance = StyleSheet.create({
     fontWeight: '500',
   },
   ViewInputDate: {
-    top: 60,
+    top: 80,
     alignSelf: 'center',
   },
   BtnPicker: {
-    top: 0,
+    top: 150,
     width: 320,
     height: 140,
     borderRadius: 100,
@@ -67,7 +67,7 @@ const StylesDateDeNaissance = StyleSheet.create({
     fontWeight: '700',
   },
   textWhite2: {
-    top: 160,
+    top: 300,
     left: 40,
     color: '#fff',
     fontSize: 12,
@@ -76,7 +76,7 @@ const StylesDateDeNaissance = StyleSheet.create({
     fontFamily: 'Comfortaa',
   },
   BoxInput: {
-    top: 120,
+    top: 280,
     width: '90%',
     height: 200,
     flexDirection: 'column',
@@ -97,7 +97,7 @@ const StylesDateDeNaissance = StyleSheet.create({
     justifyContent: 'space-between',
   },
   ViewTextError: {
-    top: 260,
+    top: 40,
     width: '85%',
     alignSelf: 'center',
     alignItems: 'center',

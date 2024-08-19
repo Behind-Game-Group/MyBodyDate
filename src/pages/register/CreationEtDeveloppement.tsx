@@ -14,7 +14,7 @@ import {storeData, getData} from '../../services/storage';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
 import LottieView from 'lottie-react-native';
-import {TitreDeuxLignes} from '../../components/TitreDeuxLignes';
+import {TitreDeuxLignes} from '../../components/titre/TitreDeuxLignes';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'CreationEtDeveloppement'>;
@@ -60,7 +60,10 @@ export const Creation: React.FC<HomeProps> = ({navigation}) => {
           txtTitle="CRÉATION ET"
           txtTitle2="DÉVELOPPEMENT."
           textAlign="left"
+          fontFamily={undefined}
+          color={undefined}
           fontWeight={undefined}
+          fontSize={24}
           top={0}
           left={30}
         />

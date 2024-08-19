@@ -1,6 +1,18 @@
+import {User} from './UserInterface';
+
 export interface StorageValue {
   key: string;
-  value: string | boolean | number | undefined;
+  value:
+    | string
+    | string[]
+    | number
+    | number[]
+    | boolean
+    | boolean[]
+    | User[]
+    | StorageValue
+    | StorageValue[]
+    | undefined;
 }
 
 export interface StorageValueMap {

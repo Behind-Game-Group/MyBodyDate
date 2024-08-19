@@ -63,7 +63,7 @@ const StylesCharteEngagement = StyleSheet.create({
     height: 700,
   },
   ViewCharte: {
-    top: 150,
+    bottom: 100,
     height: 500,
     width: '100%',
   },

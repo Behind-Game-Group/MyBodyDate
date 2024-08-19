@@ -1,16 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-} from 'react-native';
-import {storeData, getData} from '../../services/storage';
+import {View, Text, ImageBackground, TouchableOpacity} from 'react-native';
+import {getData} from '../../services/storage';
 import StylesGenre from '../../../assets/style/styleScreens/styleRegister/StyleGenre';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
-import {TitreUneLigne} from '../../components/TitreUneLigne';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Genre'>;
@@ -18,21 +13,12 @@ type HomeProps = {
 
 export const Genre: React.FC<HomeProps> = ({navigation}) => {
   const [genre, setState] = useState<string>();
-  const [buttonPressed, setButtonPressed] = useState<boolean>();
 
   // console.log('Genre: ' + genre);
 
   useEffect(() => {
     handleGetData();
   }, []);
-
-  const handleStoreData = async (key: string, value: string) => {
-    try {
-      await storeData(key, value);
-    } catch (error) {
-      console.log('Erreur lors du stockage des données :', error);
-    }
-  };
 
   const handleGetData = async () => {
     try {
@@ -55,7 +41,10 @@ export const Genre: React.FC<HomeProps> = ({navigation}) => {
             textAlign="center"
             top={140}
             left={undefined}
-            fontFamily={2}
+            fontFamily={undefined}
+            color={undefined}
+            fontWeight={undefined}
+            fontSize={24}
           />
           <View style={[StylesGenre.ViewBTNSelect]}>
             <TouchableOpacity
@@ -109,30 +98,18 @@ export const Genre: React.FC<HomeProps> = ({navigation}) => {
           </View>
           <Text style={[StylesGenre.textWhite]}>Choix unique.</Text>
         </View>
-        <TouchableOpacity
-          style={StylesGenre.ViewBtn}
-          onPress={() => {
-            navigation.navigate('Date_de_naissance');
-            handleStoreData('genre', genre ?? '');
-            setButtonPressed(true);
-          }}
-          accessibilityLabel="Continuer">
-          <Text
-            style={[
-              StylesGenre.TxtBtn,
-              {color: buttonPressed ? '#fff' : '#0019A7'},
-            ]}>
-            Continuer
-          </Text>
-          <Image
-            style={[StylesGenre.imgBtn]}
-            source={
-              buttonPressed
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc.png')
-            }
-          />
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Date_de_naissance"
+          propName="RegisterRoute"
+          propRoute="Date_de_naissance"
+          txt="Continuer"
+          handleStore={{key: 'genre', value: genre ?? ''}}
+          postInfo={undefined}
+          background="White"
+          top={120}
+          left={0}
+        />
       </ImageBackground>
     </View>
   );

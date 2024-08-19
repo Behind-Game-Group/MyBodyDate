@@ -3,16 +3,15 @@ import {
   View,
   Text,
   ImageBackground,
-  Image,
   SafeAreaView,
   TextInput,
-  TouchableOpacity,
 } from 'react-native';
-import {storeData, getData} from '../../services/storage';
+import {getData} from '../../services/storage';
 import StylesSinscrireMail from '../../../assets/style/styleScreens/styleRegister/StyleSinscrireMail';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
-import {TitreUneLigne} from '../../components/TitreUneLigne';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'S_inscrire_par_mail'>;
@@ -21,7 +20,6 @@ type HomeProps = {
 export const SignInMail: React.FC<HomeProps> = ({navigation}) => {
   const [userEmail, setEmail] = useState<string>();
   const [errorEmail, setErrorEmail] = useState<boolean | null>(null);
-  const [buttonPressed, setButtonPressed] = useState<boolean>();
 
   const errorMessage =
     'L\'email saisi est invalide. Veuillez respecter le format "exemple@email.fr"';
@@ -49,14 +47,6 @@ export const SignInMail: React.FC<HomeProps> = ({navigation}) => {
     handleGetData();
   }, []);
 
-  const handleStoreData = async (key: string, value: string) => {
-    try {
-      await storeData(key, value);
-    } catch (error) {
-      console.error('Erreur lors du stockage des données :', error);
-    }
-  };
-
   const handleGetData = async () => {
     try {
       const email = await getData('email');
@@ -79,7 +69,10 @@ export const SignInMail: React.FC<HomeProps> = ({navigation}) => {
             textAlign="left"
             top={120}
             left={30}
-            fontFamily={2}
+            fontFamily={undefined}
+            color={undefined}
+            fontWeight={undefined}
+            fontSize={24}
           />
         </View>
         <SafeAreaView style={[StylesSinscrireMail.ViewInput, {top: 180}]}>
@@ -102,30 +95,18 @@ export const SignInMail: React.FC<HomeProps> = ({navigation}) => {
         </SafeAreaView>
 
         <View style={[StylesSinscrireMail.ViewBtn]}>
-          <TouchableOpacity
-            style={[]}
-            onPress={() => {
-              navigation.navigate('Confirmation_email');
-              handleStoreData('email', userEmail ?? '');
-              setButtonPressed(true);
-            }}
-            accessibilityLabel="Continuer">
-            <Text
-              style={[
-                StylesSinscrireMail.TxtBtn,
-                {color: buttonPressed ? '#fff' : '#0019A7'},
-              ]}>
-              Continuer
-            </Text>
-            <Image
-              style={[StylesSinscrireMail.imgBtn]}
-              source={
-                buttonPressed
-                  ? require('../../../assets/boutons/Bouton-Rouge.png')
-                  : require('../../../assets/boutons/Bouton-Blanc.png')
-              }
-            />
-          </TouchableOpacity>
+          <BtnNext
+            navigation={navigation}
+            navigateTo="Confirmation_email"
+            propName="SignInRoute"
+            propRoute="Confirmation_email"
+            txt="Continuer"
+            handleStore={{key: 'email', value: userEmail ?? ''}}
+            postInfo={undefined}
+            background="White"
+            top={40}
+            left={0}
+          />
         </View>
       </ImageBackground>
     </View>

@@ -10,7 +10,8 @@ import StylesConfirmationEmail from '../../../assets/style/styleScreens/styleReg
 import {getData} from '../../services/storage';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
-import {TitreDeuxLignes} from '../../components/TitreDeuxLignes';
+import {TitreDeuxLignes} from '../../components/titre/TitreDeuxLignes';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Confirmation_email'>;
@@ -33,8 +34,6 @@ export const ConfirmationEmail: React.FC<HomeProps> = ({navigation}) => {
 
   const [routeChoice, setRouteChoice] = useState<string>();
 
-  const [buttonPressed, setButtonPressed] = useState<string>();
-
   return (
     <View style={StylesConfirmationEmail.container}>
       <ImageBackground
@@ -44,9 +43,12 @@ export const ConfirmationEmail: React.FC<HomeProps> = ({navigation}) => {
           txtTitle="CONFRIMATION"
           txtTitle2="E-MAIL"
           textAlign="left"
-          fontWeight={undefined}
           top={160}
           left={30}
+          fontFamily={undefined}
+          color={undefined}
+          fontWeight={undefined}
+          fontSize={24}
         />
         <View style={[StylesConfirmationEmail.BlockImg]}>
           <Image
@@ -58,80 +60,47 @@ export const ConfirmationEmail: React.FC<HomeProps> = ({navigation}) => {
           Si vous n&apos;avez pas reçu d&apos;email, consultez vos spams ou
           rééssayez.
         </Text>
-        <TouchableOpacity
-          style={[StylesConfirmationEmail.btn]}
-          onPress={() => {
-            setButtonPressed('Utiliser');
-            navigation.navigate('S_inscrire_par_mail');
-          }}
-          accessibilityLabel="Récupérer mon compte">
-          <Text style={[StylesConfirmationEmail.textBtn]}>
-            Utiliser un autre e-mail
-          </Text>
-          <Image
-            style={[StylesConfirmationEmail.imgBtn]}
-            source={
-              buttonPressed === 'Utiliser'
-                ? require('../../../assets/boutons/Bouton-Rouge-Email.png')
-                : require('../../../assets/boutons/Bouton-Noir-Email.png')
-            }
-          />
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="S_inscrire_par_mail"
+          propName="RegisterRoute"
+          propRoute="S_inscrire_par_mail"
+          txt="Utiliser un autre e-mail"
+          handleStore={undefined}
+          postInfo={undefined}
+          background="Email-noir"
+          top={300}
+          left={10}
+        />
         <Text style={[StylesConfirmationEmail.textWhite2]}>
           Utilisez un autre moyen de connexion
         </Text>
         {routeChoice === 'Recuperation de compte' ? (
-          <TouchableOpacity
-            style={[StylesConfirmationEmail.btnUn]}
-            onPress={() => {
-              setButtonPressed('Continuer');
-              navigation.navigate('Felicitations');
-            }}
-            accessibilityLabel="Continuer">
-            <Text
-              style={[
-                StylesConfirmationEmail.textBtnUn,
-                {
-                  color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
-                },
-              ]}>
-              Continuer
-            </Text>
-            <Image
-              style={[StylesConfirmationEmail.imgBtn]}
-              source={
-                buttonPressed === 'Continuer'
-                  ? require('../../../assets/boutons/Bouton-Rouge.png')
-                  : require('../../../assets/boutons/Bouton-Blanc.png')
-              }
-            />
-          </TouchableOpacity>
+          <BtnNext
+            navigation={navigation}
+            navigateTo="RegisterNavigator"
+            propName="RegisterRoute"
+            propRoute="Felicitations"
+            txt="Continuer"
+            handleStore={undefined}
+            postInfo={undefined}
+            background="White"
+            top={180}
+            left={0}
+          />
         ) : (
-          <TouchableOpacity
-            style={[StylesConfirmationEmail.btnUn]}
-            onPress={() => {
-              setButtonPressed('Continuer');
-              navigation.navigate('Ville');
-            }}
-            accessibilityLabel="Continuer">
-            <Text
-              style={[
-                StylesConfirmationEmail.textBtnUn,
-                {
-                  color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
-                },
-              ]}>
-              Continuer
-            </Text>
-            <Image
-              style={[StylesConfirmationEmail.imgBtn]}
-              source={
-                buttonPressed === 'Continuer'
-                  ? require('../../../assets/boutons/Bouton-Rouge.png')
-                  : require('../../../assets/boutons/Bouton-Blanc.png')
-              }
-            />
-          </TouchableOpacity>
+          <BtnNext
+            navigation={navigation}
+            navigateTo="Ville"
+            propName="RegisterRoute"
+            propRoute="Ville"
+            txt="Continuer"
+            handleStore={undefined}
+            postInfo={undefined}
+            background="White"
+            top={180}
+            left={0}
+          />
         )}
       </ImageBackground>
     </View>

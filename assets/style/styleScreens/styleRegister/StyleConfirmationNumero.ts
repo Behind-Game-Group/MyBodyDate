@@ -27,7 +27,7 @@ const StylesConfirmationNumero = StyleSheet.create({
     width: '80%',
     alignSelf: 'center',
     fontFamily: 'Comfortaa',
-    top: 20,
+    top: 10,
   },
   textWhite1: {
     color: '#fff',
@@ -35,11 +35,11 @@ const StylesConfirmationNumero = StyleSheet.create({
     width: '80%',
     alignSelf: 'center',
     fontFamily: 'Comfortaa',
-    top: 50,
+    top: 60,
   },
   ViewInput: {
     flex: 2,
-    top: 130,
+    top: 150,
   },
   TextInput: {
     color: '#FFF',

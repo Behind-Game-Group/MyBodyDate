@@ -15,6 +15,9 @@ import {CameraOptions, launchCamera} from 'react-native-image-picker';
 import StylesCharteEngagement from '../../../assets/style/styleScreens/styleRegister/StyleCharteEngagement';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {TitreDeuxLignes} from '../../components/titre/TitreDeuxLignes';
+import { BtnNext } from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Charte_engagement'>;
@@ -155,8 +158,17 @@ export const CharteEngagement: React.FC<HomeProps> = ({navigation}) => {
     <ImageBackground
       style={[StylesCharteEngagement.bgGradient]}
       source={require('../../../assets/images/Background.png')}>
-      <Text style={[StylesCharteEngagement.TxtTitle]}>CHARTE</Text>
-      <Text style={[StylesCharteEngagement.TxtTitle]}>D&apos;ENGAGEMENT</Text>
+      <TitreDeuxLignes
+        txtTitle="CHARTE"
+        txtTitle2="D'ENGAGEMENT"
+        fontFamily={undefined}
+        color={undefined}
+        textAlign="center"
+        fontWeight={undefined}
+        fontSize={24}
+        top={100}
+        left={undefined}
+      />
       <View style={[StylesCharteEngagement.ViewCharte]}>
         <ScrollView
           style={[StylesCharteEngagement.ScrollViewCharte]}
@@ -212,9 +224,16 @@ export const CharteEngagement: React.FC<HomeProps> = ({navigation}) => {
             style={[StylesCharteEngagement.ScrollViewModal]}
             contentContainerStyle={{paddingBottom: 200, paddingTop: 20}}>
             <View style={[StylesCharteEngagement.ViewModal2]}>
-              <Text style={[StylesCharteEngagement.TitleModal]}>
-                VÉRIFICATION
-              </Text>
+              <TitreUneLigne
+                txtTitle="VÉRIFICATION"
+                textAlign="center"
+                top={-100}
+                left={undefined}
+                fontFamily={undefined}
+                color={'#0019A7'}
+                fontWeight={'700'}
+                fontSize={24}
+              />
               <View style={[StylesCharteEngagement.ViewModal3]}>
                 <Image
                   style={[StylesCharteEngagement.ImgVerif]}
@@ -297,31 +316,19 @@ export const CharteEngagement: React.FC<HomeProps> = ({navigation}) => {
           </ScrollView>
         </View>
       </Modal>
-      <View style={[{top: 180}]}>
-        <TouchableOpacity
-          onPress={() => {
-            setButtonPressed('Aceepter');
-            handleStoreData('engagement_consent', 'accepter');
-            navigation.navigate('Felicitations');
-          }}
-          accessibilityLabel="J'accepte">
-          <Text style={[StylesCharteEngagement.textBtn]}>J&apos;accepte</Text>
-          <Image
-            style={[
-              {
-                bottom: 20,
-                height: 56,
-                resizeMode: 'contain',
-                alignSelf: 'center',
-              },
-            ]}
-            source={
-              buttonPressed === 'Accepter'
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Bleu.png')
-            }
-          />
-        </TouchableOpacity>
+      <View style={[{bottom: 100}]}>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Felicitations"
+          propName="RegisterRoute"
+          propRoute="Felicitations"
+          txt="J'accepte"
+          handleStore={{key: 'engagement_consent', value: 'accepté'}}
+          postInfo={undefined}
+          background="Blue"
+          top={0}
+          left={0}
+        />
       </View>
     </ImageBackground>
   );

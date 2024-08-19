@@ -1,11 +1,14 @@
 import {Text, View} from 'react-native';
 import React from 'react';
-import StylesTitreDeuxLignes from '../../assets/style/StyleComposants/StyleTitreDeuxLignes';
+import StylesTitreDeuxLignes from '../../../assets/style/StyleComposants/StyleTitreDeuxLignes';
 
 type TitreDeuxLignesProps = {
   txtTitle: string;
   txtTitle2: string;
+  fontFamily: string | undefined;
+  color: string | undefined;
   textAlign: 'left' | 'auto' | 'right' | 'center' | 'justify' | undefined;
+  fontSize: number | undefined;
   top: number | undefined;
   left: number | undefined;
   fontWeight:
@@ -32,7 +35,10 @@ type TitreDeuxLignesProps = {
 export const TitreDeuxLignes: React.FC<TitreDeuxLignesProps> = ({
   txtTitle,
   txtTitle2,
+  fontFamily,
+  color,
   textAlign,
+  fontSize,
   top,
   left,
   fontWeight,
@@ -50,7 +56,11 @@ export const TitreDeuxLignes: React.FC<TitreDeuxLignesProps> = ({
         style={[
           StylesTitreDeuxLignes.TxtTitle,
           {
+            fontFamily:
+              fontFamily !== undefined ? fontFamily : 'Comfortaa-Bold',
+            color: color !== undefined ? color : '#fff',
             textAlign: textAlign !== undefined ? textAlign : 'left',
+            fontSize: fontSize !== undefined ? fontSize : 24,
             fontWeight: fontWeight !== undefined ? fontWeight : '500',
           },
         ]}>
@@ -60,7 +70,11 @@ export const TitreDeuxLignes: React.FC<TitreDeuxLignesProps> = ({
         style={[
           StylesTitreDeuxLignes.TxtTitle,
           {
+            fontFamily:
+              fontFamily !== undefined ? fontFamily : 'Comfortaa-Bold',
+            color: color !== undefined ? color : '#fff',
             textAlign: textAlign !== undefined ? textAlign : 'left',
+            fontSize: fontSize !== undefined ? fontSize : 24,
             fontWeight: fontWeight !== undefined ? fontWeight : '500',
           },
         ]}>

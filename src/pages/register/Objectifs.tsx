@@ -4,6 +4,7 @@ import Styles from '../../../assets/style/Styles';
 import {BtnNext} from '../../components/boutons/BtnNext';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Objectifs'>;
@@ -36,11 +37,18 @@ export const Objectifs: React.FC<HomeProps> = ({navigation}) => {
       <ImageBackground
         style={Styles.bgGradient}
         source={require('../../../assets/images/Background.png')}>
-        <View style={[Styles.ViewText, {top: 100}]}>
-          <Text style={[Styles.textTitleWhite3]}>VOS OBJECTIFS ?</Text>
-        </View>
+        <TitreUneLigne
+          txtTitle="VOS OBJECTIFS ?"
+          textAlign="center"
+          top={140}
+          left={undefined}
+          fontFamily={undefined}
+          color={undefined}
+          fontWeight={undefined}
+          fontSize={24}
+        />
 
-        <View style={[Styles.ViewBTNSelect, {top: 150}]}>
+        <View style={[Styles.ViewBTNSelect, {top: 200}]}>
           <TouchableOpacity
             style={[
               Styles.mt20,
@@ -142,19 +150,19 @@ export const Objectifs: React.FC<HomeProps> = ({navigation}) => {
           </TouchableOpacity>
         </View>
 
-        <View style={{top: 200, left: 40}}>
+        <View style={{top: 250, left: 40}}>
           <Text style={[Styles.textWhite2, {fontSize: 12}]}>
             Choix multiple.
           </Text>
         </View>
         <BtnNext
           navigation={navigation}
-          navigateTo={'RegisterNavigator'}
+          navigateTo={'Affinite'}
           propName={'RegisterRoute'}
           propRoute={'Affinite'}
           txt={'Continuer'}
           background={'white'}
-          top={160}
+          top={180}
           left={undefined}
         />
       </ImageBackground>

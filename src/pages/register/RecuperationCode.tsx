@@ -131,7 +131,9 @@ export const RecuperationCode: React.FC<HomeProps> = ({navigation}) => {
       case 'Connexion mail':
       case 'Se connecter':
       case 'Connexion numero':
-        navigation.navigate('Tabs', {tabPath: 'Amour'});
+        navigation.navigate('TabNavigator', {
+          TabRoute: 'DiscoverNavigator',
+        });
         break;
       case "S'inscrire par mail":
       case "S'inscrire par numero":

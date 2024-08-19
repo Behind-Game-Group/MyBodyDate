@@ -14,6 +14,7 @@ import {storeData, getData} from '../../services/storage';
 import StylesConfirmationPrenom from '../../../assets/style/styleScreens/styleRegister/StyleConfirmationPrenom';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Confirmation_prenom'>;
@@ -57,7 +58,16 @@ export const ConfirmationPrenom: React.FC<HomeProps> = ({navigation}) => {
     <ImageBackground
       style={Styles.bgGradient}
       source={require('../../../assets/images/Background.png')}>
-      <Text style={[StylesConfirmationPrenom.TxtTitle]}>PRÉNOM</Text>
+      <TitreUneLigne
+        txtTitle="PRÉNOM"
+        textAlign="center"
+        top={150}
+        left={undefined}
+        fontFamily={undefined}
+        color={undefined}
+        fontWeight={undefined}
+        fontSize={24}
+      />
       <SafeAreaView style={[StylesConfirmationPrenom.ViewInputPrenom, {}]}>
         <TextInput
           style={Styles.TextInput}

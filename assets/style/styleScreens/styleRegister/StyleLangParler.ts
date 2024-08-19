@@ -46,7 +46,7 @@ const StylesLangParler = StyleSheet.create({
   ViewInputRadioLang: {
     flexDirection: 'row',
     marginLeft: 50,
-    bottom: 20,
+    top: 140,
   },
   btnInputLang: {
     flexDirection: 'row',

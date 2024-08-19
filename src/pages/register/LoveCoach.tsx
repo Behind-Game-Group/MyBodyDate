@@ -8,13 +8,14 @@ import {
   Image,
   GestureResponderEvent,
 } from 'react-native';
-import {storeData, getData, getDatas} from '../../services/storage';
+import {getData, getDatas} from '../../services/storage';
 import Logo from '../../components/Logo';
 import Styles from '../../../assets/style/Styles';
 import StylesLoveCoach from '../../../assets/style/styleScreens/styleRegister/StyleLoveCoach';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
-import {TitreUneLigne} from '../../components/TitreUneLigne';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'LoveCoach'>;
@@ -43,7 +44,6 @@ const RadioInput: React.FC<RadioInputProps> = ({label, selected, onPress}) => {
 
 // Home Screen
 export const LoveCoach: React.FC<HomeProps> = ({navigation}) => {
-  const [buttonPressed, setButtonPressed] = useState<boolean>(false);
   const [selectedOption, setSelectedOption] = useState<string>('Oui');
   const [userConsent, setUserConsent] = useState<string>('');
   const [routeChoice, setRouteChoice] = useState<string>('');
@@ -51,14 +51,6 @@ export const LoveCoach: React.FC<HomeProps> = ({navigation}) => {
   useEffect(() => {
     handleGetData();
   }, []);
-
-  const handleStoreData = async (key: string, value: string) => {
-    try {
-      await storeData(key, value);
-    } catch (error) {
-      console.error('Erreur lors du stockage des données :', error);
-    }
-  };
 
   const handleGetData = async () => {
     try {
@@ -110,8 +102,11 @@ export const LoveCoach: React.FC<HomeProps> = ({navigation}) => {
             txtTitle="LOVE COACH"
             left={30}
             textAlign="left"
-            top={20}
             fontFamily={undefined}
+            color={undefined}
+            fontWeight={undefined}
+            fontSize={24}
+            top={20}
           />
           <Text style={[StylesLoveCoach.textWhite2]}>
             Nous sommes heureux de vous accompagner pour augmenter vos chances
@@ -140,41 +135,33 @@ export const LoveCoach: React.FC<HomeProps> = ({navigation}) => {
           <Text style={[StylesLoveCoach.textInfo2]}>Choix unique.</Text>
         </View>
         <View style={[StylesLoveCoach.ViewBtn]}>
-          <TouchableOpacity
-            style={[]}
-            onPress={() => {
-              if (routeChoice === 'connexion') {
-                navigation.navigate('LogInNavigator', {
-                  LoginRoute: 'Liens_de_connexion',
-                });
-                handleStoreData('love_coach', selectedOption);
-              } else {
-                navigation.navigate('SignInNavigator', {
-                  SignInRoute: 'Liens_dinscription',
-                });
-                handleStoreData('love_coach', selectedOption);
-              }
-              setButtonPressed(true);
-            }}
-            accessibilityLabel="Continuer">
-            <Text
-              style={[
-                StylesLoveCoach.textBtn9,
-                {
-                  color: buttonPressed ? '#fff' : '#0019A7',
-                },
-              ]}>
-              Continuer
-            </Text>
-            <Image
-              style={[StylesLoveCoach.imgBtn]}
-              source={
-                buttonPressed
-                  ? require('../../../assets/boutons/Bouton-Rouge.png')
-                  : require('../../../assets/boutons/Bouton-Blanc.png')
-              }
+          {routeChoice === 'connexion' ? (
+            <BtnNext
+              navigation={navigation}
+              navigateTo="LogInNavigator"
+              propName="LoginRoute"
+              propRoute="Liens_de_connexion"
+              txt="Continuer"
+              handleStore={{key: 'love_coach', value: selectedOption}}
+              postInfo={undefined}
+              background="White"
+              top={40}
+              left={0}
             />
-          </TouchableOpacity>
+          ) : (
+            <BtnNext
+              navigation={navigation}
+              navigateTo="SignInNavigator"
+              propName="SignInRoute"
+              propRoute="Liens_dinscription"
+              txt="Continuer"
+              handleStore={{key: 'love_coach', value: selectedOption}}
+              postInfo={undefined}
+              background="White"
+              top={40}
+              left={0}
+            />
+          )}
         </View>
       </ImageBackground>
     </View>

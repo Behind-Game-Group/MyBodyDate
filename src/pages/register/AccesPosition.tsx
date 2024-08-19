@@ -19,7 +19,7 @@ import {
 import StylesAccesPosition from '../../../assets/style/styleScreens/styleRegister/StyleAccesPosition';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
-import { TitreDeuxLignes } from '../../components/TitreDeuxLignes';
+import {TitreDeuxLignes} from '../../components/titre/TitreDeuxLignes';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Acces_Position'>;
@@ -137,9 +137,12 @@ export const AccesPosition: React.FC<HomeProps> = ({navigation}) => {
           txtTitle="AUTORISEZ L'ACCÈS À"
           txtTitle2="VOTRE POSITION"
           textAlign="left"
-          fontWeight={undefined}
           top={160}
           left={30}
+          fontFamily={undefined}
+          color={undefined}
+          fontWeight={undefined}
+          fontSize={24}
         />
         <View style={[StylesAccesPosition.ViewImg]}>
           <View style={[StylesAccesPosition.BlockImg]}>

@@ -1,16 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, ImageBackground, TouchableOpacity} from 'react-native';
 import StylesSituation from '../../../assets/style/styleScreens/styleRegister/StyleSituation';
-import {storeData, getData} from '../../services/storage';
+import {getData} from '../../services/storage';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
-import {TitreDeuxLignes} from '../../components/TitreDeuxLignes';
+import {TitreDeuxLignes} from '../../components/titre/TitreDeuxLignes';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'S_inscrire_par_numero'>;
@@ -20,14 +15,6 @@ export const Situation: React.FC<HomeProps> = ({navigation}) => {
   useEffect(() => {
     handleGetData();
   }, []);
-
-  const handleStoreData = async (key: string, value: string) => {
-    try {
-      await storeData(key, value);
-    } catch (error) {
-      console.error('Erreur lors du stockage des données :', error);
-    }
-  };
 
   const handleGetData = async () => {
     try {
@@ -42,8 +29,6 @@ export const Situation: React.FC<HomeProps> = ({navigation}) => {
   // Constante permettant de récupérer la valeur du bouton sélectionner par l'utilisateur
   const [situation, setSituation] = useState<string>();
 
-  const [buttonPressed, setButtonPressed] = useState<boolean>();
-
   // console.log('Situation : ' + situation);
 
   return (
@@ -57,9 +42,12 @@ export const Situation: React.FC<HomeProps> = ({navigation}) => {
           txtTitle="VOTRE SITUATION"
           txtTitle2="ACTUELLE ?"
           textAlign="center"
-          fontWeight={undefined}
           top={160}
           left={undefined}
+          fontFamily={undefined}
+          color={undefined}
+          fontWeight={undefined}
+          fontSize={24}
         />
 
         <View style={[StylesSituation.ViewBTNSelect]}>
@@ -154,30 +142,18 @@ export const Situation: React.FC<HomeProps> = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <Text style={[StylesSituation.textWhite]}>Choix unique.</Text>
-        <TouchableOpacity
-          style={StylesSituation.ViewBtn}
-          onPress={() => {
-            navigation.navigate('Orientation');
-            handleStoreData('situation', situation ?? '');
-            setButtonPressed(true);
-          }}
-          accessibilityLabel="Continuer">
-          <Text
-            style={[
-              StylesSituation.TxtBtn,
-              {color: buttonPressed ? '#fff' : '#0019A7'},
-            ]}>
-            Continuer
-          </Text>
-          <Image
-            style={[StylesSituation.imgBtn]}
-            source={
-              buttonPressed
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc.png')
-            }
-          />
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Orientation"
+          propName="RegisterRoute"
+          propRoute="Orientation"
+          txt="Continuer"
+          handleStore={{key: 'situation', value: situation ?? ''}}
+          postInfo={undefined}
+          background="White"
+          top={100}
+          left={0}
+        />
       </ImageBackground>
     </View>
   );

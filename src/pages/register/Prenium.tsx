@@ -8,29 +8,21 @@ import {
 } from 'react-native';
 // import Styles from '../../../assets/style/Styles';
 import StylesPrenium from '../../../assets/style/styleScreens/styleRegister/StylePrenium';
-import {storeData, getData} from '../../services/storage';
+import {getData} from '../../services/storage';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Prenium'>;
 };
-
-/* Screen 2 */
 
 export const Prenium: React.FC<HomeProps> = ({navigation}) => {
   const [prenom, setPrenom] = useState<string>();
   const [pseudo, setPseudo] = useState<string>();
   const [showFirstname, setShowFirstname] = useState<boolean>();
   const [radioValue, setRadioValue] = useState<boolean>(false);
-
-  const handleStoreData = async (key: string, value: boolean) => {
-    try {
-      await storeData(key, value);
-    } catch (error) {
-      console.error('Erreur lors du stockage des données :', error);
-    }
-  };
 
   const handleGetData = async () => {
     try {
@@ -50,8 +42,6 @@ export const Prenium: React.FC<HomeProps> = ({navigation}) => {
     }
   };
 
-  const [buttonPressed, setButtonPressed] = useState<boolean>();
-
   // Obtenir et formater la date courante en utilisant la méthode Date()
   const currentDate = new Date();
   const year = currentDate.getFullYear().toString(); // année sur 4 chiffres
@@ -69,7 +59,16 @@ export const Prenium: React.FC<HomeProps> = ({navigation}) => {
       <ImageBackground
         style={StylesPrenium.bgGradient}
         source={require('../../../assets/images/Background.png')}>
-        <Text style={[StylesPrenium.TxtTitle]}>ABONNEMENT PRENIUM</Text>
+        <TitreUneLigne
+          txtTitle="ABONNEMENT PRENIUM"
+          textAlign="center"
+          top={100}
+          left={undefined}
+          fontFamily={undefined}
+          color={undefined}
+          fontWeight={undefined}
+          fontSize={24}
+        />
         <Text style={[StylesPrenium.textWhiteRound]}>
           {showFirstname && pseudo
             ? pseudo
@@ -113,40 +112,30 @@ export const Prenium: React.FC<HomeProps> = ({navigation}) => {
             Cocher, pour obtenir votre abnnement Prenium
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={[]}
-          onPress={() => {
-            navigation.navigate('Prenium');
-          }}
-          accessibilityLabel="Voir les conditions d'abonnement Prenium<">
-          <Text style={[StylesPrenium.textWhite2]}>
-            Voir les conditions d&apos;abonnement Prenium
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={StylesPrenium.ViewBtn}
-          onPress={() => {
-            navigation.navigate('Compte');
-            handleStoreData('prenium', radioValue);
-            setButtonPressed(true);
-          }}
-          accessibilityLabel="Continuer">
-          <Text
-            style={[
-              StylesPrenium.TxtBtn,
-              {color: buttonPressed ? '#fff' : '#0019A7'},
-            ]}>
-            Continuer
-          </Text>
-          <Image
-            style={[StylesPrenium.imgBtn]}
-            source={
-              buttonPressed
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc.png')
-            }
-          />
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Prenium"
+          propName="RegisterRoute"
+          propRoute="Prenium"
+          txt="Voir les conditions d'abonnement Prenium"
+          handleStore={undefined}
+          postInfo={undefined}
+          background={undefined}
+          top={280}
+          left={0}
+        />
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Compte"
+          propName="RegisterRoute"
+          propRoute="Compte"
+          txt="Continuer"
+          handleStore={{key: 'prenium', value: radioValue ?? ''}}
+          postInfo={undefined}
+          background="White"
+          top={120}
+          left={0}
+        />
       </ImageBackground>
     </View>
   );

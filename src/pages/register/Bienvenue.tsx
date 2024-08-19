@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, ImageBackground} from 'react-native';
 import Logo from '../../components/Logo';
-import {TitreDeuxLignes} from '../../components/TitreDeuxLignes';
+import {TitreDeuxLignes} from '../../components/titre/TitreDeuxLignes';
 import {VideoBox} from '../../components/VideoBox';
 import StylesBienvenue from '../../../assets/style/styleScreens/styleRegister/StyleBienvenue';
 import {NavigationProp} from '@react-navigation/native';
@@ -23,8 +23,11 @@ export const Bienvenue: React.FC<HomeProps> = ({navigation}) => {
         <TitreDeuxLignes
           txtTitle="BIENVENUE,"
           txtTitle2="DÉCOUVREZ NOUS."
+          fontFamily={undefined}
+          color={undefined}
           textAlign="left"
           fontWeight={undefined}
+          fontSize={24}
           top={30}
           left={30}
         />

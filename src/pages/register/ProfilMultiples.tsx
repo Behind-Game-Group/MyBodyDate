@@ -10,6 +10,8 @@ import {storeData, getData} from '../../services/storage';
 import StylesProfilMultiples from '../../../assets/style/styleScreens/styleRegister/StyleProfilMultiples';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Confirmation_prenom'>;
@@ -50,8 +52,6 @@ export const ProfilMultiples: React.FC<HomeProps> = ({navigation}) => {
   const [prenom, setPrenom] = useState<string>();
   const [pseudo, setPseudo] = useState<string>();
 
-  const [buttonPressed, setButtonPressed] = useState<boolean>();
-
   // Obtenir et formater la date courante en utilisant la méthode Date()
   const currentDate = new Date();
   const year = currentDate.getFullYear().toString(); // année sur 4 chiffres
@@ -69,7 +69,16 @@ export const ProfilMultiples: React.FC<HomeProps> = ({navigation}) => {
       <ImageBackground
         style={StylesProfilMultiples.bgGradient}
         source={require('../../../assets/images/Background.png')}>
-        <Text style={[StylesProfilMultiples.TxtTitle]}>PROFIL MULTIPLIÉS</Text>
+        <TitreUneLigne
+          txtTitle="PROFIL MULTIPLIÉS"
+          textAlign="center"
+          top={100}
+          left={undefined}
+          fontFamily={undefined}
+          color={undefined}
+          fontWeight={undefined}
+          fontSize={24}
+        />
         <Text style={[StylesProfilMultiples.textWhiteRound]}>
           {isEnabled && pseudo ? pseudo : prenom ? prenom : 'Non communiqué'}
         </Text>
@@ -159,30 +168,18 @@ export const ProfilMultiples: React.FC<HomeProps> = ({navigation}) => {
         <Text style={[StylesProfilMultiples.textWhite2]}>
           Voir les profils dans les paramètres plus tard
         </Text>
-        <TouchableOpacity
-          style={[StylesProfilMultiples.ViewBtn]}
-          onPress={() => {
-            navigation.navigate('Prenium');
-            handleStoreData('profil_multiple', radioValue);
-            setButtonPressed(true);
-          }}
-          accessibilityLabel="Continuer">
-          <Text
-            style={[
-              StylesProfilMultiples.TxtBtn,
-              {color: buttonPressed ? '#fff' : '#0019A7'},
-            ]}>
-            Continuer
-          </Text>
-          <Image
-            style={[StylesProfilMultiples.imgBtn]}
-            source={
-              buttonPressed
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc.png')
-            }
-          />
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Prenium"
+          propName="RegisterRoute"
+          propRoute="Prenium"
+          txt="Continuer"
+          handleStore={{key: 'profil_multiple', value: radioValue ?? ''}}
+          postInfo={undefined}
+          background="White"
+          top={280}
+          left={0}
+        />
       </ImageBackground>
     </View>
   );

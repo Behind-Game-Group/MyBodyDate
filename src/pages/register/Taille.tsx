@@ -7,11 +7,12 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
-import {storeData, getData} from '../../services/storage';
+import {getData} from '../../services/storage';
 import StylesTaille from '../../../assets/style/styleScreens/styleRegister/StyleTaille';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
-import {TitreUneLigne} from '../../components/TitreUneLigne';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Taille'>;
@@ -23,7 +24,6 @@ type ItemProps = {
 };
 
 export const Taille: React.FC<HomeProps> = ({navigation}) => {
-  const [buttonPressed, setButtonPressed] = useState<boolean>(false);
   const [selectedSize, setSelectedSize] = useState<number | undefined>(
     undefined,
   );
@@ -31,16 +31,6 @@ export const Taille: React.FC<HomeProps> = ({navigation}) => {
   useEffect(() => {
     handleGetData();
   }, []);
-
-  const handleStoreData = async (key: string, value: number | undefined) => {
-    try {
-      if (value !== undefined) {
-        await storeData(key, value);
-      }
-    } catch (error) {
-      console.error('Erreur lors du stockage des données :', error);
-    }
-  };
 
   const handleGetData = async () => {
     try {
@@ -104,7 +94,10 @@ export const Taille: React.FC<HomeProps> = ({navigation}) => {
               textAlign="center"
               top={180}
               left={undefined}
-              fontFamily={2}
+              fontFamily={undefined}
+              color={undefined}
+              fontWeight={undefined}
+              fontSize={24}
             />
           </View>
           <View style={[StylesTaille.ViewRow]}>
@@ -148,30 +141,18 @@ export const Taille: React.FC<HomeProps> = ({navigation}) => {
           </View>
           <Text style={[StylesTaille.textWhite]}>Choix unique.</Text>
         </View>
-        <TouchableOpacity
-          style={StylesTaille.ViewBtn}
-          onPress={() => {
-            navigation.navigate('Langue_parler');
-            handleStoreData('taille', selectedSize);
-            setButtonPressed(true);
-          }}
-          accessibilityLabel="Continuer">
-          <Text
-            style={[
-              StylesTaille.TxtBtn,
-              {color: buttonPressed ? '#fff' : '#0019A7'},
-            ]}>
-            Continuer
-          </Text>
-          <Image
-            style={[StylesTaille.imgBtn]}
-            source={
-              buttonPressed
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc.png')
-            }
-          />
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Langue_parler"
+          propName="RegisterRoute"
+          propRoute="Langue_parler"
+          txt="Continuer"
+          handleStore={{key: 'taille', value: selectedSize ?? ''}}
+          postInfo={undefined}
+          background="White"
+          top={200}
+          left={0}
+        />
       </ImageBackground>
     </View>
   );

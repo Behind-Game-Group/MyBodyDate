@@ -1,34 +1,17 @@
-import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  ImageBackground,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
-import {
-  storeData,
-  // getData
-} from '../../services/storage';
+import React from 'react';
+import {View, ImageBackground, Image} from 'react-native';
 import Styles from '../../../assets/style/Styles';
 import {RouteType} from '../../../types/routes/RouteType';
 import {NavigationProp} from '@react-navigation/native';
+import {TitreDeuxLignes} from '../../components/titre/TitreDeuxLignes';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'HomeNext'>;
 };
 
 export const HomeStackNext: React.FC<HomeProps> = ({navigation}) => {
-  const [buttonPressed, setButtonPressed] = useState<string>();
-
-  const handleStoreData = async (key: string, value: string) => {
-    try {
-      await storeData(key, value);
-    } catch (error) {
-      console.error('Erreur lors du stockage des données :', error);
-    }
-  };
-
   return (
     <View style={Styles.container}>
       <ImageBackground
@@ -40,76 +23,52 @@ export const HomeStackNext: React.FC<HomeProps> = ({navigation}) => {
             source={require('../../../assets/logos/logo-row-mybodydate-transparent.png')}
           />
         </View>
-        <View style={[Styles.ViewText2, {top: 200}]}>
-          <Text style={[Styles.textBlue2]}>UN COUP DE COEUR N'ATTEND PAS</Text>
-          <Text style={[Styles.textBlue22, {top: 20}]}>
-            NE PERDEZ PLUS RIEN...{' '}
-          </Text>
-        </View>
-        <View style={[{top: -50}]}>
-          <TouchableOpacity
-            style={[{top: 0, height: 60, width: '90%', alignSelf: 'center'}]}
-            accessibilityLabel="S'inscrire"
-            onPress={() => {
-              setButtonPressed('inscription');
-              handleStoreData('route_choice', 'inscription');
-              navigation.navigate('RegisterNavigator', {
-                RegisterRoute: 'Bienvenue',
-              });
-              // navigation.navigate('TabProfilNavigator', {
-              //   TabProfilRoute: 'ProfilMeRA',
-              // });
-            }}>
-            <Text style={[Styles.textBtn6, {zIndex: 1, top: 10}]}>
-              S'inscrire
-            </Text>
-            <Image
-              style={[
-                {
-                  top: -34,
-                  width: '100%',
-                  height: 60,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                },
-              ]}
-              source={
-                buttonPressed === 'inscription'
-                  ? require('../../../assets/boutons/Bouton-Rouge.png')
-                  : require('../../../assets/boutons/Bouton-Bleu.png')
-              }
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[{top: 20, height: 60, width: '90%', alignSelf: 'center'}]}
-            accessibilityLabel="Se connecter"
-            onPress={() => {
-              setButtonPressed('connexion');
-              handleStoreData('route_choice', 'connexion');
-              navigation.navigate('LogInNavigator', {
-                LoginRoute: 'Liens_de_connexion',
-              });
-            }}>
-            <Text style={[Styles.textBtn6, {zIndex: 2, top: 10}]}>
-              Se connecter
-            </Text>
-            <Image
-              style={[
-                {
-                  top: -34,
-                  width: '100%',
-                  height: 60,
-                  resizeMode: 'contain',
-                  alignSelf: 'center',
-                },
-              ]}
-              source={
-                buttonPressed === 'connexion'
-                  ? require('../../../assets/boutons/Bouton-Rouge.png')
-                  : require('../../../assets/boutons/Bouton-Bleu.png')
-              }
-            />
-          </TouchableOpacity>
+        <TitreDeuxLignes
+          txtTitle="UN COUP DE COEUR"
+          txtTitle2="N'ATTEND PAS"
+          fontFamily="Gilroy"
+          color={'#0019A7'}
+          textAlign="left"
+          fontWeight={'700'}
+          fontSize={27}
+          top={130}
+          left={30}
+        />
+        <TitreUneLigne
+          txtTitle="NE PERDEZ PLUS RIEN..."
+          fontFamily="Gilroy"
+          color={'#0019A7'}
+          fontSize={27}
+          textAlign="left"
+          fontWeight={'500'}
+          top={-130}
+          left={30}
+        />
+        <View style={[{top: -50, height: 150}]}>
+          <BtnNext
+            navigation={navigation}
+            navigateTo="RegisterNavigator"
+            propName="RegisterRoute"
+            propRoute="Bienvenue"
+            txt="S'inscrire"
+            handleStore={{key: 'route_choice', value: 'inscription'}}
+            postInfo={undefined}
+            background="Blue"
+            top={0}
+            left={0}
+          />
+          <BtnNext
+            navigation={navigation}
+            navigateTo="LogInNavigator"
+            propName="LoginRoute"
+            propRoute="Liens_de_connexion"
+            txt="Se connecter"
+            handleStore={{key: 'route_choice', value: 'connexion'}}
+            postInfo={undefined}
+            background="Blue"
+            top={0}
+            left={0}
+          />
         </View>
       </ImageBackground>
     </View>

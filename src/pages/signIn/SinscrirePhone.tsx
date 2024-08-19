@@ -3,18 +3,16 @@ import {
   View,
   Text,
   ImageBackground,
-  Image,
   SafeAreaView,
   TextInput,
-  TouchableOpacity,
 } from 'react-native';
 import Styles from '../../../assets/style/Styles';
-import {postMethod} from '../../services/axiosInstance';
-import {storeData, getData} from '../../services/storage';
+import {getData} from '../../services/storage';
 import StylesSinscrirePhone from '../../../assets/style/styleScreens/styleRegister/StyleSinscrirePhone';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
-import {TitreUneLigne} from '../../components/TitreUneLigne';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'S_inscrire_par_numero'>;
@@ -23,7 +21,6 @@ type HomeProps = {
 export const SignInPhone: React.FC<HomeProps> = ({navigation}) => {
   const [userPhone, setPhone] = useState<string>();
   const [errorNumero, setErrorNumero] = useState<boolean>(false);
-  const [buttonPressed, setButtonPressed] = useState<boolean>(false);
 
   const errorMessage =
     'Numéro de téléphone est invalide. Veuillez respecter le format "+33 000000000"';
@@ -52,14 +49,6 @@ export const SignInPhone: React.FC<HomeProps> = ({navigation}) => {
     handleGetRoute();
   }, []);
 
-  const handleStoreData = async (key: string, value: string) => {
-    try {
-      await storeData(key, value);
-    } catch (error) {
-      console.error('Erreur lors du stockage des données :', error);
-    }
-  };
-
   const handleGetData = async () => {
     try {
       const phone = await getData('phone');
@@ -79,24 +68,6 @@ export const SignInPhone: React.FC<HomeProps> = ({navigation}) => {
     }
   };
 
-  const postInfo = async () => {
-    const url = '/verificationNumero';
-    const data = {
-      phoneNumber: userPhone,
-    };
-    // console.log(data);
-    try {
-      const response = await postMethod(url, data);
-      console.log('Réponse du serveur après la requête POST :', response);
-      if (response) {
-        handleStoreData('route_choice', 'inscription numero');
-        navigation.navigate('Confirmation_numero');
-      }
-    } catch (error) {
-      console.error('Erreur lors de la requête POST :', error);
-    }
-  };
-
   return (
     <View style={StylesSinscrirePhone.container}>
       <ImageBackground
@@ -108,7 +79,10 @@ export const SignInPhone: React.FC<HomeProps> = ({navigation}) => {
             textAlign="left"
             top={120}
             left={30}
-            fontFamily={2}
+            fontFamily={undefined}
+            color={undefined}
+            fontWeight={undefined}
+            fontSize={24}
           />
         </View>
         <SafeAreaView style={[StylesSinscrirePhone.ViewInput]}>
@@ -130,36 +104,18 @@ export const SignInPhone: React.FC<HomeProps> = ({navigation}) => {
             </Text>
           )}
         </SafeAreaView>
-        <TouchableOpacity
-          style={{bottom: 50}}
-          onPress={() => {
-            errorNumero
-              ? [
-                  handleStoreData('phone', userPhone ?? ''),
-                  /* postInfo() */
-                  handleStoreData('route_choice', 'inscription numero'),
-                  navigation.navigate('Confirmation_numero'),
-                ]
-              : navigation.navigate('S_inscrire_par_numero');
-            setButtonPressed(true);
-          }}
-          accessibilityLabel="Continuer">
-          <Text
-            style={[
-              StylesSinscrirePhone.TxtBtn,
-              {color: buttonPressed ? '#fff' : '#0019A7'},
-            ]}>
-            Continuer
-          </Text>
-          <Image
-            style={[StylesSinscrirePhone.imgBtn]}
-            source={
-              buttonPressed
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc.png')
-            }
-          />
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Confirmation_numero"
+          propName="SignInRoute"
+          propRoute="Confirmation_numero"
+          txt="Continuer"
+          handleStore={{key: 'phone', value: userPhone ?? ''}}
+          postInfo={undefined}
+          background="White"
+          top={300}
+          left={0}
+        />
       </ImageBackground>
     </View>
   );

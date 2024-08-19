@@ -12,11 +12,12 @@ import DateTimePicker, {
   DateTimePickerEvent,
 } from '@react-native-community/datetimepicker';
 import Styles from '../../../assets/style/Styles';
-import {storeData, getData} from '../../services/storage';
+import {getData} from '../../services/storage';
 import StylesDateDeNaissance from '../../../assets/style/styleScreens/styleRegister/StyleDateDeNaissance';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
-import { TitreDeuxLignes } from '../../components/TitreDeuxLignes';
+import { TitreDeuxLignes } from '../../components/titre/TitreDeuxLignes';
+import { BtnNext } from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Date_de_naissance'>;
@@ -80,14 +81,7 @@ const RadioInput: React.FC<RadioInputProps> = ({label, subText, selected}) => {
 };
 
 export const DateDeNaissance: React.FC<HomeProps> = ({navigation}) => {
-  const handleStoreData = async (key: string, value: string) => {
-    try {
-      await storeData(key, value);
-    } catch (error) {
-      console.error('Erreur lors du stockage des données :', error);
-    }
-  };
-
+ 
   const handleGetData = async () => {
     try {
       const birthdate = await getData('date_of_birth');
@@ -104,7 +98,6 @@ export const DateDeNaissance: React.FC<HomeProps> = ({navigation}) => {
   const [shortDate, setShortDate] = useState<string>('');
   const [age, setAge] = useState<number | undefined>();
   const today = new Date();
-  const [buttonPressed, setButtonPressed] = useState<boolean>();
 
   const handleDateSelect = (
     event: DateTimePickerEvent,
@@ -188,12 +181,15 @@ export const DateDeNaissance: React.FC<HomeProps> = ({navigation}) => {
             txtTitle="VOTRE DATE"
             txtTitle2="DE NAISSANCE ?"
             textAlign="center"
-            fontWeight={undefined}
             top={140}
             left={undefined}
+            fontFamily={undefined}
+            color={undefined}
+            fontWeight={undefined}
+            fontSize={24}
           />
           <SafeAreaView style={[StylesDateDeNaissance.ViewInputDate]}>
-            <View>
+            <>
               <TouchableOpacity
                 style={[StylesDateDeNaissance.BtnPicker]}
                 accessibilityLabel="Sélectionner une date"
@@ -219,7 +215,7 @@ export const DateDeNaissance: React.FC<HomeProps> = ({navigation}) => {
                   onChange={handleDateSelect}
                 />
               )}
-            </View>
+            </>
           </SafeAreaView>
           <View style={[StylesDateDeNaissance.BoxInput]}>
             <Text style={[StylesDateDeNaissance.textWhite1]}>
@@ -263,30 +259,18 @@ export const DateDeNaissance: React.FC<HomeProps> = ({navigation}) => {
           ) : null}
           <Text style={[StylesDateDeNaissance.textWhite2]}>Choix unique.</Text>
         </View>
-        <TouchableOpacity
-          style={StylesDateDeNaissance.ViewBtn}
-          onPress={() => {
-            navigation.navigate('Taille');
-            handleStoreData('date_of_birth', shortDate);
-            setButtonPressed(true);
-          }}
-          accessibilityLabel="Continuer">
-          <Text
-            style={[
-              StylesDateDeNaissance.TxtBtn,
-              {color: buttonPressed ? '#fff' : '#0019A7'},
-            ]}>
-            Continuer
-          </Text>
-          <Image
-            style={[StylesDateDeNaissance.imgBtn]}
-            source={
-              buttonPressed
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc.png')
-            }
-          />
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Taille"
+          propName="RegisterRoute"
+          propRoute="Taille"
+          txt="Continuer"
+          handleStore={{key: 'date_of_birth', value: shortDate ?? ''}}
+          postInfo={undefined}
+          background="White"
+          top={180}
+          left={0}
+        />
       </ImageBackground>
     </View>
   );

@@ -11,6 +11,7 @@ import {getData} from '../../services/storage';
 import StylesFelicitation from '../../../assets/style/styleScreens/styleRegister/StyleFelicitation';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Felicitations'>;
@@ -63,34 +64,19 @@ export const Felicitations: React.FC<HomeProps> = ({navigation}) => {
           données.
         </Text>
       </View>
-      <View style={[{top: -20}]}>
-        <TouchableOpacity
-          onPress={() => {
-            setButtonPressed('Continuer');
-            navigation.navigate('TabNavigator', {tabPath: 'Amour'});
-            // navigation.navigate('DiscoverNavigator', {
-            //   DiscoverRoute: 'Discover',
-            // });
-          }}
-          accessibilityLabel="Vérifier mon profil">
-          <Text
-            style={[
-              StylesFelicitation.textBtn2,
-              {
-                color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
-              },
-            ]}>
-            Vérifier mon profil
-          </Text>
-          <Image
-            style={[StylesFelicitation.imgBtn]}
-            source={
-              buttonPressed === 'Continuer'
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc.png')
-            }
-          />
-        </TouchableOpacity>
+      <View style={{height: 50, bottom: 50}}>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="TabNavigator"
+          propName="TabNavigator"
+          propRoute="TabNavigator"
+          txt="Vérifier mon profil"
+          handleStore={undefined}
+          postInfo={undefined}
+          background="White"
+          top={0}
+          left={0}
+        />
       </View>
     </ImageBackground>
   );

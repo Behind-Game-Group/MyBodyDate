@@ -1,16 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-} from 'react-native';
-import {storeData, getData} from '../../services/storage';
+import {View, Text, ImageBackground, TouchableOpacity} from 'react-native';
+import {getData} from '../../services/storage';
 import StylesAffinite from '../../../assets/style/styleScreens/styleRegister/StyleAffinite';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
-import { TitreUneLigne } from '../../components/TitreUneLigne';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Affinite'>;
@@ -21,14 +16,6 @@ export const Affinite: React.FC<HomeProps> = ({navigation}) => {
     handleGetData();
   }, []);
 
-  const handleStoreData = async (key: string, value: string[]) => {
-    try {
-      await storeData(key, value);
-    } catch (error) {
-      console.error('Erreur lors du stockage des données :', error);
-    }
-  };
-
   const handleGetData = async () => {
     try {
       const userAffinite = await getData('affinite');
@@ -38,8 +25,6 @@ export const Affinite: React.FC<HomeProps> = ({navigation}) => {
       console.error('Erreur lors de la récupération des données :', error);
     }
   };
-
-  const [buttonPressed, setButtonPressed] = useState<boolean>();
 
   const [selectedAffinite, setSelectedAffinite] = useState<string[]>([]);
 
@@ -66,7 +51,10 @@ export const Affinite: React.FC<HomeProps> = ({navigation}) => {
           textAlign="center"
           top={150}
           left={undefined}
-          fontFamily={2}
+          fontFamily={undefined}
+          color={undefined}
+          fontWeight={undefined}
+          fontSize={24}
         />
         <View style={[StylesAffinite.ViewBTNSelect]}>
           <TouchableOpacity
@@ -169,30 +157,18 @@ export const Affinite: React.FC<HomeProps> = ({navigation}) => {
         </View>
 
         <Text style={[StylesAffinite.textWhite]}>Choix multiple.</Text>
-        <TouchableOpacity
-          style={StylesAffinite.ViewBtn}
-          onPress={() => {
-            navigation.navigate('Rythme1');
-            handleStoreData('affinite', selectedAffinite ?? '');
-            setButtonPressed(true);
-          }}
-          accessibilityLabel="Continuer">
-          <Text
-            style={[
-              StylesAffinite.TxtBtn,
-              {color: buttonPressed ? '#fff' : '#0019A7'},
-            ]}>
-            Continuer
-          </Text>
-          <Image
-            style={[StylesAffinite.imgBtn]}
-            source={
-              buttonPressed
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc.png')
-            }
-          />
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Rythme1"
+          propName="RegisterRoute"
+          propRoute="Rythme1"
+          txt="Continuer"
+          handleStore={{key: 'affinite', value: selectedAffinite ?? ''}}
+          postInfo={undefined}
+          background="White"
+          top={180}
+          left={0}
+        />
       </ImageBackground>
     </View>
   );

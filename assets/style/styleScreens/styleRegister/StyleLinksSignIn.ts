@@ -95,7 +95,7 @@ const StylesLinksSignIn = StyleSheet.create({
     height: 2,
     width: '70%',
     alignSelf: 'center',
-    margin: 15,
+    margin: 10,
     top: 20,
   },
 });

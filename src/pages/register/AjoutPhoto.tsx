@@ -28,6 +28,7 @@ import {
 import StylesAjoutPhoto from '../../../assets/style/styleScreens/styleRegister/StyleAjoutPhoto';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Ajouter_photo'>;
@@ -185,7 +186,16 @@ export const AjoutPhoto: React.FC<HomeProps> = ({navigation}) => {
         style={StylesAjoutPhoto.bgGradient}
         source={require('../../../assets/images/Background.png')}>
         <View style={[StylesAjoutPhoto.ViewText]}>
-          <Text style={[StylesAjoutPhoto.TxtTitle]}>AJOUTEZ UNE PHOTO</Text>
+          <TitreUneLigne
+            txtTitle="AJOUTEZ UNE PHOTO"
+            textAlign="center"
+            top={0}
+            left={undefined}
+            fontFamily={undefined}
+            color={undefined}
+            fontWeight={undefined}
+            fontSize={24}
+          />
           <Text style={[StylesAjoutPhoto.TxtTitle2]}>
             Affichez votre lifestyle.(6 photos publiques)
           </Text>

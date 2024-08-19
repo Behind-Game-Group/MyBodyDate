@@ -1,20 +1,15 @@
 import * as React from 'react';
 import {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  ImageBackground,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
+import {View, Text, ImageBackground, TouchableOpacity} from 'react-native';
 import Styles from '../../../assets/style/Styles';
 import Logo from '../../components/Logo';
 import StylesLinksSignIn from '../../../assets/style/styleScreens/styleRegister/StyleLinksSignIn';
-import {storeData, getData} from '../../services/storage';
+import {getData} from '../../services/storage';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
-import {TitreDeuxLignes} from '../../components/TitreDeuxLignes';
-import {TitreUneLigne} from '../../components/TitreUneLigne';
+import {TitreDeuxLignes} from '../../components/titre/TitreDeuxLignes';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'LinksSignIn'>;
@@ -24,14 +19,6 @@ export const LinksSignIn: React.FC<HomeProps> = ({navigation}) => {
   useEffect(() => {
     handleGetData();
   }, []);
-
-  const handleStoreData = async (key: string, value: string) => {
-    try {
-      await storeData(key, value);
-    } catch (error) {
-      console.error('Erreur lors du stockage des données :', error);
-    }
-  };
 
   const handleGetData = async () => {
     try {
@@ -44,7 +31,6 @@ export const LinksSignIn: React.FC<HomeProps> = ({navigation}) => {
   };
 
   const [routeChoice, setRouteChoice] = useState<string>();
-  const [buttonPressed, setButtonPressed] = useState<string>();
 
   return (
     <View style={StylesLinksSignIn.container}>
@@ -58,6 +44,9 @@ export const LinksSignIn: React.FC<HomeProps> = ({navigation}) => {
           txtTitle2="N'ATTEND PAS"
           textAlign="left"
           fontWeight="700"
+          fontFamily={undefined}
+          color={undefined}
+          fontSize={24}
           top={undefined}
           left={30}
         />
@@ -66,67 +55,55 @@ export const LinksSignIn: React.FC<HomeProps> = ({navigation}) => {
           textAlign="left"
           top={-80}
           left={30}
-          fontFamily={2}
+          fontFamily={undefined}
+          color={undefined}
+          fontWeight={undefined}
+          fontSize={24}
         />
 
         <View style={[StylesLinksSignIn.ViewBtnLog]}>
-          <View style={[{top: 50}]}>
-            <TouchableOpacity
-              style={[StylesLinksSignIn.btn]}
-              accessibilityLabel="Se connecter par email"
-              onPress={() => {
-                handleStoreData('route_choice', 'inscription email');
-                navigation.navigate('S_inscrire_par_mail');
-                setButtonPressed('mail');
-              }}>
-              <Text style={[StylesLinksSignIn.textBtn]}>
-                S'inscrire par email
-              </Text>
-              <Image
-                style={StylesLinksSignIn.imgBtn}
-                source={
-                  buttonPressed === 'mail'
-                    ? require('../../../assets/boutons/Bouton-Rouge-Email.png')
-                    : require('../../../assets/boutons/Bouton-Bleu-Email.png')
-                }
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[StylesLinksSignIn.btn, Styles.mt20]}
-              onPress={() => {
-                handleStoreData('route_choice', 'inscription numero');
-                navigation.navigate('S_inscrire_par_numero');
-                setButtonPressed('numero');
-              }}
-              accessibilityLabel="S'inscrire avec son numéro de téléphone">
-              <Text style={[StylesLinksSignIn.textBtn2]}>
-                S'inscrire avec son n°
-              </Text>
-              <Image
-                style={[StylesLinksSignIn.imgBtn]}
-                source={
-                  buttonPressed === 'numero'
-                    ? require('../../../assets/boutons/Bouton-Rouge-Telephone.png')
-                    : require('../../../assets/boutons/Bouton-Bleu-Telephone.png')
-                }
-              />
-            </TouchableOpacity>
-            <View style={[{top: 20}]}>
-              <View>
+          <View style={[{top: 50, height: 140}]}>
+            <BtnNext
+              navigation={navigation}
+              navigateTo="S_inscrire_par_mail"
+              propName="SignInRoute"
+              propRoute="S_inscrire_par_mail"
+              txt="S'inscrire par email"
+              handleStore={{key: 'route_choice', value: 'inscription email'}}
+              postInfo={undefined}
+              background="Email"
+              top={0}
+              left={0}
+            />
+            <BtnNext
+              navigation={navigation}
+              navigateTo="S_inscrire_par_numero"
+              propName="SignInRoute"
+              propRoute="S_inscrire_par_numero"
+              txt="S'inscrire avec son n°"
+              handleStore={{key: 'route_choice', value: 'inscription numero'}}
+              postInfo={undefined}
+              background="Numero"
+              top={60}
+              left={0}
+            />
+            <View style={[{top: 140}]}>
+              <View style={[{height: 70}]}>
                 <Text style={[StylesLinksSignIn.textWhite, Styles.fl]}>
                   Vous n'avez pas de compte ?
                 </Text>
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate('LinksLogIn', {
-                      LoginRoute: 'Liens de connexion',
-                    })
-                  }
-                  accessibilityLabel="Se connecter">
-                  <Text style={[StylesLinksSignIn.linkWhite]}>
-                    Se connecter
-                  </Text>
-                </TouchableOpacity>
+                <BtnNext
+                  navigation={navigation}
+                  navigateTo="LogInNavigator"
+                  propName="LoginRoute"
+                  propRoute="Liens_de_connexion"
+                  txt="Se connecter"
+                  handleStore={{key: 'route_choice', value: 'connexion'}}
+                  postInfo={undefined}
+                  background={undefined}
+                  top={15}
+                  left={0}
+                />
                 <View style={[StylesLinksSignIn.line]} />
               </View>
 

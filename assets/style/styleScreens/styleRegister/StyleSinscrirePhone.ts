@@ -24,7 +24,7 @@ const StylesSinscrirePhone = StyleSheet.create({
   },
   ViewInput: {
     flex: 2,
-    top: 80,
+    top: 160,
   },
   TextInput: {
     color: '#FFF',

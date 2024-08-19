@@ -3,16 +3,15 @@ import {
   View,
   Text,
   ImageBackground,
-  Image,
   SafeAreaView,
   TextInput,
-  TouchableOpacity,
 } from 'react-native';
-import {storeData, getData} from '../../services/storage';
+import {getData} from '../../services/storage';
 import StylesVille from '../../../assets/style/styleScreens/styleRegister/StyleVille';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
-import {TitreUneLigne} from '../../components/TitreUneLigne';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Ville'>;
@@ -20,21 +19,10 @@ type HomeProps = {
 
 export const Ville: React.FC<HomeProps> = ({navigation}) => {
   const [userCity, setVille] = useState<string>();
-  // console.log('city: ' + userCity);
-
-  const [buttonPressed, setButtonPressed] = useState<boolean>();
 
   useEffect(() => {
     handleGetData();
   }, []);
-
-  const handleStoreData = async (key: string, value: string) => {
-    try {
-      await storeData(key, value);
-    } catch (error) {
-      console.error('Erreur lors du stockage des données :', error);
-    }
-  };
 
   const handleGetData = async () => {
     try {
@@ -57,7 +45,10 @@ export const Ville: React.FC<HomeProps> = ({navigation}) => {
             textAlign="center"
             top={140}
             left={undefined}
-            fontFamily={2}
+            fontFamily={undefined}
+            color={undefined}
+            fontWeight={undefined}
+            fontSize={24}
           />
           <SafeAreaView style={[StylesVille.ViewInput]}>
             <TextInput
@@ -83,30 +74,18 @@ export const Ville: React.FC<HomeProps> = ({navigation}) => {
             </Text>
           </SafeAreaView>
         </View>
-        <TouchableOpacity
-          style={StylesVille.ViewBtn}
-          onPress={() => {
-            navigation.navigate('Acces_Position');
-            handleStoreData('city', userCity ?? '');
-            setButtonPressed(true);
-          }}
-          accessibilityLabel="Continuer">
-          <Text
-            style={[
-              StylesVille.TxtBtn,
-              {color: buttonPressed ? '#fff' : '#0019A7'},
-            ]}>
-            Continuer
-          </Text>
-          <Image
-            style={[StylesVille.imgBtn]}
-            source={
-              buttonPressed
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc.png')
-            }
-          />
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Acces_Position"
+          propName="RegisterRoute"
+          propRoute="Acces_Position"
+          txt="Continuer"
+          handleStore={{key: 'city', value: userCity ?? ''}}
+          postInfo={undefined}
+          background="White"
+          top={100}
+          left={0}
+        />
       </ImageBackground>
     </View>
   );

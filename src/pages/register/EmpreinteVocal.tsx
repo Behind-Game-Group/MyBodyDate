@@ -13,13 +13,14 @@ import AudioRecorderPlayer, {
   AudioEncoderAndroidType,
   AudioSourceAndroidType,
 } from 'react-native-audio-recorder-player';
-import {storeData, getData} from '../../services/storage';
+import {getData} from '../../services/storage';
 import {PERMISSIONS, PermissionStatus, request} from 'react-native-permissions';
 import RNFS from 'react-native-fs';
-import Styles from '../../../assets/style/Styles';
 import StylesEmpreinteVocal from '../../../assets/style/styleScreens/styleRegister/StyleEmpreinteVocal';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Empreinte_vocal'>;
@@ -37,8 +38,6 @@ export const EmpreinteVocal: React.FC<HomeProps> = ({navigation}) => {
   // console.log('Voix sélectionnée : ', selectedVoice);
 
   // const [isActive, setIsActive] = useState<boolean>(false);
-
-  const [buttonPressed, setButtonPressed] = useState<string>('');
 
   const [recording, setRecording] = useState<boolean>(false);
   const [playing, setPlaying] = useState<boolean>(false);
@@ -81,14 +80,6 @@ export const EmpreinteVocal: React.FC<HomeProps> = ({navigation}) => {
     checkPermissions();
     handleGetData();
   }, []);
-
-  const handleStoreData = async (key: string, value: string) => {
-    try {
-      await storeData(key, value);
-    } catch (error) {
-      console.error('Erreur lors du stockage des données :', error);
-    }
-  };
 
   const handleGetData = async () => {
     try {
@@ -216,7 +207,16 @@ export const EmpreinteVocal: React.FC<HomeProps> = ({navigation}) => {
       style={[StylesEmpreinteVocal.bgGradient]}
       source={require('../../../assets/images/Background.png')}>
       <View style={[StylesEmpreinteVocal.ViewText]}>
-        <Text style={[StylesEmpreinteVocal.TxtTitle]}>EMPREINTE VOCAL</Text>
+        <TitreUneLigne
+          txtTitle="EMPREINTE VOCAL"
+          textAlign="center"
+          top={0}
+          left={undefined}
+          fontFamily={undefined}
+          color={undefined}
+          fontWeight={undefined}
+          fontSize={24}
+        />
         <Text style={[StylesEmpreinteVocal.textWhite]}>
           Enregistrer un mesage vocale introductif à l'attention des personnes
           que vous croisez, et émouvoir votre futur match
@@ -465,42 +465,18 @@ export const EmpreinteVocal: React.FC<HomeProps> = ({navigation}) => {
             </Text>
           </View>
         </Modal>
-        <TouchableOpacity
-          style={[{bottom: 20}]}
-          onPress={() => {
-            setButtonPressed('Continuer');
-            navigation.navigate('Charte_engagement');
-            empreinteVocal
-              ? handleStoreData('empreinte_vocal', empreinteVocal)
-              : null;
-          }}
-          accessibilityLabel="Continuer">
-          <Text
-            style={[
-              Styles.textBtn9,
-              {
-                zIndex: 4,
-                top: 40,
-                color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
-              },
-            ]}>
-            Continuer
-          </Text>
-          <Image
-            style={[
-              {
-                height: 56,
-                resizeMode: 'contain',
-                alignSelf: 'center',
-              },
-            ]}
-            source={
-              buttonPressed === 'Continuer'
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc.png')
-            }
-          />
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Charte_engagement"
+          propName="RegisterRoute"
+          propRoute="Charte_engagement"
+          txt="Continuer"
+          handleStore={{key: 'empreinte_vocal', value: empreinteVocal ?? ''}}
+          postInfo={undefined}
+          background="White"
+          top={0}
+          left={0}
+        />
       </View>
     </ImageBackground>
   );

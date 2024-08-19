@@ -27,7 +27,7 @@ const StylesTaille = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     alignItems: 'center',
-    bottom: 30,
+    top: 150,
   },
   BoxFlat: {justifyContent: 'center'},
   Flat: {
@@ -86,7 +86,7 @@ const StylesTaille = StyleSheet.create({
     resizeMode: 'contain',
   },
   textWhite: {
-    top: 100,
+    top: 300,
     left: 40,
     color: '#fff',
     fontSize: 12,

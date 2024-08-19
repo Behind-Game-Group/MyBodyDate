@@ -6,7 +6,6 @@ import {
   Image,
   SafeAreaView,
   TextInput,
-  TouchableOpacity,
   Keyboard,
   EventSubscription,
 } from 'react-native';
@@ -15,7 +14,8 @@ import {postMethod} from '../../services/axiosInstance';
 import {getData} from '../../services/storage';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
-import {TitreDeuxLignes} from '../../components/TitreDeuxLignes';
+import {TitreDeuxLignes} from '../../components/titre/TitreDeuxLignes';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'S_inscrire_par_numero'>;
@@ -54,8 +54,6 @@ export const ConfirmationNumero: React.FC<HomeProps> = ({navigation}) => {
   const [userCode, setCode] = useState<string>('');
 
   const [userPhone, setPhone] = useState<string>('');
-
-  const [buttonPressed, setButtonPressed] = useState<string>('');
 
   const [check, setCheck] = useState<boolean>();
 
@@ -109,12 +107,13 @@ export const ConfirmationNumero: React.FC<HomeProps> = ({navigation}) => {
           txtTitle="CONFRIMATION"
           txtTitle2="NUMÉRO"
           textAlign="left"
+          fontFamily={undefined}
+          color={undefined}
           fontWeight={undefined}
+          fontSize={24}
           top={120}
           left={30}
         />
-        {/* <Text style={[StylesConfirmationNumero.TxtTitle]}>CONFRIMATION</Text>
-        <Text style={[StylesConfirmationNumero.TxtTitle]}>NUMÉRO</Text> */}
         <SafeAreaView style={[StylesConfirmationNumero.ViewInput]}>
           <TextInput
             style={StylesConfirmationNumero.TextInput}
@@ -148,79 +147,57 @@ export const ConfirmationNumero: React.FC<HomeProps> = ({navigation}) => {
             />
           ) : null}
         </SafeAreaView>
-        <View style={[{bottom: showButton ? 140 : -85}]}>
-          <TouchableOpacity
-            style={[{bottom: 10}]}
-            onPress={() => {
-              setButtonPressed('Reessayez');
-              navigation.navigate('S_inscrire_par_numero');
-            }}
-            accessibilityLabel="S'inscrire par numéro">
-            <Text style={[StylesConfirmationNumero.textBtn]}>Réessayez</Text>
-            <Image
-              style={[StylesConfirmationNumero.imgBtn]}
-              source={
-                buttonPressed === 'Reessayez'
-                  ? require('../../../assets/boutons/Bouton-Rouge.png')
-                  : require('../../../assets/boutons/Bouton-Noir.png')
-              }
-            />
-          </TouchableOpacity>
+        <View
+          style={[
+            {
+              top: showButton ? 100 : 80,
+              height: 180,
+            },
+          ]}>
+          <BtnNext
+            navigation={navigation}
+            navigateTo="S_inscrire_par_numero"
+            propName="SignInRoute"
+            propRoute="S_inscrire_par_numero"
+            txt="Réessayez"
+            handleStore={undefined}
+            postInfo={undefined}
+            background="Black"
+            top={0}
+            left={0}
+          />
           <Text style={[StylesConfirmationNumero.textWhite]}>
             Si vous n&apos;avez pas reçu d&apos;sms, veuillez rééssayez.
           </Text>
-          <TouchableOpacity
-            style={[{top: 20}]}
-            onPress={() => {
-              setButtonPressed('Recup');
-              navigation.navigate('S_inscrire_par_mail');
-            }}
-            accessibilityLabel="Récupérer mon compte">
-            <Text style={[StylesConfirmationNumero.textBtn1]}>
-              S&apos;inscrire par email
-            </Text>
-            <Image
-              style={[StylesConfirmationNumero.imgBtn1]}
-              source={
-                buttonPressed === 'Recup'
-                  ? require('../../../assets/boutons/Bouton-Noir-Email.png')
-                  : require('../../../assets/boutons/Bouton-Rouge-Email.png')
-              }
-            />
-          </TouchableOpacity>
+          <BtnNext
+            navigation={navigation}
+            navigateTo="S_inscrire_par_mail"
+            propName="RegisterRoute"
+            propRoute="S_inscrire_par_mail"
+            txt="S'inscrire par email"
+            handleStore={undefined}
+            postInfo={undefined}
+            background="Email-rouge"
+            top={50}
+            left={10}
+          />
           <Text style={[StylesConfirmationNumero.textWhite1]}>
             Utilisez un autre moyen pour vous inscrire
           </Text>
         </View>
         {showButton && (
-          <View style={[{bottom: 40}]}>
-            <TouchableOpacity
-              onPress={() => {
-                setButtonPressed('Continuer');
-                check
-                  ? navigation.navigate('Ville')
-                  : navigation.navigate('Confirmation_numero');
-              }}
-              accessibilityLabel="Continuer">
-              <Text
-                style={[
-                  StylesConfirmationNumero.textBtn2,
-                  {
-                    color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
-                  },
-                ]}>
-                Continuer
-              </Text>
-              <Image
-                style={[StylesConfirmationNumero.imgBtn2]}
-                source={
-                  buttonPressed === 'Continuer'
-                    ? require('../../../assets/boutons/Bouton-Rouge.png')
-                    : require('../../../assets/boutons/Bouton-Blanc.png')
-                }
-              />
-            </TouchableOpacity>
-          </View>
+          <BtnNext
+            navigation={navigation}
+            navigateTo={check ? 'Ville' : 'Confirmation_numero'}
+            propName="RegisterRoute"
+            propRoute={check ? 'Ville' : 'Confirmation_numero'}
+            txt="Continuer"
+            handleStore={undefined}
+            postInfo={undefined}
+            background="White"
+            top={240}
+            left={0}
+          />
         )}
       </ImageBackground>
     </View>

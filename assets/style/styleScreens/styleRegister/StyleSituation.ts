@@ -23,7 +23,7 @@ const StylesSituation = StyleSheet.create({
     fontWeight: '500',
   },
   textWhite: {
-    top: 180,
+    top: 250,
     left: 40,
     color: '#fff',
     fontSize: 12,
@@ -32,7 +32,7 @@ const StylesSituation = StyleSheet.create({
     fontFamily: 'Comfortaa',
   },
   ViewBTNSelect: {
-    top: 140,
+    top: 200,
     height: 400,
     justifyContent: 'space-between',
     alignItems: 'center',

@@ -14,6 +14,8 @@ import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
 import {WebViewMessageEvent} from 'react-native-webview';
 import LottieView from 'lottie-react-native';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Confirmation_compte'>;
@@ -25,8 +27,6 @@ const siteKey = 'e8489cc3-b124-4243-b0bd-abd6d596e104';
 const baseUrl = 'https://hcaptcha.com';
 
 export const ConfirmationCompte: React.FC<HomeProps> = ({navigation}) => {
-  const [buttonPressed, setButtonPressed] = useState<string>('');
-
   // Constantes concernant la Modal Recaptcha
   // const [modalRecaptchaVisible, setModalRecaptchaVisible] = useState<boolean>(true);
 
@@ -128,7 +128,16 @@ export const ConfirmationCompte: React.FC<HomeProps> = ({navigation}) => {
     <ImageBackground
       style={StylesConfirmationCompte.bgGradient}
       source={require('../../../assets/images/Background.png')}>
-      <Text style={[StylesConfirmationCompte.TxtTitle]}>MON COMPTE</Text>
+      <TitreUneLigne
+        txtTitle="MON COMPTE"
+        textAlign="center"
+        top={130}
+        left={undefined}
+        fontFamily={undefined}
+        color={undefined}
+        fontWeight={undefined}
+        fontSize={24}
+      />
       <Text style={[StylesConfirmationCompte.textWhite]}>
         Prouvez que vous n&apos;êtes pas un robot.
       </Text>
@@ -163,33 +172,18 @@ export const ConfirmationCompte: React.FC<HomeProps> = ({navigation}) => {
           size={'invisible'}
         />
         {testReached()}
-        <TouchableOpacity
-          style={[StylesConfirmationCompte.ViewBtn, {top: code ? 50 : -30}]}
-          accessibilityLabel="Continuer"
-          onPress={() => {
-            code == null
-              ? navigation.navigate('Confirmation_compte')
-              : navigation.navigate('Ajouter_photo');
-            setButtonPressed('Continuer');
-          }}>
-          <Image
-            style={[StylesConfirmationCompte.imgBtn2]}
-            source={
-              buttonPressed === 'Continuer'
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc.png')
-            }
-          />
-          <Text
-            style={[
-              StylesConfirmationCompte.TxtBtn,
-              {
-                color: buttonPressed === 'Continuer' ? '#fff' : '#0019A7',
-              },
-            ]}>
-            Continuer
-          </Text>
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Ajouter_photo"
+          propName="RegisterRoute"
+          propRoute="Ajouter_photo"
+          txt="Continuer"
+          handleStore={undefined}
+          postInfo={undefined}
+          background="White"
+          top={code ? 60 : -20}
+          left={0}
+        />
       </View>
     </ImageBackground>
   );

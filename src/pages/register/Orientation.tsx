@@ -1,16 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {storeData, getData} from '../../services/storage';
-import {
-  View,
-  Text,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-} from 'react-native';
+import {getData} from '../../services/storage';
+import {View, Text, ImageBackground, TouchableOpacity} from 'react-native';
 import StylesOrientation from '../../../assets/style/styleScreens/styleRegister/StyleOrientation';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
-import {TitreUneLigne} from '../../components/TitreUneLigne';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Orientation'>;
@@ -20,14 +15,6 @@ export const Orientation: React.FC<HomeProps> = ({navigation}) => {
   useEffect(() => {
     handleGetData();
   }, []);
-
-  const handleStoreData = async (key: string, value: string) => {
-    try {
-      await storeData(key, value);
-    } catch (error) {
-      console.error('Erreur lors du stockage des données :', error);
-    }
-  };
 
   const handleGetData = async () => {
     try {
@@ -42,8 +29,6 @@ export const Orientation: React.FC<HomeProps> = ({navigation}) => {
   // Constante permettant de récupérer la valeur du bouton sélectionner par l'utilisateur
   const [orientation, setOrientation] = useState<string>();
 
-  const [buttonPressed, setButtonPressed] = useState<boolean>();
-
   console.log('Orientation : ' + orientation);
 
   return (
@@ -56,7 +41,10 @@ export const Orientation: React.FC<HomeProps> = ({navigation}) => {
           textAlign="center"
           top={180}
           left={undefined}
-          fontFamily={2}
+          fontFamily={undefined}
+          color={undefined}
+          fontWeight={undefined}
+          fontSize={24}
         />
         <View style={[StylesOrientation.ViewBTNSelect]}>
           <TouchableOpacity
@@ -119,30 +107,18 @@ export const Orientation: React.FC<HomeProps> = ({navigation}) => {
         </View>
 
         <Text style={[StylesOrientation.textWhite]}>Choix unique.</Text>
-        <TouchableOpacity
-          style={StylesOrientation.ViewBtn}
-          onPress={() => {
-            navigation.navigate('Recherche1');
-            handleStoreData('orientation', orientation ?? '');
-            setButtonPressed(true);
-          }}
-          accessibilityLabel="Continuer">
-          <Text
-            style={[
-              StylesOrientation.TxtBtn,
-              {color: buttonPressed ? '#fff' : '#0019A7'},
-            ]}>
-            Continuer
-          </Text>
-          <Image
-            style={[StylesOrientation.imgBtn]}
-            source={
-              buttonPressed
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc.png')
-            }
-          />
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Recherche1"
+          propName="RegisterRoute"
+          propRoute="Recherche1"
+          txt="Continuer"
+          handleStore={{key: 'orientation', value: orientation ?? ''}}
+          postInfo={undefined}
+          background="White"
+          top={280}
+          left={0}
+        />
       </ImageBackground>
     </View>
   );

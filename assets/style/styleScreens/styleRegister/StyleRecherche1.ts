@@ -23,7 +23,7 @@ const StylesRecherche1 = StyleSheet.create({
     fontWeight: '500',
   },
   textWhite: {
-    top: 350,
+    top: 400,
     left: 40,
     color: '#fff',
     fontSize: 12,

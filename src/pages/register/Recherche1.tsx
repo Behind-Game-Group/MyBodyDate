@@ -1,17 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  ImageBackground,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, ImageBackground, TouchableOpacity} from 'react-native';
 import Styles from '../../../assets/style/Styles';
-import {storeData, getData} from '../../services/storage';
+import {getData} from '../../services/storage';
 import StylesRecherche1 from '../../../assets/style/styleScreens/styleRegister/StyleRecherche1';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
-import {TitreUneLigne} from '../../components/TitreUneLigne';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Recherche1'>;
@@ -21,15 +16,6 @@ export const Recherche1: React.FC<HomeProps> = ({navigation}) => {
   useEffect(() => {
     handleGetData();
   }, []);
-
-  const handleStoreData = async (key: string, value: string) => {
-    try {
-      await storeData(key, value);
-    } catch (error) {
-      console.error('Erreur lors du stockage des données :', error);
-    }
-  };
-
   const handleGetData = async () => {
     try {
       const userRecherche1 = await getData('recherche1');
@@ -41,8 +27,6 @@ export const Recherche1: React.FC<HomeProps> = ({navigation}) => {
   };
 
   const [recherche1, setState] = useState<string>();
-
-  const [buttonPressed, setButtonPressed] = useState<boolean>();
 
   const handleRecherche1 = (value: string) => {
     setState(value);
@@ -58,7 +42,10 @@ export const Recherche1: React.FC<HomeProps> = ({navigation}) => {
           textAlign="center"
           top={180}
           left={undefined}
-          fontFamily={2}
+          fontFamily={undefined}
+          color={undefined}
+          fontWeight={undefined}
+          fontSize={24}
         />
         <View style={[StylesRecherche1.ViewBTNSelect]}>
           <TouchableOpacity
@@ -114,30 +101,18 @@ export const Recherche1: React.FC<HomeProps> = ({navigation}) => {
         </View>
 
         <Text style={[StylesRecherche1.textWhite]}>Choix unique.</Text>
-        <TouchableOpacity
-          style={StylesRecherche1.ViewBtn}
-          onPress={() => {
-            navigation.navigate('Recherche2');
-            handleStoreData('recherche1', recherche1 ?? '');
-            setButtonPressed(true);
-          }}
-          accessibilityLabel="Continuer">
-          <Text
-            style={[
-              StylesRecherche1.TxtBtn,
-              {color: buttonPressed ? '#fff' : '#0019A7'},
-            ]}>
-            Continuer
-          </Text>
-          <Image
-            style={[StylesRecherche1.imgBtn]}
-            source={
-              buttonPressed
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc.png')
-            }
-          />
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Recherche2"
+          propName="RegisterRoute"
+          propRoute="Recherche2"
+          txt="Continuer"
+          handleStore={{key: 'recherche1', value: recherche1 ?? ''}}
+          postInfo={undefined}
+          background="White"
+          top={280}
+          left={0}
+        />
       </ImageBackground>
     </View>
   );

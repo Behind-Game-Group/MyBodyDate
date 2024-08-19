@@ -1,16 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-} from 'react-native';
-import {storeData, getData} from '../../services/storage';
+import {View, Text, ImageBackground, TouchableOpacity} from 'react-native';
+import {getData} from '../../services/storage';
 import StylesRythmeDeVie2 from '../../../assets/style/styleScreens/styleRegister/StyleRythmeDeVie2';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
-import {TitreUneLigne} from '../../components/TitreUneLigne';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Rythme2'>;
@@ -21,14 +16,6 @@ export const RythmeDeVie2: React.FC<HomeProps> = ({navigation}) => {
     handleGetData();
   }, []);
 
-  const handleStoreData = async (key: string, value: string[]) => {
-    try {
-      await storeData(key, value);
-    } catch (error) {
-      console.error('Erreur lors du stockage des données :', error);
-    }
-  };
-
   const handleGetData = async () => {
     try {
       const userRythme1 = await getData('rythme2');
@@ -38,8 +25,6 @@ export const RythmeDeVie2: React.FC<HomeProps> = ({navigation}) => {
       console.error('Erreur lors de la récupération des données :', error);
     }
   };
-
-  const [buttonPressed, setButtonPressed] = useState<boolean>();
 
   // Constante permettant de récupérer les boutons sélectionnés par l'utilisateur
   const [selectedRythme2, setSelectedRythme2] = useState<string[]>([]);
@@ -72,7 +57,10 @@ export const RythmeDeVie2: React.FC<HomeProps> = ({navigation}) => {
           textAlign="center"
           top={140}
           left={undefined}
-          fontFamily={2}
+          fontFamily={undefined}
+          color={undefined}
+          fontWeight={undefined}
+          fontSize={24}
         />
         <View style={[StylesRythmeDeVie2.ViewBTNSelect]}>
           <TouchableOpacity
@@ -171,30 +159,18 @@ export const RythmeDeVie2: React.FC<HomeProps> = ({navigation}) => {
         </View>
 
         <Text style={[StylesRythmeDeVie2.textWhite]}>Choix multiple.</Text>
-        <TouchableOpacity
-          style={StylesRythmeDeVie2.ViewBtn}
-          onPress={() => {
-            navigation.navigate('Prenom');
-            handleStoreData('rythme2', selectedRythme2);
-            setButtonPressed(true);
-          }}
-          accessibilityLabel="Continuer">
-          <Text
-            style={[
-              StylesRythmeDeVie2.TxtBtn,
-              {color: buttonPressed ? '#fff' : '#0019A7'},
-            ]}>
-            Continuer
-          </Text>
-          <Image
-            style={[StylesRythmeDeVie2.imgBtn]}
-            source={
-              buttonPressed
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc.png')
-            }
-          />
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Prenom"
+          propName="RegisterRoute"
+          propRoute="Prenom"
+          txt="Continuer"
+          handleStore={{key: 'rythme2', value: selectedRythme2 ?? ''}}
+          postInfo={undefined}
+          background="White"
+          top={140}
+          left={0}
+        />
       </ImageBackground>
     </View>
   );
