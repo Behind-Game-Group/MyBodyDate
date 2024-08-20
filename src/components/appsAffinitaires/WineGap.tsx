@@ -5,11 +5,11 @@ import {
   Image,
   ImageBackground,
   TouchableOpacity,
-  StyleSheet,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {RouteType} from '../../../types/routes/RouteType';
 import {NavigationProp} from '@react-navigation/native';
+import {TitreUneLigne} from '../titre/TitreUneLigne';
 
 interface WineGapProps {
   navigation: NavigationProp<RouteType, keyof RouteType>;
@@ -28,23 +28,6 @@ export const WineGap: React.FC<WineGapProps> = ({
     setRadioValue(value);
   };
 
-  const styles = StyleSheet.create({
-    linearGradient: {
-      flex: 1,
-      paddingLeft: 15,
-      paddingRight: 15,
-      borderRadius: 5,
-    },
-    buttonText: {
-      fontSize: 18,
-      fontFamily: 'Gill Sans',
-      textAlign: 'center',
-      margin: 10,
-      color: '#ffffff',
-      backgroundColor: 'transparent',
-    },
-  });
-
   return (
     <ImageBackground
       resizeMode="contain"
@@ -62,14 +45,6 @@ export const WineGap: React.FC<WineGapProps> = ({
           zIndex: 2,
         }}
       />
-      <LinearGradient
-        start={{x: 0.0, y: 0.25}}
-        end={{x: 0.5, y: 1.0}}
-        locations={[0, 0.5, 0.6]}
-        colors={['#4c669f', '#3b5998', '#192f6a']}
-        style={styles.linearGradient}>
-        <Text style={styles.buttonText}>Sign in with Facebook</Text>
-      </LinearGradient>
       <LinearGradient
         start={{x: 0.6, y: -0.5}}
         end={{x: -0.4, y: 0.0}}
@@ -92,19 +67,16 @@ export const WineGap: React.FC<WineGapProps> = ({
           position: 'relative',
           zIndex: 1,
         }}>
-        <Text
-          style={{
-            top: menu === true ? 200 : 320,
-            left: 30,
-            color: '#fff',
-            fontFamily: 'Gilory-Bold',
-            textAlign: 'left',
-            fontSize: 48,
-            fontStyle: 'normal',
-            fontWeight: 700,
-          }}>
-          WineGap
-        </Text>
+        <TitreUneLigne
+          txtTitle="WineGap"
+          textAlign="left"
+          top={menu === true ? 200 : 320}
+          left={30}
+          fontFamily={'Gilory-Bold'}
+          color={undefined}
+          fontWeight={'700'}
+          fontSize={48}
+        />
         <Text
           style={[
             {

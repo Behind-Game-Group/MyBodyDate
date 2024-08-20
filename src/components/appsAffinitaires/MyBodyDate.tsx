@@ -9,13 +9,13 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import {RouteType} from '../../../types/routes/RouteType';
 import {NavigationProp} from '@react-navigation/native';
+import {TitreUneLigne} from '../titre/TitreUneLigne';
 
 interface MyBodyDateProps {
   navigation: NavigationProp<RouteType, keyof RouteType>;
-  menu: boolean;
 }
 
-export const MyBodyDate: React.FC<MyBodyDateProps> = ({navigation, menu}) => {
+export const MyBodyDate: React.FC<MyBodyDateProps> = ({navigation}) => {
   const [radioValue, setRadioValue] = useState<boolean>(false);
 
   const handleRadioChange = (value: boolean) => {
@@ -24,14 +24,14 @@ export const MyBodyDate: React.FC<MyBodyDateProps> = ({navigation, menu}) => {
 
   return (
     <ImageBackground
-      resizeMode="contain"
+      resizeMode="cover"
       source={require('../../../assets/images/Background2.png')}
       style={{width: '100%', height: '100%'}}>
       <Image
         source={require('../../../assets/logos/logo-blanc.png')}
         style={{
           position: 'absolute',
-          top: menu === true ? 60 : 140,
+          top: 140,
           width: 300,
           height: 36,
           alignSelf: 'center',
@@ -49,27 +49,24 @@ export const MyBodyDate: React.FC<MyBodyDateProps> = ({navigation, menu}) => {
         ]}
         style={{
           width: '100%',
-          height: menu === true ? '95%' : '100%',
+          height: '100%',
           position: 'relative',
           zIndex: 1,
         }}>
-        <Text
-          style={{
-            top: menu === true ? 200 : 250,
-            left: 20,
-            color: '#fff',
-            fontFamily: 'Gilory-Bold',
-            textAlign: 'left',
-            fontSize: 48,
-            fontStyle: 'normal',
-            fontWeight: 700,
-          }}>
-          MyBodyDate
-        </Text>
+        <TitreUneLigne
+          txtTitle="MyBodyDate"
+          textAlign="left"
+          top={250}
+          left={30}
+          fontFamily={'Gilory-Bold'}
+          color={undefined}
+          fontWeight={'700'}
+          fontSize={48}
+        />
         <Text
           style={[
             {
-              top: menu === true ? 240 : 280,
+              top: 280,
               width: '90%',
               color: '#FFF',
               alignSelf: 'center',
@@ -84,7 +81,7 @@ export const MyBodyDate: React.FC<MyBodyDateProps> = ({navigation, menu}) => {
         <Text
           style={[
             {
-              top: menu === true ? 250 : 300,
+              top: 300,
               width: '90%',
               color: '#FFF',
               alignSelf: 'center',
@@ -101,7 +98,7 @@ export const MyBodyDate: React.FC<MyBodyDateProps> = ({navigation, menu}) => {
           <View
             style={[
               {
-                top: menu === true ? 300 : 350,
+                top: 350,
                 flexDirection: 'row',
                 width: '90%',
                 alignItems: 'center',
@@ -127,7 +124,7 @@ export const MyBodyDate: React.FC<MyBodyDateProps> = ({navigation, menu}) => {
             navigation.goBack();
           }}
           style={{
-            top: menu === true ? 300 : 350,
+            top: 350,
             left: '80%',
             width: 50,
             height: 50,

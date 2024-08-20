@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {View, Image, TouchableOpacity} from 'react-native';
 import MenuSlide from '../../components/menus/MenuSlide';
 import {CheerFlakes} from '../../components/appsAffinitaires/CheerFlakes';
@@ -8,30 +8,15 @@ import {GoPride} from '../../components/appsAffinitaires/GoPride';
 import {MyBodyDate} from '../../components/appsAffinitaires/MyBodyDate';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
-import {getData} from '../../services/storage';
 
 type HomeProps = {
-  navigation: NavigationProp<RouteType, 'Apps_Affinitaires2'>;
   route: RouteProp<RouteType, 'Apps_Affinitaires2'>;
-  menu: boolean;
+  navigation: NavigationProp<RouteType, 'Apps_Affinitaires2'>;
 };
 
-export const AppsAffinitaires2: React.FC<HomeProps> = ({navigation, menu}) => {
-  const [routeAffinite, setRouteAffinite] = useState<string>();
-
-  const handleGetData = async () => {
-    try {
-      const routeAffinite = await getData('routeAffinite');
-      setRouteAffinite(routeAffinite || 'MyBodyDate');
-    } catch (error) {
-      console.error('Erreur lors de la récupération des données :', error);
-    }
-  };
-
-  useEffect(() => {
-    handleGetData();
-  }, []);
-
+export const AppsAffinitaires2: React.FC<HomeProps> = ({navigation, route}) => {
+  const {routeAffinite, menu} = route.params;
+  // console.log(routeAffinite);
   return (
     <View
       style={{
@@ -77,8 +62,10 @@ export const AppsAffinitaires2: React.FC<HomeProps> = ({navigation, menu}) => {
       ) : routeAffinite === 'OpenBetween' ? (
         <OpenBetween navigation={navigation} background={'1'} menu={menu} />
       ) : routeAffinite === 'MyBodyDate' ? (
-        <MyBodyDate navigation={navigation} menu={menu} />
-      ) : null}
+        <MyBodyDate navigation={navigation} />
+      ) : (
+        <MyBodyDate navigation={navigation} />
+      )}
     </View>
   );
 };

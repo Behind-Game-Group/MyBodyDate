@@ -13,12 +13,8 @@ type PassNavigatorProps = {
 };
 
 function PassNavigator({route}: PassNavigatorProps) {
-  const {PassRoute} = route.params;
+  const {PassRoute} = route.params ?? 'Prend_pass';
 
-  // // Vérifier si PassRoute est une clé de RouteType
-  if (!(PassRoute in route.params)) {
-    throw new Error(`Invalid route name: ${PassRoute}`);
-  }
   return (
     <PassStack.Navigator initialRouteName={PassRoute}>
       {/* Pass */}

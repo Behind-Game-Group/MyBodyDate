@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Voix_du_jour2'>;
   route: RouteProp<RouteType, 'Voix_du_jour2'>;
@@ -48,18 +49,16 @@ export const VoixDuJour2: React.FC<HomeProps> = ({navigation}) => {
           />
         </TouchableOpacity>
         <View style={{flex: 1, alignItems: 'center'}}>
-          <Text
-            style={{
-              fontSize: 24,
-              fontFamily: 'Gilory',
-              fontWeight: '700',
-              color: '#FFF',
-              alignSelf: 'center',
-              textAlign: 'center',
-              top: 50,
-            }}>
-            La voix du jour
-          </Text>
+          <TitreUneLigne
+            txtTitle="La voix du jour"
+            textAlign="center"
+            top={50}
+            left={0}
+            fontFamily={'Gilory'}
+            color={undefined}
+            fontWeight={'700'}
+            fontSize={24}
+          />
           <Text
             style={{
               fontSize: 24,

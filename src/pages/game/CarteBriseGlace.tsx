@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Carte_brise_glace'>;
   route: RouteProp<RouteType, 'Carte_brise_glace'>;
@@ -38,17 +39,16 @@ export const CarteBriseGlace: React.FC<HomeProps> = ({navigation}) => {
             }}
           />
         </TouchableOpacity>
-        <Text
-          style={{
-            top: 80,
-            color: '#0019A7',
-            textAlign: 'center',
-            fontFamily: 'Gilroy-Bold',
-            fontSize: 32,
-            fontStyle: 'normal',
-          }}>
-          Carte magique
-        </Text>
+        <TitreUneLigne
+          txtTitle="Carte magique"
+          textAlign="center"
+          top={80}
+          left={0}
+          fontFamily={'Gilory-Bold'}
+          color={'#0019A7'}
+          fontWeight={'700'}
+          fontSize={32}
+        />
         <Text
           style={{
             top: 100,

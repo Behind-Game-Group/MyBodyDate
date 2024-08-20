@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {RouteType} from '../../../types/routes/RouteType';
+import {TitreUneLigne} from '../titre/TitreUneLigne';
 
 interface CheerFlakesProps {
   navigation: NavigationProp<RouteType, keyof RouteType>;
@@ -60,19 +61,16 @@ export const CheerFlakes: React.FC<CheerFlakesProps> = ({
             zIndex: 1,
           }}
         />
-        <Text
-          style={{
-            top: 200,
-            left: 30,
-            color: '#fff',
-            fontFamily: 'Gilory-Bold',
-            textAlign: 'left',
-            fontSize: 48,
-            fontStyle: 'normal',
-            fontWeight: 700,
-          }}>
-          CheerFlakes
-        </Text>
+        <TitreUneLigne
+          txtTitle="CheerFlakes"
+          textAlign="left"
+          top={200}
+          left={30}
+          fontFamily={'Gilory-Bold'}
+          color={undefined}
+          fontWeight={'700'}
+          fontSize={48}
+        />
         <View
           style={{
             width: '100%',

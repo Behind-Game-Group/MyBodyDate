@@ -15,12 +15,7 @@ type GameStackProps = {
 };
 
 function GameNavigator({route}: GameStackProps) {
-  const {GameRoute} = route.params;
-
-  // // Vérifier si GameRoute est une clé de RouteType
-  if (!(GameRoute in route.params)) {
-    throw new Error(`Invalid route name: ${GameRoute}`);
-  }
+  const GameRoute = route?.params?.GameRoute ?? 'Voix_du_jour';
 
   return (
     <GameStack.Navigator initialRouteName={GameRoute}>

@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Carte_magique'>;
   route: RouteProp<RouteType, 'Carte_magique'>;
@@ -51,18 +52,16 @@ export const CarteMagique: React.FC<HomeProps> = ({navigation}) => {
             }}
           />
         </TouchableOpacity>
-        <Text
-          style={{
-            fontSize: 32,
-            fontFamily: 'Gilory',
-            fontWeight: '700',
-            color: '#0019A7',
-            alignSelf: 'center',
-            textAlign: 'center',
-            top: 80,
-          }}>
-          Carte magique
-        </Text>
+        <TitreUneLigne
+          txtTitle="Carte magique"
+          textAlign="center"
+          top={80}
+          left={0}
+          fontFamily={'Gilory'}
+          color={'#0019A7'}
+          fontWeight={'700'}
+          fontSize={32}
+        />
         <Text
           style={{
             fontSize: 15,

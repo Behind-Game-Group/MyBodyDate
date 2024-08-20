@@ -14,7 +14,7 @@ function ProfilNavigator({route}: ProfilNavigatorProps) {
   const {ProfilRoute} = route.params;
 
   const ProfilStack = createNativeStackNavigator();
-  console.log(ProfilRoute);
+  // console.log(ProfilRoute);
 
   return (
     <ProfilStack.Navigator initialRouteName={ProfilRoute}>

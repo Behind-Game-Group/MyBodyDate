@@ -9,6 +9,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import {RouteType} from '../../../types/routes/RouteType';
 import {NavigationProp} from '@react-navigation/native';
+import {TitreUneLigne} from '../titre/TitreUneLigne';
 
 interface OpenBetweenProps {
   navigation: NavigationProp<RouteType, keyof RouteType>;
@@ -61,19 +62,16 @@ export const OpenBetween: React.FC<OpenBetweenProps> = ({
             zIndex: 1,
           }}
         />
-        <Text
-          style={{
-            top: menu === true ? 200 : 340,
-            left: 30,
-            color: '#fff',
-            fontFamily: 'Gilory-Bold',
-            textAlign: 'left',
-            fontSize: 48,
-            fontStyle: 'normal',
-            fontWeight: 700,
-          }}>
-          OpenBetween
-        </Text>
+        <TitreUneLigne
+          txtTitle="OpenBetween"
+          textAlign="left"
+          top={menu === true ? 200 : 320}
+          left={30}
+          fontFamily={'Gilory-Bold'}
+          color={undefined}
+          fontWeight={'700'}
+          fontSize={48}
+        />
         <View
           style={{
             width: '100%',

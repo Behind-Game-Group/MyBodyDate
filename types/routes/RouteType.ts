@@ -43,7 +43,6 @@ export type RouteType = {
   SettingsNavigator: {SettingsRoute: SettingsRoutes};
   AppsAffinitairesNavigator: {
     AppsAffinitairesRoute: AppsAffinitairesRoutes;
-    menu: boolean;
   };
 
   // HomeNavigator

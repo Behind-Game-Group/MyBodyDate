@@ -90,9 +90,15 @@ export const BtnNext: React.FC<BtnNextProps> = ({
       : background === 'Email'
       ? require('../../../assets/boutons/Bouton-Bleu-Email.png')
       : background === 'Email-noir'
-      ? require('../../../assets/boutons/Bouton-Noir-Email.png')
+      ? require('../../../assets/boutons/Bouton-Bleu-Email.png')
       : background === 'Email-rouge'
       ? require('../../../assets/boutons/Bouton-Rouge-Email.png')
+      : background === 'Apple'
+      ? require('../../../assets/boutons/Bouton-Noir-Apple.png')
+      : background === 'Facebook'
+      ? require('../../../assets/boutons/Bouton-Noir-Facebook.png')
+      : background === 'Google'
+      ? require('../../../assets/boutons/Bouton-Noir-Google.png')
       : background === 'Numero'
       ? require('../../../assets/boutons/Bouton-Bleu-Telephone.png')
       : require('../../../assets/boutons/Bouton-Blanc.png');
@@ -165,11 +171,20 @@ export const BtnNext: React.FC<BtnNextProps> = ({
                 ? require('../../../assets/boutons/Bouton-Rouge-Email.png')
                 : buttonPressed === txt && background === 'Numero'
                 ? require('../../../assets/boutons/Bouton-Rouge-Telephone.png')
+                : buttonPressed === txt && background === 'Facebook'
+                ? require('../../../assets/boutons/Bouton-Rouge-Facebook.png')
+                : buttonPressed === txt && background === 'Apple'
+                ? require('../../../assets/boutons/Bouton-Rouge-Apple.png')
+                : buttonPressed === txt && background === 'Google'
+                ? require('../../../assets/boutons/Bouton-Rouge-Google.png')
                 : buttonPressed === txt &&
                   background !== 'Email' &&
                   background !== 'Email-rouge' &&
                   background !== 'Email-Noir' &&
-                  background !== 'Numero'
+                  background !== 'Numero' &&
+                  background !== 'Apple' &&
+                  background !== 'Facebook' &&
+                  background !== 'Google'
                 ? require('../../../assets/boutons/Bouton-Rouge.png')
                 : btnColor
             }>
@@ -185,6 +200,9 @@ export const BtnNext: React.FC<BtnNextProps> = ({
                     (buttonPressed !== txt && background === 'Email-noir') ||
                     (buttonPressed !== txt && background === 'Email-rouge') ||
                     (buttonPressed !== txt && background === 'Black') ||
+                    (buttonPressed !== txt && background === 'Apple') ||
+                    (buttonPressed !== txt && background === 'Facebook') ||
+                    (buttonPressed !== txt && background === 'Google') ||
                     (buttonPressed !== txt && background === 'Numero')
                       ? '#fff'
                       : '#0019A7',

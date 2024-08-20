@@ -9,6 +9,7 @@ import {
 import MenuSlide from '../../components/menus/MenuSlide';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Apps_Affinitaires'>;
@@ -32,17 +33,16 @@ export const AppsAffinitaires: React.FC<HomeProps> = ({navigation}) => {
         backButton={undefined}
         settingsNavigation={undefined}
       />
-      <Text
-        style={{
-          top: 50,
-          color: '#fff',
-          fontFamily: 'Comfortaa-Bold',
-          textAlign: 'center',
-          fontSize: 29,
-          fontStyle: 'normal',
-        }}>
-        Apps affinitaires
-      </Text>
+      <TitreUneLigne
+        txtTitle="Apps affinitaires"
+        textAlign="center"
+        top={50}
+        left={0}
+        fontFamily={'Comfortaa-Bold'}
+        color={undefined}
+        fontWeight={'700'}
+        fontSize={29}
+      />
       <Text
         style={[
           {

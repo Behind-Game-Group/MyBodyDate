@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Voix_du_jour'>;
   route: RouteProp<RouteType, 'Voix_du_jour'>;
@@ -44,18 +45,16 @@ export const VoixDuJour: React.FC<HomeProps> = ({navigation}) => {
               }}
             />
           </TouchableOpacity>
-          <Text
-            style={{
-              fontSize: 24,
-              fontFamily: 'Gilory',
-              fontWeight: '700',
-              color: '#FFF',
-              alignSelf: 'center',
-              textAlign: 'center',
-              top: 50,
-            }}>
-            La voix du jour
-          </Text>
+          <TitreUneLigne
+            txtTitle="La voix du jour"
+            textAlign="center"
+            top={50}
+            left={0}
+            fontFamily={'Gilory'}
+            color={undefined}
+            fontWeight={'700'}
+            fontSize={24}
+          />
           <Image
             source={require('../../../assets/images/MicGame.png')}
             style={{
