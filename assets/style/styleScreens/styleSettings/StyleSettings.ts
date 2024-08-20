@@ -123,7 +123,7 @@ const settingsStyles = StyleSheet.create({
     color: '#383A39',
     fontSize: 16,
     textAlign: 'center',
-    bottom: 10,
+    bottom: 25,
   },
   textLogoutButton: {
     top: -40,
@@ -136,7 +136,7 @@ const settingsStyles = StyleSheet.create({
     width: 260,
     height: 56,
     flexShrink: 0,
-    bottom: 10,
+    bottom: 20,
     alignSelf: 'center',
     resizeMode: 'contain',
   },

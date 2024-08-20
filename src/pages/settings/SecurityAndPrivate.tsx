@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {StatusBar} from 'react-native';
 import {
   View,
@@ -11,6 +11,8 @@ import StyleSecurityAndPrivate from '../../../assets/style/styleScreens/styleSet
 import MenuSlide from '../../components/menus/MenuSlide';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
+import {BtnNext} from '../../components/boutons/BtnNext';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Securite_et_privee'>;
@@ -18,8 +20,6 @@ type HomeProps = {
 };
 
 export const SecurityAndPrivate: React.FC<HomeProps> = ({navigation}) => {
-  const [buttonPressed, setButtonPressed] = useState<string>('');
-
   useEffect(() => {
     StatusBar.setHidden(true);
     return () => {
@@ -39,7 +39,16 @@ export const SecurityAndPrivate: React.FC<HomeProps> = ({navigation}) => {
         backButton={'Retour'}
       />
       <View style={{flex: 5}}>
-        <Text style={StyleSecurityAndPrivate.title}>Sécurité & vie privée</Text>
+        <TitreUneLigne
+          txtTitle="Sécurité & vie privée"
+          fontFamily="Comfortaa-Bold"
+          color={'#0019A7'}
+          fontSize={24}
+          textAlign="center"
+          fontWeight={'700'}
+          top={25}
+          left={undefined}
+        />
         <View style={StyleSecurityAndPrivate.separator} />
         <Text style={StyleSecurityAndPrivate.description}>
           Gérez vos modes de connexions sécurisé ?
@@ -92,27 +101,19 @@ export const SecurityAndPrivate: React.FC<HomeProps> = ({navigation}) => {
         </View>
       </View>
       <View style={{flex: 1}}>
-        <TouchableOpacity
-          onPress={() => {
-            setButtonPressed('retour');
-            navigation.navigate('Settings');
-          }}>
-          <Image
-            style={StyleSecurityAndPrivate.backButton}
-            source={
-              buttonPressed === 'retour'
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc-Border.png')
-            }
-          />
-          <Text
-            style={[
-              StyleSecurityAndPrivate.backButtonText,
-              {color: buttonPressed === 'retour' ? '#fff' : '#0019A7'},
-            ]}>
-            Retour paramètres
-          </Text>
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Settings"
+          propName="SettingsRoute"
+          propRoute="Settings"
+          txt="Retour paramètres"
+          handleStore={undefined}
+          postInfo={undefined}
+          background="Blue-border"
+          top={0}
+          left={0}
+          fontSize={18}
+        />
       </View>
     </ImageBackground>
   );

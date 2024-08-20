@@ -56,6 +56,7 @@ export const HomeStackNext: React.FC<HomeProps> = ({navigation}) => {
             background="Blue"
             top={0}
             left={0}
+            fontSize={18}
           />
           <BtnNext
             navigation={navigation}
@@ -68,6 +69,7 @@ export const HomeStackNext: React.FC<HomeProps> = ({navigation}) => {
             background="Blue"
             top={0}
             left={0}
+            fontSize={18}
           />
         </View>
       </ImageBackground>

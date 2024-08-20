@@ -5,6 +5,8 @@ import StyleAutorisationsNecessaires from '../../../assets/style/styleScreens/st
 import MenuSlide from '../../components/menus/MenuSlide';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
+import {BtnNext} from '../../components/boutons/BtnNext';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Autorisations_necessaires'>;
@@ -31,9 +33,16 @@ export const AutorisationsNecessaires: React.FC<HomeProps> = ({navigation}) => {
         backgroundColor={'white'}
         settingsNavigation={'Parametre_de_confidentialites'}
       />
-      <Text style={StyleAutorisationsNecessaires.title}>
-        Autorisations nécessaires
-      </Text>
+      <TitreUneLigne
+        txtTitle="Autorisations nécessaires"
+        fontFamily="Comfortaa-Bold"
+        color={'#0019A7'}
+        fontSize={24}
+        textAlign="center"
+        fontWeight={'700'}
+        top={30}
+        left={undefined}
+      />
       <View style={StyleAutorisationsNecessaires.separator} />
       <View style={StyleAutorisationsNecessaires.autNecContainer}>
         <View style={StyleAutorisationsNecessaires.containerItem}>
@@ -71,6 +80,19 @@ export const AutorisationsNecessaires: React.FC<HomeProps> = ({navigation}) => {
           </Text>
         </View>
       </View>
+      <BtnNext
+        navigation={navigation}
+        navigateTo="Securite_et_privee"
+        propName="SettingsRoute"
+        propRoute="Securite_et_privee"
+        txt="Retour sécurité & vie privée"
+        handleStore={undefined}
+        postInfo={undefined}
+        background="Blue-border"
+        top={160}
+        left={0}
+        fontSize={18}
+      />
     </ImageBackground>
   );
 };

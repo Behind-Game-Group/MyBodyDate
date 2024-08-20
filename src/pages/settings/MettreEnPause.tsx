@@ -19,6 +19,8 @@ import {
   StorageValue,
   StorageValueMap,
 } from '../../../interfaces/StorageValueInterface';
+import {TitreDeuxLignes} from '../../components/titre/TitreDeuxLignes';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 interface ButtonPosition {
   x: number;
@@ -31,7 +33,6 @@ type HomeProps = {
 };
 
 export const MettreEnPause: React.FC<HomeProps> = ({navigation}) => {
-  const [buttonPressed, setButtonPressed] = useState<boolean>(false);
   const keysToRetrieve: string[] = ['mettre_en_pause'];
 
   const handleStoreData = async (key: string, value: boolean) => {
@@ -137,9 +138,17 @@ export const MettreEnPause: React.FC<HomeProps> = ({navigation}) => {
         backButton={'Retour'}
       />
       <View style={{flex: 10}}>
-        <Text style={StyleMettreEnPause.title}>
-          Mettre mon compte {'\n'}en pause
-        </Text>
+        <TitreDeuxLignes
+          txtTitle="Mettre mon compte"
+          txtTitle2="en pause"
+          fontFamily="Comfortaa-Bold"
+          color={'#0019A7'}
+          textAlign="center"
+          fontWeight={'700'}
+          fontSize={27}
+          top={10}
+          left={0}
+        />
         <View style={StyleMettreEnPause.separator} />
         <Text style={StyleMettreEnPause.description}>
           Vous pouvez suspendre votre compte quand vous le souhaitez. Votre
@@ -221,29 +230,19 @@ export const MettreEnPause: React.FC<HomeProps> = ({navigation}) => {
         </View>
       </View>
       <View style={{flex: 1}}>
-        <TouchableOpacity
-          onPress={() => {
-            setButtonPressed(true);
-            navigation.navigate('SettingsNavigator', {
-              SettingsRoute: 'Settings',
-            });
-          }}>
-          <Image
-            style={StyleMettreEnPause.backButton}
-            source={
-              buttonPressed
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc-Border.png')
-            }
-          />
-          <Text
-            style={[
-              StyleMettreEnPause.backButtonText,
-              {color: buttonPressed ? '#fff' : '#0019A7'},
-            ]}>
-            Retour paramètres
-          </Text>
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Settings"
+          propName="SettingsRoute"
+          propRoute="Settings"
+          txt="Retour paramètres"
+          handleStore={undefined}
+          postInfo={undefined}
+          background="Blue-border"
+          top={0}
+          left={0}
+          fontSize={18}
+        />
       </View>
     </ImageBackground>
   );

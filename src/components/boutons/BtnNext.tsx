@@ -64,6 +64,7 @@ interface BtnNextProps {
   background: string | undefined;
   top: number;
   left: number | undefined;
+  fontSize: number | undefined;
 }
 
 export const BtnNext: React.FC<BtnNextProps> = ({
@@ -77,6 +78,7 @@ export const BtnNext: React.FC<BtnNextProps> = ({
   background,
   top,
   left,
+  fontSize,
 }) => {
   const [buttonPressed, setButtonPressed] = useState<string>();
   console.log(buttonPressed);
@@ -85,6 +87,8 @@ export const BtnNext: React.FC<BtnNextProps> = ({
       ? require('../../../assets/boutons/Bouton-Blanc.png')
       : background === 'Blue'
       ? require('../../../assets/boutons/Bouton-Bleu.png')
+      : background === 'Blue-border'
+      ? require('../../../assets/boutons/Bouton-Blanc-Border.png')
       : background === 'Black'
       ? require('../../../assets/boutons/Bouton-Noir.png')
       : background === 'Email'
@@ -196,6 +200,7 @@ export const BtnNext: React.FC<BtnNextProps> = ({
                   color:
                     (buttonPressed === txt && background === 'Blue') ||
                     (buttonPressed !== txt && background === 'Blue') ||
+                    (buttonPressed !== txt && background !== 'Blue-border') ||
                     (buttonPressed !== txt && background === 'Email') ||
                     (buttonPressed !== txt && background === 'Email-noir') ||
                     (buttonPressed !== txt && background === 'Email-rouge') ||
@@ -207,6 +212,7 @@ export const BtnNext: React.FC<BtnNextProps> = ({
                       ? '#fff'
                       : '#0019A7',
                   left: left ? left : 0,
+                  fontSize: fontSize ? fontSize : 22,
                 },
               ]}>
               {txt}

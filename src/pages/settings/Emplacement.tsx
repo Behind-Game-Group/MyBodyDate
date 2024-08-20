@@ -19,14 +19,15 @@ import {
   StorageValue,
   StorageValueMap,
 } from '../../../interfaces/StorageValueInterface';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import { BtnNext } from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Emplacement'>;
   route: RouteProp<RouteType, 'Emplacement'>;
 };
 
-export const Emplacement: React.FC<HomeProps> = ({navigation, route}) => {
-  const {imagePath, tabPath} = route.params;
+export const Emplacement: React.FC<HomeProps> = ({navigation}) => {
   const [userCity, setUserCity] = useState<string>('');
   const [buttonPressed, setButtonPressed] = useState<boolean>(false);
   const keysToRetrieve: string[] = ['userCity'];
@@ -71,13 +72,20 @@ export const Emplacement: React.FC<HomeProps> = ({navigation, route}) => {
       <MenuSlide
         navigation={navigation}
         icoPushChange={false}
-        imagePath={imagePath}
-        tabPath={tabPath}
         backgroundColor={'white'}
-        settingsNavigation={'Settings'}
-        backButton={'Retour'}
+        settingsNavigation={undefined}
+        backButton={'back'}
       />
-      <Text style={StyleEmplacement.title}>Emplacement</Text>
+      <TitreUneLigne
+        txtTitle="Emplacement"
+        fontFamily="Comfortaa-Bold"
+        color={'#0019A7'}
+        fontSize={24}
+        textAlign="center"
+        fontWeight={'700'}
+        top={25}
+        left={undefined}
+      />
       <View style={StyleEmplacement.separator} />
       <View style={{flex: 5}}>
         <Text style={StyleEmplacement.description}>
@@ -90,8 +98,6 @@ export const Emplacement: React.FC<HomeProps> = ({navigation, route}) => {
             onPress={() =>
               navigation.navigate('SettingsNavigator', {
                 SettingsRoute: 'Emplacement',
-                imagePath: imagePath,
-                tabPath: tabPath,
               })
             }>
             <View style={StyleEmplacement.boxItemEmplacement}>
@@ -106,31 +112,19 @@ export const Emplacement: React.FC<HomeProps> = ({navigation, route}) => {
         </View>
       </View>
       <View style={{flex: 1}}>
-        <TouchableOpacity
-          onPress={() => {
-            setButtonPressed(true);
-            navigation.navigate('SettingsNavigator', {
-              SettingsRoute: 'Settings',
-              imagePath: imagePath,
-              tabPath: tabPath,
-            });
-          }}>
-          <Image
-            style={StyleEmplacement.backButton}
-            source={
-              buttonPressed
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc-Border.png')
-            }
-          />
-          <Text
-            style={[
-              StyleEmplacement.backButtonText,
-              {color: buttonPressed ? '#fff' : '#0019A7'},
-            ]}>
-            Retour paramètres
-          </Text>
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Settings"
+          propName="SettingsRoute"
+          propRoute="Settings"
+          txt="Retour paramètres"
+          handleStore={undefined}
+          postInfo={undefined}
+          background="Blue-border"
+          top={0}
+          left={0}
+          fontSize={18}
+        />
       </View>
     </ImageBackground>
   );

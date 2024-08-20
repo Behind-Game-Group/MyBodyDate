@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {StatusBar} from 'react-native';
 import {
   View,
@@ -11,6 +11,8 @@ import StyleContactAndFAQ from '../../../assets/style/styleScreens/styleSettings
 import MenuSlide from '../../components/menus/MenuSlide';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
+import {BtnNext} from '../../components/boutons/BtnNext';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Contact_et_FAQ'>;
@@ -18,8 +20,6 @@ type HomeProps = {
 };
 
 export const ContactAndFAQ: React.FC<HomeProps> = ({navigation}) => {
-  const [buttonPressed, setButtonPressed] = useState<boolean>(false);
-
   // Masquer la barre de statut au montage de l'écran
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -41,7 +41,16 @@ export const ContactAndFAQ: React.FC<HomeProps> = ({navigation}) => {
         backButton={'Retour'}
       />
       <View style={{flex: 5}}>
-        <Text style={StyleContactAndFAQ.title}>Contact & FAQ</Text>
+        <TitreUneLigne
+          txtTitle="Contact & FAQ"
+          fontFamily="Comfortaa-Bold"
+          color={'#0019A7'}
+          fontSize={24}
+          textAlign="center"
+          fontWeight={'700'}
+          top={25}
+          left={undefined}
+        />
         <View style={StyleContactAndFAQ.separator} />
         <Text style={StyleContactAndFAQ.description}>
           Gérez vos modes de connexions sécurisé ?
@@ -49,11 +58,7 @@ export const ContactAndFAQ: React.FC<HomeProps> = ({navigation}) => {
         <View style={StyleContactAndFAQ.contactAndFaqContainer}>
           <TouchableOpacity
             accessibilityLabel="Aide"
-            onPress={() =>
-              navigation.navigate('SettingsNavigator', {
-                SettingsRoute: 'Aide',
-              })
-            }>
+            onPress={() => navigation.navigate('Aide')}>
             <View style={StyleContactAndFAQ.viewItem}>
               <Text style={StyleContactAndFAQ.textItem}>Aide</Text>
               <Image
@@ -64,11 +69,7 @@ export const ContactAndFAQ: React.FC<HomeProps> = ({navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             accessibilityLabel="Centre de sécurité"
-            onPress={() =>
-              navigation.navigate('SettingsNavigator', {
-                SettingsRoute: 'Centre_de_securite',
-              })
-            }>
+            onPress={() => navigation.navigate('Centre_de_securite')}>
             <View style={StyleContactAndFAQ.viewItem}>
               <Text style={StyleContactAndFAQ.textItem}>
                 Centre de sécurité
@@ -81,11 +82,7 @@ export const ContactAndFAQ: React.FC<HomeProps> = ({navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             accessibilityLabel="Nous contactez"
-            onPress={() =>
-              navigation.navigate('SettingsNavigator', {
-                SettingsRoute: 'Nous_contactez',
-              })
-            }>
+            onPress={() => navigation.navigate('Nous_contactez')}>
             <View style={StyleContactAndFAQ.viewItem}>
               <Text style={StyleContactAndFAQ.textItem}>Nous contactez</Text>
               <Image
@@ -108,30 +105,19 @@ export const ContactAndFAQ: React.FC<HomeProps> = ({navigation}) => {
         </View>
       </View>
       <View style={{flex: 1}}>
-        <TouchableOpacity
-          style={StyleContactAndFAQ.backButtonContainer}
-          onPress={() => {
-            setButtonPressed(true);
-            navigation.navigate('SettingsNavigator', {
-              SettingsRoute: 'Settings',
-            });
-          }}>
-          <Image
-            style={StyleContactAndFAQ.backButton}
-            source={
-              buttonPressed
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc-Border.png')
-            }
-          />
-          <Text
-            style={[
-              StyleContactAndFAQ.backButtonText,
-              {color: buttonPressed ? '#fff' : '#0019A7'},
-            ]}>
-            Retour paramètres
-          </Text>
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Settings"
+          propName="SettingsRoute"
+          propRoute="Settings"
+          txt="Retour paramètres"
+          handleStore={undefined}
+          postInfo={undefined}
+          background="Blue-border"
+          top={0}
+          left={0}
+          fontSize={18}
+        />
       </View>
     </ImageBackground>
   );

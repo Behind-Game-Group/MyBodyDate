@@ -18,11 +18,11 @@ const StyleMettreEnPause = StyleSheet.create({
     width: 351,
     height: 1,
     alignSelf: 'center',
-    top: 40,
+    bottom: 150,
   },
   description: {
     color: '#929EDE',
-    top: 60,
+    bottom: 120,
     width: 320,
     alignSelf: 'center',
     textAlign: 'center',
@@ -34,7 +34,7 @@ const StyleMettreEnPause = StyleSheet.create({
   mettreEnPauseContainer: {
     flexShrink: 0,
     alignSelf: 'center',
-    top: 100,
+    bottom: 100,
   },
   confirmText: {
     color: '#0019A7',
@@ -49,7 +49,7 @@ const StyleMettreEnPause = StyleSheet.create({
     alignSelf: 'center',
   },
   progressBarContainer: {
-    top: 160,
+    bottom: 20,
     flexDirection: 'row',
     alignSelf: 'center',
     width: '80%',
@@ -73,7 +73,7 @@ const StyleMettreEnPause = StyleSheet.create({
     alignItems: 'center',
   },
   progressBarContainerText: {
-    top: 170,
+    top: 0,
     height: 26,
     width: '70%',
     alignSelf: 'center',
@@ -87,11 +87,11 @@ const StyleMettreEnPause = StyleSheet.create({
   viewItem: {
     flexShrink: 0,
     alignSelf: 'center',
-    top: 150,
+    bottom: 0,
     marginBottom: 40,
   },
   viewContainerInfo: {
-    top: 170,
+    bottom: 10,
     width: '100%',
     height: '40%',
     flexDirection: 'column',

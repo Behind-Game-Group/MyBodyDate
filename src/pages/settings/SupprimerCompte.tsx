@@ -13,6 +13,8 @@ import StyleSupprimerCompte from '../../../assets/style/styleScreens/styleSettin
 import MenuSlide from '../../components/menus/MenuSlide';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Supprimer_mon_compte'>;
@@ -44,7 +46,16 @@ export const SupprimerCompte: React.FC<HomeProps> = ({navigation}) => {
         settingsNavigation={'Settings'}
       />
       <View style={{flex: 6}}>
-        <Text style={StyleSupprimerCompte.title}>Supprimer mon compte</Text>
+        <TitreUneLigne
+          txtTitle="Supprimer mon compte"
+          fontFamily="Comfortaa-Bold"
+          color={'#0019A7'}
+          fontSize={24}
+          textAlign="center"
+          fontWeight={'700'}
+          top={25}
+          left={undefined}
+        />
         <View style={StyleSupprimerCompte.separator} />
         <Text style={StyleSupprimerCompte.description}>
           Vous pouvez suspendre votre compte quand vous le souhaitez. Votre
@@ -104,29 +115,19 @@ export const SupprimerCompte: React.FC<HomeProps> = ({navigation}) => {
         </View>
       </View>
       <View style={{flex: 1}}>
-        <TouchableOpacity
-          onPress={() => {
-            setButtonPressed(true);
-            navigation.navigate('SettingsNavigator', {
-              SettingsRoute: 'Settings',
-            });
-          }}>
-          <Image
-            style={StyleSupprimerCompte.backButton}
-            source={
-              buttonPressed
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc-Border.png')
-            }
-          />
-          <Text
-            style={[
-              StyleSupprimerCompte.backButtonText,
-              {color: buttonPressed ? '#fff' : '#0019A7'},
-            ]}>
-            Retour paramètres
-          </Text>
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Settings"
+          propName="SettingsRoute"
+          propRoute="Settings"
+          txt="Retour paramètres"
+          handleStore={undefined}
+          postInfo={undefined}
+          background="Blue-border"
+          top={0}
+          left={0}
+          fontSize={18}
+        />
       </View>
     </ImageBackground>
   );

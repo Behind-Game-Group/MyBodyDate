@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {StatusBar} from 'react-native';
 import {
   View,
@@ -11,6 +11,8 @@ import MenuSlide from '../../components/menus/MenuSlide';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
 import NotificationsStyles from '../../../assets/style/styleScreens/styleSettings/StyleNotification';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Notifications_settings'>;
@@ -18,8 +20,6 @@ type HomeProps = {
 };
 
 export const NotificationsSettings: React.FC<HomeProps> = ({navigation}) => {
-  const [buttonPressed, setButtonPressed] = useState<string>('');
-
   // Masquer la barre de statut au montage de l'écran
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -41,7 +41,16 @@ export const NotificationsSettings: React.FC<HomeProps> = ({navigation}) => {
         backButton={'Retour'}
       />
       <View style={{flex: 10}}>
-        <Text style={NotificationsStyles.title}>Notifications</Text>
+        <TitreUneLigne
+          txtTitle="Notifications"
+          fontFamily="Comfortaa-Bold"
+          color={'#0019A7'}
+          fontSize={24}
+          textAlign="center"
+          fontWeight={'700'}
+          top={25}
+          left={undefined}
+        />
         <View style={NotificationsStyles.separator} />
         <Text style={NotificationsStyles.description}>
           Choisissez le type de notification que vous souhaitez recevoir.
@@ -156,23 +165,19 @@ export const NotificationsSettings: React.FC<HomeProps> = ({navigation}) => {
         </View>
       </View>
       <View style={{flex: 2}}>
-        <TouchableOpacity
-          onPress={() => {
-            setButtonPressed('retour');
-            navigation.navigate('Settings');
-          }}>
-          <Image
-            style={NotificationsStyles.backButton}
-            source={
-              buttonPressed === 'retour'
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc-Border.png')
-            }
-          />
-          <Text style={NotificationsStyles.backButtonText}>
-            Retour paramètres
-          </Text>
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="SettingsNavigator"
+          propName="SettingsRoute"
+          propRoute="Settings"
+          txt="Retour paramètres"
+          handleStore={undefined}
+          postInfo={undefined}
+          background="Blue-border"
+          top={0}
+          left={0}
+          fontSize={18}
+        />
       </View>
     </ImageBackground>
   );

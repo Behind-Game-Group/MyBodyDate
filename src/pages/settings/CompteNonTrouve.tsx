@@ -1,15 +1,9 @@
-import React, {useEffect, useState} from 'react';
-import {
-  StatusBar,
-  ImageBackground,
-  Text,
-  Image,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import React, {useEffect} from 'react';
+import {StatusBar, ImageBackground, Text, Image, View} from 'react-native';
 import StyleCompteNonTrouve from '../../../assets/style/styleScreens/styleSettings/StyleCompteNonTrouve';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Compte_non_trouve'>;
@@ -17,8 +11,6 @@ type HomeProps = {
 };
 
 export const CompteNonTrouve: React.FC<HomeProps> = ({navigation}) => {
-  const [buttonPressed, setButtonPressed] = useState<boolean>(false);
-
   // Masquer la barre de statut au montage de l'écran
   useEffect(() => {
     StatusBar.setHidden(true);
@@ -51,28 +43,19 @@ export const CompteNonTrouve: React.FC<HomeProps> = ({navigation}) => {
         </Text>
       </View>
       <View style={{flex: 1}}>
-        <TouchableOpacity
-          onPress={() => {
-            setButtonPressed(true);
-            navigation.navigate('HomeNavigator', {HomeRoute: 'HomeNext'});
-          }}
-          style={{top: 50}}>
-          <Image
-            style={StyleCompteNonTrouve.backButton}
-            source={
-              buttonPressed
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc-Border.png')
-            }
-          />
-          <Text
-            style={[
-              StyleCompteNonTrouve.backButtonText,
-              {color: buttonPressed ? '#fff' : '#0019A7'},
-            ]}>
-            Retour
-          </Text>
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="BaseNavigator"
+          propName="BaseRoute"
+          propRoute="HomeStackNext"
+          txt="Retour"
+          handleStore={undefined}
+          postInfo={undefined}
+          background="Blue-border"
+          top={0}
+          left={0}
+          fontSize={18}
+        />
       </View>
     </ImageBackground>
   );

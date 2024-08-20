@@ -18,6 +18,7 @@ import {
   StorageValue,
   StorageValueMap,
 } from '../../../interfaces/StorageValueInterface';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Mode_de_connexion'>;
@@ -92,7 +93,16 @@ export const ModeDeConnexion: React.FC<HomeProps> = ({navigation}) => {
           settingsNavigation={'Securite_et_privee'}
           backButton={'Retour'}
         />
-        <Text style={StyleModeConnexion.title}>Mode de connexion</Text>
+        <TitreUneLigne
+          txtTitle="Mode de connexion"
+          fontFamily="Comfortaa-Bold"
+          color={'#0019A7'}
+          fontSize={24}
+          textAlign="center"
+          fontWeight={'700'}
+          top={25}
+          left={undefined}
+        />
         <View style={StyleModeConnexion.separator} />
         <Text style={StyleModeConnexion.description}>
           Gérez vos modes de connexions sécurisé ?
@@ -221,9 +231,7 @@ export const ModeDeConnexion: React.FC<HomeProps> = ({navigation}) => {
               {key: 'Mode_Apple', value: buttonPressedApple},
               {key: 'Mode_Email', value: buttonPressedEmail},
             ]);
-            navigation.navigate('SettingsNavigator', {
-              SettingsRoute: 'Securite_et_privee',
-            });
+            navigation.navigate('Securite_et_privee');
           }}>
           <Image
             style={StyleModeConnexion.backButton}

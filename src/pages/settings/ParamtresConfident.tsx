@@ -9,7 +9,6 @@ import {
   Switch,
 } from 'react-native';
 import StyleAutorisationsNecessaires from '../../../assets/style/styleScreens/styleSettings/StyleParemetresConfident';
-import StyleParemetresConfident from '../../../assets/style/styleScreens/styleSettings/StyleParemetresConfident';
 import MenuSlide from '../../components/menus/MenuSlide';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
@@ -22,6 +21,8 @@ import {
   StorageValue,
   StorageValueMap,
 } from '../../../interfaces/StorageValueInterface';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Parametre_de_confidentialites'>;
@@ -29,7 +30,6 @@ type HomeProps = {
 };
 
 export const ParametresConfident: React.FC<HomeProps> = ({navigation}) => {
-  const [buttonPressed, setButtonPressed] = useState<boolean>(false);
   const [isEnabledLocalisation, setIsEnabledLocalisation] =
     useState<boolean>(false);
   const toggleSwitchLocalisation = () => {
@@ -101,9 +101,16 @@ export const ParametresConfident: React.FC<HomeProps> = ({navigation}) => {
         backButton={'Retour'}
       />
       <View style={{flex: 6}}>
-        <Text style={StyleAutorisationsNecessaires.title}>
-          Paramètres de confidentialités
-        </Text>
+        <TitreUneLigne
+          txtTitle="Paramètres de confidentialités"
+          fontFamily="Comfortaa-Bold"
+          color={'#0019A7'}
+          fontSize={24}
+          textAlign="center"
+          fontWeight={'700'}
+          top={25}
+          left={undefined}
+        />
         <View style={StyleAutorisationsNecessaires.separator} />
         <View
           style={StyleAutorisationsNecessaires.parametresConfidentContainer}>
@@ -179,11 +186,7 @@ export const ParametresConfident: React.FC<HomeProps> = ({navigation}) => {
           <TouchableOpacity
             style={{top: 20}}
             accessibilityLabel="Autorisations nécessaires"
-            onPress={() =>
-              navigation.navigate('SettingsNavigator', {
-                SettingsRoute: 'Autorisations_necessaires',
-              })
-            }>
+            onPress={() => navigation.navigate('Autorisations_necessaires')}>
             <View style={StyleAutorisationsNecessaires.viewItem2}>
               <Text style={StyleAutorisationsNecessaires.textItem2}>
                 Autorisations nécessaires
@@ -197,30 +200,19 @@ export const ParametresConfident: React.FC<HomeProps> = ({navigation}) => {
         </View>
       </View>
       <View style={{flex: 1}}>
-        <TouchableOpacity
-          style={StyleParemetresConfident.containerBack}
-          onPress={() => {
-            setButtonPressed(true);
-            navigation.navigate('SettingsNavigator', {
-              SettingsRoute: 'Securite_et_privee',
-            });
-          }}>
-          <Image
-            style={StyleParemetresConfident.backButton}
-            source={
-              buttonPressed
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc-Border.png')
-            }
-          />
-          <Text
-            style={[
-              StyleParemetresConfident.backButtonText,
-              {color: buttonPressed ? '#fff' : '#0019A7'},
-            ]}>
-            Retour sécurité & vie privée
-          </Text>
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Securite_et_privee"
+          propName="SettingsRoute"
+          propRoute="Securite_et_privee"
+          txt="Retour sécurité & vie privée"
+          handleStore={undefined}
+          postInfo={undefined}
+          background="Blue-border"
+          top={0}
+          left={0}
+          fontSize={18}
+        />
       </View>
     </ImageBackground>
   );

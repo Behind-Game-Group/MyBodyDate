@@ -18,6 +18,8 @@ import {RouteType} from '../../../types/routes/RouteType';
 import {getDatas, storeData} from '../../services/storage';
 import users from '../discover/Users';
 import {User} from '../../../interfaces/UserInterface';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 interface RetrievedValue {
   key: string;
@@ -133,7 +135,16 @@ export const BloquerContacts: React.FC<HomeProps> = ({navigation}) => {
         settingsNavigation={'Securite_et_privee'}
         backButton={'Retour'}
       />
-      <Text style={StyleBloquerContacts.title}>Bloquer des contacts</Text>
+      <TitreUneLigne
+        txtTitle="Bloquer des contacts"
+        fontFamily="Comfortaa-Bold"
+        color={'#0019A7'}
+        fontSize={24}
+        textAlign="center"
+        fontWeight={'700'}
+        top={30}
+        left={undefined}
+      />
       <View style={StyleBloquerContacts.separator} />
       <View style={StyleBloquerContacts.bloquerContactContainer}>
         <Image
@@ -432,30 +443,19 @@ export const BloquerContacts: React.FC<HomeProps> = ({navigation}) => {
           </Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        onPress={() => {
-          setButtonPressed('Retour');
-          navigation.navigate('SettingsNavigator', {
-            SettingsRoute: 'Securite_et_privee',
-          });
-        }}
-        style={StyleBloquerContacts.backButtonContainer}>
-        <Image
-          style={StyleBloquerContacts.backButton}
-          source={
-            buttonPressed === 'Retour'
-              ? require('../../../assets/boutons/Bouton-Rouge.png')
-              : require('../../../assets/boutons/Bouton-Blanc-Border.png')
-          }
-        />
-        <Text
-          style={[
-            StyleBloquerContacts.backButtonText,
-            {color: buttonPressed === 'retour' ? '#fff' : '#0019A7'},
-          ]}>
-          Retour
-        </Text>
-      </TouchableOpacity>
+      <BtnNext
+        navigation={navigation}
+        navigateTo="Securite_et_privee"
+        propName="SettingsRoute"
+        propRoute="Securite_et_privee"
+        txt="Retour"
+        handleStore={undefined}
+        postInfo={undefined}
+        background="Blue-border"
+        top={contact ? 80 : 100}
+        left={0}
+        fontSize={18}
+      />
     </ImageBackground>
   );
 };

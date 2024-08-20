@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {StatusBar} from 'react-native';
 import {
   View,
@@ -13,6 +13,8 @@ import MenuSlide from '../../components/menus/MenuSlide';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
 import {SettingsRoutes} from '../../../types/routes/SettingsRoutes';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type ItemProps = {
   label: string;
@@ -32,8 +34,6 @@ const commonTextStyles = {
 };
 
 export const Settings: React.FC<HomeProps> = ({navigation}) => {
-  const [buttonPressed, setButtonPressed] = useState<string>('');
-
   useEffect(() => {
     StatusBar.setHidden(true);
     return () => {
@@ -143,10 +143,19 @@ export const Settings: React.FC<HomeProps> = ({navigation}) => {
           icoPushChange={false}
           backgroundColor={'white'}
           settingsNavigation={undefined}
-          backButton={'Retour'}
+          backButton={'back'}
         />
         <View style={{flex: 11}}>
-          <Text style={settingsStyles.title}>Paramètres</Text>
+          <TitreUneLigne
+            txtTitle="Paramètres"
+            fontFamily="Comfortaa-Bold"
+            color={'#0019A7'}
+            fontSize={24}
+            textAlign="center"
+            fontWeight={'700'}
+            top={15}
+            left={undefined}
+          />
           <View style={settingsStyles.separator} />
           <View style={settingsStyles.viewScroll}>
             <ScrollView
@@ -188,34 +197,21 @@ export const Settings: React.FC<HomeProps> = ({navigation}) => {
           </View>
         </View>
         <View style={settingsStyles.viewBottom}>
+          <BtnNext
+            navigation={navigation}
+            navigateTo="SettingsNavigator"
+            propName="SettingsRoute"
+            propRoute="Settings"
+            txt="Déconnexion"
+            handleStore={undefined}
+            postInfo={undefined}
+            background="Blue-border"
+            top={0}
+            left={0}
+            fontSize={18}
+          />
           <TouchableOpacity
-            onPress={() => {
-              setButtonPressed('deconnexion');
-              navigation.navigate('HomeNavigator', {HomeRoute: 'HomeNext'});
-            }}>
-            <Image
-              style={[settingsStyles.logoutButton]}
-              source={
-                buttonPressed === 'deconnexion'
-                  ? require('../../../assets/boutons/Bouton-Rouge.png')
-                  : require('../../../assets/boutons/Bouton-Blanc-Border.png')
-              }
-            />
-            <Text
-              style={[
-                settingsStyles.textLogoutButton,
-                {color: buttonPressed === 'deconnexion' ? '#fff' : '#0019A7'},
-              ]}>
-              Déconnexion
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate('SettingsNavigator', {
-                SettingsRoute: 'Supprimer_mon_compte',
-              })
-            }>
+            onPress={() => navigation.navigate('Supprimer_mon_compte')}>
             <Text style={settingsStyles.deleteAccountText}>
               Supprimer mon compte
             </Text>

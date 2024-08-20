@@ -3,9 +3,7 @@ import {StatusBar} from 'react-native';
 import {
   View,
   Text,
-  Image,
   ImageBackground,
-  TouchableOpacity,
   SafeAreaView,
   TextInput,
 } from 'react-native';
@@ -14,6 +12,8 @@ import MenuSlide from '../../components/menus/MenuSlide';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
 import {getDatas, storeData} from '../../services/storage';
+import {BtnNext} from '../../components/boutons/BtnNext';
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
 
 interface RetrievedValue {
   key: string;
@@ -31,7 +31,6 @@ type HomeProps = {
 
 export const ChangerLocalisation: React.FC<HomeProps> = ({navigation}) => {
   const [newCity, setNewCity] = useState<string>();
-  const [buttonPressed, setButtonPressed] = useState<boolean>(false);
 
   const keysToRetrieve: string[] = ['userCity'];
 
@@ -80,9 +79,16 @@ export const ChangerLocalisation: React.FC<HomeProps> = ({navigation}) => {
         backButton={'Retour'}
       />
       <View style={{flex: 5}}>
-        <Text style={StyleChangerLocalisation.title}>
-          Changer ma localisation
-        </Text>
+        <TitreUneLigne
+          txtTitle="Changer ma localisation"
+          fontFamily="Comfortaa-Bold"
+          color={'#0019A7'}
+          fontSize={24}
+          textAlign="center"
+          fontWeight={'700'}
+          top={25}
+          left={undefined}
+        />
         <View style={StyleChangerLocalisation.separator} />
         <Text style={StyleChangerLocalisation.description}>
           Utilisez le mode voyage pour changez votre emplacement et découvrir de
@@ -103,30 +109,19 @@ export const ChangerLocalisation: React.FC<HomeProps> = ({navigation}) => {
         </SafeAreaView>
       </View>
       <View style={{flex: 1}}>
-        <TouchableOpacity
-          style={{top: 0}}
-          onPress={() => {
-            setButtonPressed(true);
-            navigation.navigate('SettingsNavigator', {
-              SettingsRoute: 'Mode_voyage',
-            });
-          }}>
-          <Image
-            style={StyleChangerLocalisation.backButton}
-            source={
-              buttonPressed
-                ? require('../../../assets/boutons/Bouton-Rouge.png')
-                : require('../../../assets/boutons/Bouton-Blanc-Border.png')
-            }
-          />
-          <Text
-            style={[
-              StyleChangerLocalisation.backButtonText,
-              {color: buttonPressed ? '#fff' : '#0019A7'},
-            ]}>
-            Retour mode voyage
-          </Text>
-        </TouchableOpacity>
+        <BtnNext
+          navigation={navigation}
+          navigateTo="Mode_voyage"
+          propName="SettingsRoute"
+          propRoute="Mode_voyage"
+          txt="Retour mode voyage"
+          handleStore={undefined}
+          postInfo={undefined}
+          background="Blue-border"
+          top={0}
+          left={0}
+          fontSize={18}
+        />
       </View>
     </ImageBackground>
   );
