@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import RNFS from 'react-native-fs';
 import StylesBtnReadRecord from '../../../assets/style/StyleComposants/StyleBtnReadRecord';
+import {useEmpreinteVocalContext} from '../../context/EmpreinteVocalContext';
 
 interface BtnReadRecordProps {
   tabPath: string;
@@ -20,6 +21,8 @@ export const BtnReadRecord: React.FC<BtnReadRecordProps> = ({
 }) => {
   const [currentPositionSec, setCurrentPositionSec] = useState<number>(0);
   const [currentDurationSec, setCurrentDurationSec] = useState<number>(0);
+
+  const {empreinteVocal, setEmpreinteVocal} = useEmpreinteVocalContext();
 
   const [playing, setPlaying] = useState<boolean>(false);
   const [pause, setPause] = useState<boolean>(false);

@@ -167,9 +167,13 @@ export const RythmeDeVie2: React.FC<HomeProps> = ({navigation}) => {
           txt="Continuer"
           handleStore={{key: 'rythme2', value: selectedRythme2 ?? ''}}
           postInfo={undefined}
+          color="#0019A7"
           background="White"
           top={140}
           left={0}
+          fontSize={18}
+          fontFamily={undefined}
+          fontWeight="700"
         />
       </ImageBackground>
     </View>

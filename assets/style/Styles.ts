@@ -544,7 +544,7 @@ const styles = StyleSheet.create({
     color: '#0F0BAE',
     fontSize: 22,
     textAlign: 'center',
-    fontFamily: 'Comfortaa-Bold',
+    fontFamily: 'Comfortaa',
     fontWeight: '700',
   },
   textBtn10: {

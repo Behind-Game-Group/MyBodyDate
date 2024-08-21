@@ -20,7 +20,7 @@ import {
   StorageValueMap,
 } from '../../../interfaces/StorageValueInterface';
 import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
-import { BtnNext } from '../../components/boutons/BtnNext';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Emplacement'>;
@@ -120,10 +120,13 @@ export const Emplacement: React.FC<HomeProps> = ({navigation}) => {
           txt="Retour paramètres"
           handleStore={undefined}
           postInfo={undefined}
+          color="#0019A7"
           background="Blue-border"
           top={0}
           left={0}
           fontSize={18}
+          fontFamily={undefined}
+          fontWeight="700"
         />
       </View>
     </ImageBackground>

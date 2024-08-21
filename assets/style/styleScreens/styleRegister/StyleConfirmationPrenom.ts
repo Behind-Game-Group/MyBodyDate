@@ -54,7 +54,7 @@ const StylesConfirmationPrenom = StyleSheet.create({
   },
   TxtBtn: {
     color: '#0F0BAE',
-    fontSize: 22,
+    fontSize: 18,
     textAlign: 'center',
     fontFamily: 'Comfortaa',
     zIndex: 1,

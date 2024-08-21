@@ -52,7 +52,7 @@ const StylesRecuperationCode = StyleSheet.create({
   },
   textBtn: {
     color: '#0F0BAE',
-    fontSize: 22,
+    fontSize: 18,
     textAlign: 'center',
     fontFamily: 'Comfortaa',
     zIndex: 1,

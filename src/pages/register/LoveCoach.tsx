@@ -147,6 +147,9 @@ export const LoveCoach: React.FC<HomeProps> = ({navigation}) => {
               background="White"
               top={40}
               left={0}
+              fontFamily={undefined}
+              fontSize={18}
+              fontWeight="700"
             />
           ) : (
             <BtnNext
@@ -157,9 +160,13 @@ export const LoveCoach: React.FC<HomeProps> = ({navigation}) => {
               txt="Continuer"
               handleStore={{key: 'love_coach', value: selectedOption}}
               postInfo={undefined}
+              color="#0019A7"
               background="White"
               top={40}
               left={0}
+              fontFamily={undefined}
+              fontSize={18}
+              fontWeight="700"
             />
           )}
         </View>

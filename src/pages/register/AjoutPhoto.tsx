@@ -29,6 +29,7 @@ import StylesAjoutPhoto from '../../../assets/style/styleScreens/styleRegister/S
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
 import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
+import {useAvatarContext} from '../../context/AvatarContext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Ajouter_photo'>;
@@ -39,12 +40,12 @@ export const AjoutPhoto: React.FC<HomeProps> = ({navigation}) => {
 
   const [cameraStatus, setCameraStatus] = useState<boolean>(false);
 
-  const [sourcePath, setSourcePath] = useState<string>();
+  const {avatar, setAvatar} = useAvatarContext();
 
   const [modalRecaptchaVisible, setModalPreventImageaVisible] =
     useState<boolean>(false);
 
-  // console.log('userAvatar : ' + sourcePath);
+  // console.log('userAvatar : ' + avatar);
 
   const checkPermissions = () => {
     check(PERMISSIONS.ANDROID.CAMERA)
@@ -113,7 +114,7 @@ export const AjoutPhoto: React.FC<HomeProps> = ({navigation}) => {
       } else if (response.assets && response.assets.length > 0) {
         const uri = response.assets[0].uri;
         if (uri) {
-          setSourcePath(uri);
+          setAvatar(uri);
           handleStoreData('avatar', uri);
           console.log(uri);
         }
@@ -138,7 +139,7 @@ export const AjoutPhoto: React.FC<HomeProps> = ({navigation}) => {
         } else if (response.assets && response.assets.length > 0) {
           const uri = response.assets[0].uri;
           if (uri) {
-            setSourcePath(uri);
+            setAvatar(uri);
             handleStoreData('avatar', uri);
             console.log(uri);
           }
@@ -160,8 +161,8 @@ export const AjoutPhoto: React.FC<HomeProps> = ({navigation}) => {
   const handleGetData = async () => {
     try {
       const avatar = await getData('avatar');
-      setSourcePath(avatar);
-      // console.log(sourcePath);
+      setAvatar(avatar);
+      // console.log(avatar);
     } catch (error) {
       console.error('Erreur lors de la récupération des données :', error);
     }
@@ -172,12 +173,12 @@ export const AjoutPhoto: React.FC<HomeProps> = ({navigation}) => {
     handleGetData();
   }, []);
 
-  let avatar;
-  if (!sourcePath) {
-    avatar = require('../../../assets/images/image.png');
+  let sourcePath;
+  if (!avatar) {
+    sourcePath = require('../../../assets/images/image.png');
   } else {
-    avatar = {uri: sourcePath};
-    console.log(avatar);
+    sourcePath = {uri: avatar};
+    console.log(sourcePath);
   }
 
   return (
@@ -199,7 +200,7 @@ export const AjoutPhoto: React.FC<HomeProps> = ({navigation}) => {
           <Text style={[StylesAjoutPhoto.TxtTitle2]}>
             Affichez votre lifestyle.(6 photos publiques)
           </Text>
-          <Image style={[StylesAjoutPhoto.imgPhoto]} source={avatar} />
+          <Image style={[StylesAjoutPhoto.imgPhoto]} source={sourcePath} />
           <View style={[StylesAjoutPhoto.viewBtn]}>
             <TouchableOpacity
               style={[StylesAjoutPhoto.btn]}

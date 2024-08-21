@@ -21,6 +21,7 @@ import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
 import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
 import {BtnNext} from '../../components/boutons/BtnNext';
+import {useEmpreinteVocalContext} from '../../context/EmpreinteVocalContext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Empreinte_vocal'>;
@@ -41,7 +42,7 @@ export const EmpreinteVocal: React.FC<HomeProps> = ({navigation}) => {
 
   const [recording, setRecording] = useState<boolean>(false);
   const [playing, setPlaying] = useState<boolean>(false);
-  const [empreinteVocal, setEmpreinteVocal] = useState<string>();
+  const {empreinteVocal, setEmpreinteVocal} = useEmpreinteVocalContext();
   const [pause, setPause] = useState<boolean>(false);
   const [permissionAudio, setPermissionAudio] = useState<
     boolean | PermissionStatus
@@ -473,9 +474,13 @@ export const EmpreinteVocal: React.FC<HomeProps> = ({navigation}) => {
           txt="Continuer"
           handleStore={{key: 'empreinte_vocal', value: empreinteVocal ?? ''}}
           postInfo={undefined}
+          color="#0019A7"
           background="White"
           top={0}
           left={0}
+          fontSize={18}
+          fontFamily={undefined}
+          fontWeight="700"
         />
       </View>
     </ImageBackground>

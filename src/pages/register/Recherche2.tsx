@@ -215,9 +215,13 @@ export const Recherche2: React.FC<HomeProps> = ({navigation}) => {
           txt="Continuer"
           handleStore={{key: 'recherche2', value: selectedRecherhe2 ?? ''}}
           postInfo={undefined}
+          color="#0019A7"
           background="White"
           top={60}
           left={0}
+          fontSize={18}
+          fontFamily={undefined}
+          fontWeight="700"
         />
       </ImageBackground>
     </View>

@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import {storeData, getData} from '../../services/storage';
+import {getData} from '../../services/storage';
 import StylesProfilMultiples from '../../../assets/style/styleScreens/styleRegister/StyleProfilMultiples';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
@@ -23,14 +23,6 @@ export const ProfilMultiples: React.FC<HomeProps> = ({navigation}) => {
   useEffect(() => {
     handleGetData();
   }, []);
-
-  const handleStoreData = async (key: string, value: string | boolean) => {
-    try {
-      await storeData(key, value);
-    } catch (error) {
-      console.error('Erreur lors du stockage des données :', error);
-    }
-  };
 
   const handleGetData = async () => {
     try {
@@ -95,10 +87,10 @@ export const ProfilMultiples: React.FC<HomeProps> = ({navigation}) => {
         <View style={[StylesProfilMultiples.ViewRow]}>
           <TouchableOpacity
             onPress={() => {
-              handleStoreData('routeAffinite', 'CheerFlakes');
               navigation.navigate('AppsAffinitairesNavigator', {
                 AppsAffinitairesRoute: 'Apps_Affinitaires2',
                 menu: false,
+                routeAffinite: 'CheerFlakes',
               });
             }}>
             <Image
@@ -108,10 +100,10 @@ export const ProfilMultiples: React.FC<HomeProps> = ({navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              handleStoreData('routeAffinite', 'WineGap');
               navigation.navigate('AppsAffinitairesNavigator', {
                 AppsAffinitairesRoute: 'Apps_Affinitaires2',
                 menu: false,
+                routeAffinite: 'WineGap',
               });
             }}>
             <Image
@@ -123,10 +115,10 @@ export const ProfilMultiples: React.FC<HomeProps> = ({navigation}) => {
         <View style={[StylesProfilMultiples.ViewRow]}>
           <TouchableOpacity
             onPress={() => {
-              handleStoreData('routeAffinite', 'GoPride');
               navigation.navigate('AppsAffinitairesNavigator', {
                 AppsAffinitairesRoute: 'Apps_Affinitaires2',
                 menu: false,
+                routeAffinite: 'GoPride',
               });
             }}>
             <Image
@@ -136,10 +128,10 @@ export const ProfilMultiples: React.FC<HomeProps> = ({navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              handleStoreData('routeAffinite', 'OpenBetween');
               navigation.navigate('AppsAffinitairesNavigator', {
                 AppsAffinitairesRoute: 'Apps_Affinitaires2',
                 menu: false,
+                routeAffinite: 'OpenBetween',
               });
             }}>
             <Image
@@ -176,9 +168,13 @@ export const ProfilMultiples: React.FC<HomeProps> = ({navigation}) => {
           txt="Continuer"
           handleStore={{key: 'profil_multiple', value: radioValue ?? ''}}
           postInfo={undefined}
+          color="#0019A7"
           background="White"
           top={280}
           left={0}
+          fontSize={18}
+          fontFamily={undefined}
+          fontWeight="700"
         />
       </ImageBackground>
     </View>

@@ -71,9 +71,13 @@ export const LinksSignIn: React.FC<HomeProps> = ({navigation}) => {
               txt="S'inscrire par email"
               handleStore={{key: 'route_choice', value: 'inscription email'}}
               postInfo={undefined}
+              color={undefined}
               background="Email"
               top={0}
               left={0}
+              fontFamily="Comfortaa-Bold"
+              fontSize={20}
+              fontWeight="700"
             />
             <BtnNext
               navigation={navigation}
@@ -83,9 +87,13 @@ export const LinksSignIn: React.FC<HomeProps> = ({navigation}) => {
               txt="S'inscrire avec son n°"
               handleStore={{key: 'route_choice', value: 'inscription numero'}}
               postInfo={undefined}
+              color={undefined}
               background="Numero"
               top={60}
               left={0}
+              fontFamily="Comfortaa-Bold"
+              fontSize={20}
+              fontWeight="700"
             />
             <View style={[{top: 140}]}>
               <View style={[{height: 70}]}>
@@ -100,9 +108,13 @@ export const LinksSignIn: React.FC<HomeProps> = ({navigation}) => {
                   txt="Se connecter"
                   handleStore={{key: 'route_choice', value: 'connexion'}}
                   postInfo={undefined}
+                  color={undefined}
                   background={undefined}
                   top={15}
                   left={0}
+                  fontFamily={undefined}
+                  fontSize={18}
+                  fontWeight="500"
                 />
                 <View style={[StylesLinksSignIn.line]} />
               </View>

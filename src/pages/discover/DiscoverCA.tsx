@@ -27,7 +27,7 @@ export const DiscoverCA: React.FC<HomeProps> = ({navigation}) => {
   const {cercle, setTabPath} = useMainContext();
   const txtPartenaire: string = 'Inscrite auprès d’un partenaire';
   const userMedaille: boolean = true;
-  // const userGenre: Genre = 'Femme';
+  // const {genre} = useGenreContext();
   const [buttonPressed, setButtonPressed] = useState<string>('Play');
   const [image, setImage] = useState<number>(1);
 

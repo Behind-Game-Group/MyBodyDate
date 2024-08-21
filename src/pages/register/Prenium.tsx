@@ -120,9 +120,13 @@ export const Prenium: React.FC<HomeProps> = ({navigation}) => {
           txt="Voir les conditions d'abonnement Prenium"
           handleStore={undefined}
           postInfo={undefined}
+          color={undefined}
           background={undefined}
           top={280}
           left={0}
+          fontSize={18}
+          fontFamily={undefined}
+          fontWeight="500"
         />
         <BtnNext
           navigation={navigation}
@@ -132,9 +136,13 @@ export const Prenium: React.FC<HomeProps> = ({navigation}) => {
           txt="Continuer"
           handleStore={{key: 'prenium', value: radioValue ?? ''}}
           postInfo={undefined}
+          color="#0019A7"
           background="White"
           top={120}
           left={0}
+          fontSize={18}
+          fontFamily={undefined}
+          fontWeight="700"
         />
       </ImageBackground>
     </View>

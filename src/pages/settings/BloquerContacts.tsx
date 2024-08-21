@@ -451,10 +451,13 @@ export const BloquerContacts: React.FC<HomeProps> = ({navigation}) => {
         txt="Retour"
         handleStore={undefined}
         postInfo={undefined}
+        color="#0019A7"
         background="Blue-border"
         top={contact ? 80 : 100}
         left={0}
         fontSize={18}
+        fontFamily={undefined}
+        fontWeight="700"
       />
     </ImageBackground>
   );

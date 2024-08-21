@@ -218,7 +218,7 @@ export const RegisterEmail: React.FC<HomeProps> = ({navigation}) => {
         <Text style={[Styles.textWhite2, {fontSize: 12}]}>Choix unique.</Text>
       </View>
 
-      <View style={{bottom: errorPassword ? -50 : 0}}>
+      <View style={{top: errorPassword ? -40 : 40}}>
         <TouchableOpacity
           accessibilityLabel="Continuer"
           onPress={() => {

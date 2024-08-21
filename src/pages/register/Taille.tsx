@@ -149,9 +149,13 @@ export const Taille: React.FC<HomeProps> = ({navigation}) => {
           txt="Continuer"
           handleStore={{key: 'taille', value: selectedSize ?? ''}}
           postInfo={undefined}
+          color="#0019A7"
           background="White"
           top={200}
           left={0}
+          fontSize={18}
+          fontFamily={undefined}
+          fontWeight="700"
         />
       </ImageBackground>
     </View>

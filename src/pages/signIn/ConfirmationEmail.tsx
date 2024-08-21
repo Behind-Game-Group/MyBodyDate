@@ -71,6 +71,7 @@ export const ConfirmationEmail: React.FC<HomeProps> = ({navigation}) => {
           background="Email-noir"
           top={300}
           left={10}
+          fontSize={18}
         />
         <Text style={[StylesConfirmationEmail.textWhite2]}>
           Utilisez un autre moyen de connexion
@@ -84,9 +85,13 @@ export const ConfirmationEmail: React.FC<HomeProps> = ({navigation}) => {
             txt="Continuer"
             handleStore={undefined}
             postInfo={undefined}
+            color={undefined}
             background="White"
             top={180}
             left={0}
+            fontSize={18}
+            fontFamily={undefined}
+            fontWeight="700"
           />
         ) : (
           <BtnNext
@@ -97,9 +102,13 @@ export const ConfirmationEmail: React.FC<HomeProps> = ({navigation}) => {
             txt="Continuer"
             handleStore={undefined}
             postInfo={undefined}
+            color="#0019A7"
             background="White"
             top={180}
             left={0}
+            fontSize={18}
+            fontFamily={undefined}
+            fontWeight="700"
           />
         )}
       </ImageBackground>

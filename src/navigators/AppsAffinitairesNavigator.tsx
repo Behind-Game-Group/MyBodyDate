@@ -8,12 +8,14 @@ import {RouteProp} from '@react-navigation/native';
 const AppsAffinitairesStack = createNativeStackNavigator<RouteType>();
 
 type AppsAffinitairesNavigatorProps = {
-  route?: RouteProp<RouteType, 'AppsAffinitairesNavigator'>;
+  route: RouteProp<RouteType, 'AppsAffinitairesNavigator'>;
 };
 
 function AppsAffinitairesNavigator({route}: AppsAffinitairesNavigatorProps) {
   const AppsAffinitairesRoute =
     route?.params?.AppsAffinitairesRoute ?? 'Apps_Affinitaires';
+  const {routeAffinite, menu} = route.params;
+
   return (
     <AppsAffinitairesStack.Navigator initialRouteName={AppsAffinitairesRoute}>
       {/* Apps Affinitires */}
@@ -26,6 +28,7 @@ function AppsAffinitairesNavigator({route}: AppsAffinitairesNavigatorProps) {
         name="Apps_Affinitaires2"
         component={AppsAffinitaires2}
         options={{headerShown: false}}
+        initialParams={{routeAffinite, menu}}
       />
     </AppsAffinitairesStack.Navigator>
   );

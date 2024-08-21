@@ -34,6 +34,8 @@ export const MenuBottom: React.FC<MenuBottomProps> = ({navigation}) => {
 
   // console.log(tabPathDiscover, '', tabPathMoi);
 
+  console.log(navigation);
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -97,10 +99,11 @@ export const MenuBottom: React.FC<MenuBottomProps> = ({navigation}) => {
       <TouchableOpacity
         onPress={() => {
           setTabPath('Moi');
-          navigation.navigate(tabPathMoi);
-          // navigation.navigate('TabProfilNavigator', {
-          //   TabProfilRoute: tabPathMoi,
-          // });
+          cercle
+            ? navigation.navigate('TabProfilNavigator', {
+                TabProfilRoute: tabPathMoi,
+              })
+            : navigation.navigate(tabPathMoi);
         }}>
         <Image
           source={require('../../../assets/boutons/user.png')}

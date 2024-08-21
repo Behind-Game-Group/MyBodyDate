@@ -89,7 +89,7 @@ const StylesAjoutPhoto = StyleSheet.create({
   },
   textBtn1: {
     color: '#0F0BAE',
-    fontSize: 22,
+    fontSize: 18,
     zIndex: 1,
     top: 40,
     textAlign: 'center',

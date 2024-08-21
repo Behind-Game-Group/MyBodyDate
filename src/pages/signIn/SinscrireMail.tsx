@@ -103,9 +103,13 @@ export const SignInMail: React.FC<HomeProps> = ({navigation}) => {
             txt="Continuer"
             handleStore={{key: 'email', value: userEmail ?? ''}}
             postInfo={undefined}
+            color="#0019A7"
             background="White"
             top={40}
             left={0}
+            fontFamily={undefined}
+            fontSize={20}
+            fontWeight="700"
           />
         </View>
       </ImageBackground>

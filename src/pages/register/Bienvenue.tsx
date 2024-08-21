@@ -41,9 +41,14 @@ export const Bienvenue: React.FC<HomeProps> = ({navigation}) => {
           propName="RegisterRoute"
           propRoute="CreationEtDeveloppement"
           txt="Passer"
+          handleStore={undefined}
+          postInfo={undefined}
           background={undefined}
           top={210}
           left={80}
+          fontFamily={undefined}
+          fontSize={18}
+          fontWeight="700"
         />
       </ImageBackground>
     </View>

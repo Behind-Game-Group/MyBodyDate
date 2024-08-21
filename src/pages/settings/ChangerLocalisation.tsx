@@ -117,10 +117,13 @@ export const ChangerLocalisation: React.FC<HomeProps> = ({navigation}) => {
           txt="Retour mode voyage"
           handleStore={undefined}
           postInfo={undefined}
+          color="#0019A7"
           background="Blue-border"
           top={0}
           left={0}
           fontSize={18}
+          fontFamily={undefined}
+          fontWeight="700"
         />
       </View>
     </ImageBackground>

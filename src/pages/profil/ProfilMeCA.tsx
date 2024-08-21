@@ -211,28 +211,35 @@ export const ProfilMeCA: React.FC<HomeProps> = ({navigation}) => {
               marginTop: 20,
               marginHorizontal: 20,
             }}>
-            <Image
-              source={require('../../../assets/images/validation-du-ticket-1.png')}
-              style={{width: 55, height: 55, bottom: 10}}
-            />
-            <View style={{top: 5}}>
-              <Text
-                style={{
-                  fontFamily: 'Comfortaa',
-                  fontWeight: '700',
-                  color: '#0019A7',
-                  fontSize: 15,
-                }}>
-                Je prends mon pass
-              </Text>
-              <View
-                style={{
-                  borderBottomWidth: 1, // Ajustez cette valeur pour l'épaisseur du soulignement
-                  borderBottomColor: '#0019A7',
-                  bottom: 1, // Ajustez la distance entre le texte et le soulignement
-                }}
+            <TouchableOpacity
+              style={{flexDirection: 'row'}}
+              onPress={() =>
+                navigation.navigate('PassNavigator', {PassRoute: 'Prend_pass'})
+              }>
+              <Image
+                source={require('../../../assets/images/validation-du-ticket-1.png')}
+                style={{width: 55, height: 55, bottom: 10}}
               />
-            </View>
+              <View style={{top: 5}}>
+                <Text
+                  style={{
+                    fontFamily: 'Comfortaa',
+                    fontWeight: '700',
+                    color: '#0019A7',
+                    fontSize: 15,
+                  }}>
+                  Je prends mon pass
+                </Text>
+                <View
+                  style={{
+                    borderBottomWidth: 1,
+                    borderBottomColor: '#0019A7',
+                    bottom: 1,
+                  }}
+                />
+              </View>
+            </TouchableOpacity>
+
             <ImageBackground
               source={require('../../../assets/images/image-16.png')}
               style={{width: 40, height: 30, marginLeft: 60, right: 15}}>

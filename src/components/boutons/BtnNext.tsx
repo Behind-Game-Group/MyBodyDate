@@ -61,10 +61,31 @@ interface BtnNextProps {
   propName: string;
   propRoute: string | undefined;
   txt: string;
+  color: string | undefined;
   background: string | undefined;
   top: number;
   left: number | undefined;
+  fontFamily: string | undefined;
   fontSize: number | undefined;
+  fontWeight:
+    | 'normal'
+    | 'bold'
+    | '100'
+    | '200'
+    | '300'
+    | '400'
+    | '500'
+    | '600'
+    | '700'
+    | '800'
+    | '900'
+    | 'ultralight'
+    | 'thin'
+    | 'light'
+    | 'medium'
+    | 'semibold'
+    | 'black'
+    | undefined;
 }
 
 export const BtnNext: React.FC<BtnNextProps> = ({
@@ -75,15 +96,18 @@ export const BtnNext: React.FC<BtnNextProps> = ({
   propName,
   propRoute,
   txt,
+  color,
   background,
   top,
   left,
+  fontFamily,
   fontSize,
+  fontWeight,
 }) => {
   const [buttonPressed, setButtonPressed] = useState<string>();
   console.log(buttonPressed);
   const btnColor =
-    background === 'white'
+    background === 'White'
       ? require('../../../assets/boutons/Bouton-Blanc.png')
       : background === 'Blue'
       ? require('../../../assets/boutons/Bouton-Bleu.png')
@@ -197,22 +221,11 @@ export const BtnNext: React.FC<BtnNextProps> = ({
                 Styles.textBtn9,
                 {
                   zIndex: 1,
-                  color:
-                    (buttonPressed === txt && background === 'Blue') ||
-                    (buttonPressed !== txt && background === 'Blue') ||
-                    (buttonPressed !== txt && background !== 'Blue-border') ||
-                    (buttonPressed !== txt && background === 'Email') ||
-                    (buttonPressed !== txt && background === 'Email-noir') ||
-                    (buttonPressed !== txt && background === 'Email-rouge') ||
-                    (buttonPressed !== txt && background === 'Black') ||
-                    (buttonPressed !== txt && background === 'Apple') ||
-                    (buttonPressed !== txt && background === 'Facebook') ||
-                    (buttonPressed !== txt && background === 'Google') ||
-                    (buttonPressed !== txt && background === 'Numero')
-                      ? '#fff'
-                      : '#0019A7',
+                  color: color ? color : '#fff',
                   left: left ? left : 0,
                   fontSize: fontSize ? fontSize : 22,
+                  fontFamily: fontFamily ? fontFamily : 'Comfortaa',
+                  fontWeight: fontWeight ? fontWeight : '500',
                 },
               ]}>
               {txt}

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, ImageBackground, TouchableOpacity} from 'react-native';
 import {getData} from '../../services/storage';
 import StylesGenre from '../../../assets/style/styleScreens/styleRegister/StyleGenre';
@@ -6,13 +6,14 @@ import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
 import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
 import {BtnNext} from '../../components/boutons/BtnNext';
+import {useGenreContext} from '../../context/GenreContext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Genre'>;
 };
 
 export const Genre: React.FC<HomeProps> = ({navigation}) => {
-  const [genre, setState] = useState<string>();
+  const {genre, setGenre} = useGenreContext();
 
   // console.log('Genre: ' + genre);
 
@@ -23,8 +24,7 @@ export const Genre: React.FC<HomeProps> = ({navigation}) => {
   const handleGetData = async () => {
     try {
       const userGenre = await getData('genre');
-      setState(userGenre || '');
-      // console.log(consent);
+      setGenre(userGenre || '');
     } catch (error) {
       console.log('Erreur lors de la récupération des données :', error);
     }
@@ -49,7 +49,7 @@ export const Genre: React.FC<HomeProps> = ({navigation}) => {
           <View style={[StylesGenre.ViewBTNSelect]}>
             <TouchableOpacity
               style={[StylesGenre.BtnSelect]}
-              onPress={() => setState('Femme')}
+              onPress={() => setGenre('Femme')}
               accessibilityLabel="Femme">
               <Text
                 style={[
@@ -65,7 +65,7 @@ export const Genre: React.FC<HomeProps> = ({navigation}) => {
             </TouchableOpacity>
             <TouchableOpacity
               style={[StylesGenre.BtnSelect]}
-              onPress={() => setState('Homme')}
+              onPress={() => setGenre('Homme')}
               accessibilityLabel="Homme">
               <Text
                 style={[
@@ -81,7 +81,7 @@ export const Genre: React.FC<HomeProps> = ({navigation}) => {
             </TouchableOpacity>
             <TouchableOpacity
               style={[StylesGenre.BtnSelect]}
-              onPress={() => setState('Non binaire')}
+              onPress={() => setGenre('Non binaire')}
               accessibilityLabel="Non binaire">
               <Text
                 style={[
@@ -106,9 +106,13 @@ export const Genre: React.FC<HomeProps> = ({navigation}) => {
           txt="Continuer"
           handleStore={{key: 'genre', value: genre ?? ''}}
           postInfo={undefined}
+          color="#0019A7"
           background="White"
           top={120}
           left={0}
+          fontSize={18}
+          fontFamily={undefined}
+          fontWeight="700"
         />
       </ImageBackground>
     </View>

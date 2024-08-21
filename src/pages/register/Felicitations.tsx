@@ -73,9 +73,13 @@ export const Felicitations: React.FC<HomeProps> = ({navigation}) => {
           txt="Vérifier mon profil"
           handleStore={undefined}
           postInfo={undefined}
+          color="#0019A7"
           background="White"
           top={0}
           left={0}
+          fontSize={18}
+          fontFamily={undefined}
+          fontWeight="700"
         />
       </View>
     </ImageBackground>

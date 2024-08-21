@@ -165,9 +165,13 @@ export const Affinite: React.FC<HomeProps> = ({navigation}) => {
           txt="Continuer"
           handleStore={{key: 'affinite', value: selectedAffinite ?? ''}}
           postInfo={undefined}
+          color="#0019A7"
           background="White"
           top={180}
           left={0}
+          fontSize={18}
+          fontFamily={undefined}
+          fontWeight="700"
         />
       </ImageBackground>
     </View>

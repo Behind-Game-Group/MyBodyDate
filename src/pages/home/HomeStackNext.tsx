@@ -53,10 +53,13 @@ export const HomeStackNext: React.FC<HomeProps> = ({navigation}) => {
             txt="S'inscrire"
             handleStore={{key: 'route_choice', value: 'inscription'}}
             postInfo={undefined}
+            color={undefined}
             background="Blue"
             top={0}
             left={0}
+            fontFamily={undefined}
             fontSize={18}
+            fontWeight="700"
           />
           <BtnNext
             navigation={navigation}
@@ -66,10 +69,13 @@ export const HomeStackNext: React.FC<HomeProps> = ({navigation}) => {
             txt="Se connecter"
             handleStore={{key: 'route_choice', value: 'connexion'}}
             postInfo={undefined}
+            color={undefined}
             background="Blue"
             top={0}
             left={0}
+            fontFamily={undefined}
             fontSize={18}
+            fontWeight="700"
           />
         </View>
       </ImageBackground>

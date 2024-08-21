@@ -17,6 +17,7 @@ import {
   // storeData
 } from '../../services/storage';
 import {useMainContext} from '../../context/MainContext ';
+import { useDateOfBirthContext } from '../../context/DateOfBirthContext';
 
 interface RetrievedValue {
   key: string;
@@ -40,6 +41,8 @@ export const ProfilMeRA: React.FC<HomeProps> = ({navigation}) => {
   const [userName, setUserName] = useState<string>();
   const [avatar, setAvatar] = useState<string>();
   const today: Date = new Date();
+
+  const {age} = useDateOfBirthContext();
 
   // console.log(userPrenom, userName, showFirstname, userBirth, userCity);
 

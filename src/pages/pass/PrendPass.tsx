@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -13,64 +13,21 @@ import {
   NavigationProp,
   ParamListBase,
   RouteProp,
-  TabNavigationState,
 } from '@react-navigation/native';
 import {BottomTabNavigationEventMap} from '@react-navigation/bottom-tabs';
-import {EdgeInsets} from 'react-native-safe-area-context';
-import {BottomTabDescriptorMap} from '@react-navigation/bottom-tabs/lib/typescript/src/types';
 import {RouteType} from '../../../types/routes/RouteType';
-import {getDatas} from '../../services/storage';
-
-interface RetrievedValue {
-  key: string;
-  value: string | boolean | number | undefined;
-}
-
-interface RetrievedValuesMap {
-  [key: string]: string | boolean | number | undefined;
-}
-
+import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
 type PrendPassProps = {
   navigation: NavigationProp<RouteType, 'Prend_pass'>;
   route: RouteProp<RouteType, 'Prend_pass'>;
   navigationTab: NavigationHelpers<ParamListBase, BottomTabNavigationEventMap>;
-  state: TabNavigationState<ParamListBase>;
-  descriptors: BottomTabDescriptorMap;
-  insets: EdgeInsets;
 };
 
 export const PrendPass: React.FC<PrendPassProps> = ({
   navigation,
   navigationTab,
-  state,
-  descriptors,
-  insets,
 }) => {
   const [boxPressed, setBoxPressed] = useState<string>('');
-  const [tabPath, setTabPath] = useState<string>('');
-  const [imagePath, setImagePath] = useState<string>('');
-
-  const keysToRetrieve: string[] = ['imagePath', 'tabPath'];
-
-  const getMultipleValues = async () => {
-    try {
-      const retrievedValues: RetrievedValue[] = await getDatas(keysToRetrieve);
-
-      const result: RetrievedValuesMap = {};
-      retrievedValues.forEach(item => {
-        result[item.key] = item.value;
-      });
-
-      setImagePath(result.imagePath as string);
-      setTabPath(result.tabPath as string);
-    } catch (error) {
-      console.error('Erreur lors de la récupération des données :', error);
-    }
-  };
-
-  useEffect(() => {
-    getMultipleValues();
-  }, []);
 
   return (
     <ImageBackground
@@ -80,31 +37,26 @@ export const PrendPass: React.FC<PrendPassProps> = ({
         navigation={navigation}
         icoPushChange={false}
         backButton="Retour profil"
-        imagePath={imagePath}
-        tabPath={tabPath}
         backgroundColor={'white'}
         settingsNavigation={undefined}
       />
-      <View style={{height: 'auto'}}>
+      <View style={{height: '100%'}}>
         <ScrollView
           style={{
             width: '100%',
             backgroundColor: 'transparent',
-            height: 750,
           }}
-          contentContainerStyle={{paddingBottom: 20}}>
-          <Text
-            style={{
-              fontSize: 24,
-              fontFamily: 'Gilory',
-              fontWeight: '700',
-              color: '#0019A7',
-              alignSelf: 'center',
-              textAlign: 'center',
-              margin: 30,
-            }}>
-            Je prends mon pass
-          </Text>
+          contentContainerStyle={{paddingBottom: 100}}>
+          <TitreUneLigne
+            txtTitle="Je prends mon pass"
+            fontFamily="Comfortaa-Bold"
+            color={'#0019A7'}
+            fontSize={24}
+            textAlign="center"
+            fontWeight={'700'}
+            top={20}
+            left={undefined}
+          />
           <Text
             style={{
               fontSize: 15,
@@ -114,10 +66,11 @@ export const PrendPass: React.FC<PrendPassProps> = ({
               alignSelf: 'center',
               textAlign: 'center',
               marginBottom: 30,
+              top: 40,
             }}>
             Sélectionnez les critères essentiels{'\n'}pour vous
           </Text>
-          <View style={{top: 20}}>
+          <View style={{top: 60}}>
             <TouchableOpacity
               onPress={() => {
                 setBoxPressed('1');
@@ -254,13 +207,7 @@ export const PrendPass: React.FC<PrendPassProps> = ({
           </View>
         </ScrollView>
       </View>
-      <MenuBottom
-        navigation={navigationTab}
-        tabPath={tabPath}
-        state={state}
-        descriptors={descriptors}
-        insets={insets}
-      />
+      <MenuBottom navigation={navigationTab} />
     </ImageBackground>
   );
 };

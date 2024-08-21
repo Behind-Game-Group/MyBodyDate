@@ -180,9 +180,13 @@ export const ConfirmationCompte: React.FC<HomeProps> = ({navigation}) => {
           txt="Continuer"
           handleStore={undefined}
           postInfo={undefined}
+          color="#0019A7"
           background="White"
           top={code ? 60 : -20}
           left={0}
+          fontSize={18}
+          fontFamily={undefined}
+          fontWeight="700"
         />
       </View>
     </ImageBackground>

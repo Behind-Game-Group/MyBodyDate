@@ -150,9 +150,13 @@ export const Situation: React.FC<HomeProps> = ({navigation}) => {
           txt="Continuer"
           handleStore={{key: 'situation', value: situation ?? ''}}
           postInfo={undefined}
+          color="#0019A7"
           background="White"
           top={100}
           left={0}
+          fontSize={18}
+          fontFamily={undefined}
+          fontWeight="700"
         />
       </ImageBackground>
     </View>

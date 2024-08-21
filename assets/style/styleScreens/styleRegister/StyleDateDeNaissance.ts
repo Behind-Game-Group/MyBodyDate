@@ -11,6 +11,7 @@ const StylesDateDeNaissance = StyleSheet.create({
     height: '100%',
   },
   viewContent: {
+    bottom: 40,
     flex: 6,
   },
   ViewText: {

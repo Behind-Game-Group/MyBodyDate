@@ -17,6 +17,7 @@ import {NavigationProp, RouteProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
 import users from './Users';
 import {useMainContext} from '../../context/MainContext ';
+import {useGenreContext} from '../../context/GenreContext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Discover'>;
@@ -27,7 +28,7 @@ export const Discover: React.FC<HomeProps> = ({navigation}) => {
   const {cercle, setTabPath} = useMainContext();
   const txtPartenaire = 'Inscrite auprès d’un partenaire';
   const userMedaille = true;
-  const userGenre: string = 'Femme';
+  const {genre} = useGenreContext();
   const [buttonPressed, setButtonPressed] = useState('Play');
   const [image, setImage] = useState(1);
 
@@ -45,19 +46,19 @@ export const Discover: React.FC<HomeProps> = ({navigation}) => {
 
     // Si l'imagePath est 'Amour', appliquez des filtres en fonction du genre
     if (cercle === 'Amour') {
-      if (userGenre === 'Homme') {
+      if (genre === 'Homme') {
         return (
           hasAmourInCercle &&
           user.genre !== 'Homme' &&
           user.genre !== 'Non-binaire'
         );
-      } else if (userGenre === 'Femme') {
+      } else if (genre === 'Femme') {
         return (
           hasAmourInCercle &&
           user.genre !== 'Femme' &&
           user.genre !== 'Non-binaire'
         );
-      } else if (userGenre === 'Non-binaire') {
+      } else if (genre === 'Non binaire') {
         return hasAmourInCercle && user.genre !== 'Non-binaire';
       } else {
         return false;

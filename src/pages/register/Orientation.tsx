@@ -115,9 +115,13 @@ export const Orientation: React.FC<HomeProps> = ({navigation}) => {
           txt="Continuer"
           handleStore={{key: 'orientation', value: orientation ?? ''}}
           postInfo={undefined}
+          color="#0019A7"
           background="White"
           top={280}
           left={0}
+          fontSize={18}
+          fontFamily={undefined}
+          fontWeight="700"
         />
       </ImageBackground>
     </View>

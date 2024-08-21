@@ -1,23 +1,19 @@
-/* eslint-disable prettier/prettier */
 import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
   ImageBackground,
   Image,
-  SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
-import DateTimePicker, {
-  DateTimePickerEvent,
-} from '@react-native-community/datetimepicker';
 import Styles from '../../../assets/style/Styles';
-import {getData} from '../../services/storage';
 import StylesDateDeNaissance from '../../../assets/style/styleScreens/styleRegister/StyleDateDeNaissance';
 import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
-import { TitreDeuxLignes } from '../../components/titre/TitreDeuxLignes';
-import { BtnNext } from '../../components/boutons/BtnNext';
+import {TitreDeuxLignes} from '../../components/titre/TitreDeuxLignes';
+import {BtnNext} from '../../components/boutons/BtnNext';
+import DateDeNaissanceComponent from '../../components/register/DateDeNaissanceComponent';
+import {useDateOfBirthContext} from '../../context/DateOfBirthContext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Date_de_naissance'>;
@@ -81,35 +77,12 @@ const RadioInput: React.FC<RadioInputProps> = ({label, subText, selected}) => {
 };
 
 export const DateDeNaissance: React.FC<HomeProps> = ({navigation}) => {
- 
-  const handleGetData = async () => {
-    try {
-      const birthdate = await getData('date_of_birth');
-      formatteDate(birthdate);
-      console.log(birthdate);
-    } catch (error) {
-      console.log('Erreur lors de la récupération des données :', error);
-    }
-  };
-
-  const [date, setDate] = useState<Date>(new Date());
-  const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
   const [formattedDate, setFormattedDate] = useState<string>('');
   const [shortDate, setShortDate] = useState<string>('');
   const [age, setAge] = useState<number | undefined>();
   const today = new Date();
 
-  const handleDateSelect = (
-    event: DateTimePickerEvent,
-    selectedDate?: Date,
-  ) => {
-    const currentDate = selectedDate || date; // Utilisez 'date' si 'selectedDate' est 'undefined'
-    setShowDatePicker(false);
-    setDate(currentDate);
-    const dateShort = currentDate.toISOString().substr(0, 10);
-
-    formatteDate(dateShort);
-  };
+  const {dateOfBirth} = useDateOfBirthContext();
 
   const formatteDate = (index: string) => {
     const dateArray = index.split('-');
@@ -168,55 +141,27 @@ export const DateDeNaissance: React.FC<HomeProps> = ({navigation}) => {
   };
 
   useEffect(() => {
-    handleGetData();
-  }, []);
+    dateOfBirth ? formatteDate(dateOfBirth) : null;
+  }, [dateOfBirth]);
 
   return (
     <View style={StylesDateDeNaissance.container}>
       <ImageBackground
         style={StylesDateDeNaissance.bgGradient}
         source={require('../../../assets/images/Background.png')}>
+        <TitreDeuxLignes
+          txtTitle="VOTRE DATE"
+          txtTitle2="DE NAISSANCE ?"
+          textAlign="center"
+          top={140}
+          left={undefined}
+          fontFamily={undefined}
+          color={undefined}
+          fontWeight={undefined}
+          fontSize={24}
+        />
         <View style={[StylesDateDeNaissance.viewContent]}>
-          <TitreDeuxLignes
-            txtTitle="VOTRE DATE"
-            txtTitle2="DE NAISSANCE ?"
-            textAlign="center"
-            top={140}
-            left={undefined}
-            fontFamily={undefined}
-            color={undefined}
-            fontWeight={undefined}
-            fontSize={24}
-          />
-          <SafeAreaView style={[StylesDateDeNaissance.ViewInputDate]}>
-            <>
-              <TouchableOpacity
-                style={[StylesDateDeNaissance.BtnPicker]}
-                accessibilityLabel="Sélectionner une date"
-                onPress={() => setShowDatePicker(true)}>
-                {formattedDate &&
-                formattedDate.trim() !== 'undefined undefined' ? (
-                  <Text style={[StylesDateDeNaissance.textBlue]}>
-                    {formattedDate}
-                  </Text>
-                ) : (
-                  <Text style={[StylesDateDeNaissance.textWhite]}>
-                    DD/MM/AAAA
-                  </Text>
-                )}
-              </TouchableOpacity>
-              {showDatePicker && (
-                <DateTimePicker
-                  testID="dateTimePicker"
-                  value={date}
-                  mode="date"
-                  is24Hour={true}
-                  display="default"
-                  onChange={handleDateSelect}
-                />
-              )}
-            </>
-          </SafeAreaView>
+          <DateDeNaissanceComponent />
           <View style={[StylesDateDeNaissance.BoxInput]}>
             <Text style={[StylesDateDeNaissance.textWhite1]}>
               Catégorisation automatique.
@@ -267,9 +212,13 @@ export const DateDeNaissance: React.FC<HomeProps> = ({navigation}) => {
           txt="Continuer"
           handleStore={{key: 'date_of_birth', value: shortDate ?? ''}}
           postInfo={undefined}
+          color="#0019A7"
           background="White"
           top={180}
           left={0}
+          fontSize={18}
+          fontFamily={undefined}
+          fontWeight="700"
         />
       </ImageBackground>
     </View>

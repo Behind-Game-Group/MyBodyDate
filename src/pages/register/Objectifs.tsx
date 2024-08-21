@@ -161,9 +161,15 @@ export const Objectifs: React.FC<HomeProps> = ({navigation}) => {
           propName={'RegisterRoute'}
           propRoute={'Affinite'}
           txt={'Continuer'}
+          handleStore={undefined}
+          postInfo={undefined}
+          color="#0019A7"
           background={'white'}
           top={180}
           left={undefined}
+          fontSize={18}
+          fontFamily={undefined}
+          fontWeight="700"
         />
       </ImageBackground>
     </View>

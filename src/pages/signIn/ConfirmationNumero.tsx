@@ -162,9 +162,13 @@ export const ConfirmationNumero: React.FC<HomeProps> = ({navigation}) => {
             txt="Réessayez"
             handleStore={undefined}
             postInfo={undefined}
+            color={undefined}
             background="Black"
             top={0}
             left={0}
+            fontSize={18}
+            fontFamily={undefined}
+            fontWeight="700"
           />
           <Text style={[StylesConfirmationNumero.textWhite]}>
             Si vous n&apos;avez pas reçu d&apos;sms, veuillez rééssayez.
@@ -177,9 +181,13 @@ export const ConfirmationNumero: React.FC<HomeProps> = ({navigation}) => {
             txt="S'inscrire par email"
             handleStore={undefined}
             postInfo={undefined}
+            color={undefined}
             background="Email-rouge"
             top={50}
             left={10}
+            fontSize={18}
+            fontFamily={undefined}
+            fontWeight="700"
           />
           <Text style={[StylesConfirmationNumero.textWhite1]}>
             Utilisez un autre moyen pour vous inscrire
@@ -194,9 +202,13 @@ export const ConfirmationNumero: React.FC<HomeProps> = ({navigation}) => {
             txt="Continuer"
             handleStore={undefined}
             postInfo={undefined}
+            color="#0019A7"
             background="White"
             top={240}
             left={0}
+            fontSize={18}
+            fontFamily={undefined}
+            fontWeight="700"
           />
         )}
       </ImageBackground>

@@ -205,10 +205,13 @@ export const Settings: React.FC<HomeProps> = ({navigation}) => {
             txt="Déconnexion"
             handleStore={undefined}
             postInfo={undefined}
+            color="#000"
             background="Blue-border"
             top={0}
             left={0}
             fontSize={18}
+            fontFamily={undefined}
+            fontWeight="700"
           />
           <TouchableOpacity
             onPress={() => navigation.navigate('Supprimer_mon_compte')}>

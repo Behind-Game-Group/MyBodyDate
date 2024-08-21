@@ -143,7 +143,7 @@ export const LoginEmail: React.FC<HomeProps> = ({navigation}) => {
           )}
         </>
       </SafeAreaView>
-      <View style={{top: 300}}>
+      <View style={{top: 320}}>
         <TouchableOpacity
           accessibilityLabel="Continuer"
           onPress={() => {

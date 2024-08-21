@@ -21,6 +21,10 @@ import {CercleContextProvider} from '../context/CercleContext';
 import {UserContextProvider} from '../context/UserContext';
 import TabProfilNavigator from './TabProfilNavigator';
 import ProfilNavigator from './ProfilNavigator';
+import {GenreContextProvider} from '../context/GenreContext';
+import {AvatarContextProvider} from '../context/AvatarContext';
+import {EmpreinteVocalContextProvider} from '../context/EmpreinteVocalContext';
+import {DateOfBirthContextProvider} from '../context/DateOfBirthContext';
 // import DiscoverNavigator from './DiscoverNavigator';
 
 const BaseStack = createNativeStackNavigator<RouteType>();
@@ -64,128 +68,136 @@ function BaseNavigator({route}: BaseNavigatorProps) {
   const initialRouteName = getInitialRouteName();
 
   return (
-    <CercleContextProvider>
-      <UserContextProvider>
-        <BaseStack.Navigator initialRouteName={initialRouteName}>
-          <BaseStack.Screen
-            name="HomeNavigator"
-            component={HomeNavigator}
-            options={{headerShown: false}}
-          />
-          <BaseStack.Screen
-            name="RegisterNavigator"
-            component={RegisterNavigator}
-            options={{headerShown: false}}
-          />
-          <BaseStack.Screen
-            name="SettingsNavigator"
-            component={SettingsNavigator}
-            options={{headerShown: false}}
-          />
-          <BaseStack.Screen
-            name="SignInNavigator"
-            component={SignInNavigator}
-            options={{headerShown: false}}
-          />
-          <BaseStack.Screen
-            name="LogInNavigator"
-            component={LogInNavigator}
-            options={{headerShown: false}}
-          />
+    <GenreContextProvider>
+      <AvatarContextProvider>
+        <EmpreinteVocalContextProvider>
+          <DateOfBirthContextProvider>
+            <CercleContextProvider>
+              <UserContextProvider>
+                <BaseStack.Navigator initialRouteName={initialRouteName}>
+                  <BaseStack.Screen
+                    name="HomeNavigator"
+                    component={HomeNavigator}
+                    options={{headerShown: false}}
+                  />
+                  <BaseStack.Screen
+                    name="RegisterNavigator"
+                    component={RegisterNavigator}
+                    options={{headerShown: false}}
+                  />
+                  <BaseStack.Screen
+                    name="SettingsNavigator"
+                    component={SettingsNavigator}
+                    options={{headerShown: false}}
+                  />
+                  <BaseStack.Screen
+                    name="SignInNavigator"
+                    component={SignInNavigator}
+                    options={{headerShown: false}}
+                  />
+                  <BaseStack.Screen
+                    name="LogInNavigator"
+                    component={LogInNavigator}
+                    options={{headerShown: false}}
+                  />
 
-          {/* {Tabs} */}
-          <BaseStack.Screen
-            name="TabNavigator"
-            component={TabNavigator}
-            options={{headerShown: false}}
-          />
+                  {/* {Tabs} */}
+                  <BaseStack.Screen
+                    name="TabNavigator"
+                    component={TabNavigator}
+                    options={{headerShown: false}}
+                  />
 
-          {/* {TabProfil} */}
-          <BaseStack.Screen
-            name="TabProfilNavigator"
-            component={TabProfilNavigator}
-            options={{headerShown: false}}
-          />
+                  {/* {TabProfil} */}
+                  <BaseStack.Screen
+                    name="TabProfilNavigator"
+                    component={TabProfilNavigator}
+                    options={{headerShown: false}}
+                  />
 
-          {/* Even */}
-          <BaseStack.Screen
-            name="EventNavigator"
-            component={EventNavigator}
-            options={{headerShown: false}}
-          />
+                  {/* Even */}
+                  <BaseStack.Screen
+                    name="EventNavigator"
+                    component={EventNavigator}
+                    options={{headerShown: false}}
+                  />
 
-          {/* {Search} */}
-          <BaseStack.Screen
-            name="SearchNavigator"
-            component={SearchNavigator}
-            options={{headerShown: false}}
-          />
+                  {/* {Search} */}
+                  <BaseStack.Screen
+                    name="SearchNavigator"
+                    component={SearchNavigator}
+                    options={{headerShown: false}}
+                  />
 
-          {/* Pulse */}
-          <BaseStack.Screen
-            name="PulseNavigator"
-            component={PulseNavigator}
-            options={{headerShown: false}}
-          />
+                  {/* Pulse */}
+                  <BaseStack.Screen
+                    name="PulseNavigator"
+                    component={PulseNavigator}
+                    options={{headerShown: false}}
+                  />
 
-          {/* Pass */}
-          <BaseStack.Screen
-            name="PassNavigator"
-            component={PassNavigator}
-            options={{headerShown: false}}
-          />
+                  {/* Pass */}
+                  <BaseStack.Screen
+                    name="PassNavigator"
+                    component={PassNavigator}
+                    options={{headerShown: false}}
+                  />
 
-          {/* Game */}
-          <BaseStack.Screen
-            name="GameNavigator"
-            component={GameNavigator}
-            options={{headerShown: false}}
-          />
+                  {/* Game */}
+                  <BaseStack.Screen
+                    name="GameNavigator"
+                    component={GameNavigator}
+                    options={{headerShown: false}}
+                  />
 
-          {/* Apps Affinitires */}
-          <BaseStack.Screen
-            name="AppsAffinitairesNavigator"
-            component={AppsAffinitairesNavigator}
-            options={{headerShown: false}}
-          />
+                  {/* Apps Affinitires */}
+                  <BaseStack.Screen
+                    name="AppsAffinitairesNavigator"
+                    component={AppsAffinitairesNavigator}
+                    options={{headerShown: false}}
+                  />
 
-          {/* Notifications */}
-          {/* <BaseStack.Screen
+                  {/* Notifications */}
+                  {/* <BaseStack.Screen
             name="NotificationsNavigator"
             component={NotificationsNavigator}
             options={{headerShown: false}}
           /> */}
 
-          {/* Discover */}
-          {/* <BaseStack.Screen
+                  {/* Discover */}
+                  {/* <BaseStack.Screen
             name="DiscoverNavigator"
             component={DiscoverNavigator}
             options={{headerShown: false}}
           /> */}
 
-          {/* Profil */}
-          <BaseStack.Screen
-            name="ProfilNavigator"
-            component={ProfilNavigator}
-            options={{headerShown: false}}
-          />
+                  {/* Profil */}
+                  <BaseStack.Screen
+                    name="ProfilNavigator"
+                    component={ProfilNavigator}
+                    options={{headerShown: false}}
+                  />
 
-          {/* Talk */}
-          {/* <BaseStack.Screen
+                  {/* Talk */}
+                  {/* <BaseStack.Screen
         name="TalkNavigator"
         component={TalkNavigator}
         options={{headerShown: false}}
       /> */}
 
-          {/* Message */}
-          {/* <BaseStack.Screen
+                  {/* Message */}
+                  {/* <BaseStack.Screen
         name="MessageNavigator"
         component={MessageNavigator}
         options={{headerShown: false}}
       /> */}
-        </BaseStack.Navigator>
-      </UserContextProvider>
-    </CercleContextProvider>
+                </BaseStack.Navigator>
+              </UserContextProvider>
+            </CercleContextProvider>
+          </DateOfBirthContextProvider>
+        </EmpreinteVocalContextProvider>
+      </AvatarContextProvider>
+    </GenreContextProvider>
   );
 }
 

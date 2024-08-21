@@ -17,7 +17,7 @@ import {NavigationProp} from '@react-navigation/native';
 import {RouteType} from '../../../types/routes/RouteType';
 import {TitreUneLigne} from '../../components/titre/TitreUneLigne';
 import {TitreDeuxLignes} from '../../components/titre/TitreDeuxLignes';
-import { BtnNext } from '../../components/boutons/BtnNext';
+import {BtnNext} from '../../components/boutons/BtnNext';
 
 type HomeProps = {
   navigation: NavigationProp<RouteType, 'Charte_engagement'>;
@@ -325,9 +325,13 @@ export const CharteEngagement: React.FC<HomeProps> = ({navigation}) => {
           txt="J'accepte"
           handleStore={{key: 'engagement_consent', value: 'accepté'}}
           postInfo={undefined}
+          color={undefined}
           background="Blue"
           top={0}
           left={0}
+          fontSize={18}
+          fontFamily={undefined}
+          fontWeight="700"
         />
       </View>
     </ImageBackground>

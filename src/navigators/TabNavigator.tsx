@@ -1,5 +1,4 @@
-import React from // useState // useEffect,
-'react';
+import React from 'react'; // useState // useEffect,
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MenuBottom from '../components/menus/MenuBottom';
 import DiscoverNavigator from './DiscoverNavigator';

@@ -366,8 +366,8 @@ export const MenuSlide: React.FC<MenuSlideProps> = ({
         </View>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('TabProfilNavigator', {
-              TabProfilRoute: 'NotificationsNavigator',
+            navigation.navigate('NotificationsNavigator', {
+              NotificationsRoute: 'Notifications',
             });
             // setIcoPushChange(true);
           }}>
