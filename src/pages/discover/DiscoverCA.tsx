@@ -186,16 +186,9 @@ export const DiscoverCA: React.FC<HomeProps> = ({navigation}) => {
 
   return (
     <ImageBackground
-      resizeMode="contain"
+      resizeMode="cover"
       source={require('../../../assets/images/Background.png')}
-      style={{width: width, height: height}}>
-      <View
-        style={{
-          width: width,
-          height: height,
-          alignItems: 'center',
-          backgroundColor: 'transparent',
-        }}>
+      style={{width: width, height: '100%',}}>
         <MenuSlide
           navigation={navigation}
           icoPushChange={false}
@@ -211,7 +204,7 @@ export const DiscoverCA: React.FC<HomeProps> = ({navigation}) => {
             alignSelf: 'center',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: 'red',
+            backgroundColor: '#880808',
             transform: [
               {translateX: position.x},
               {translateY: position.y},
@@ -226,407 +219,405 @@ export const DiscoverCA: React.FC<HomeProps> = ({navigation}) => {
               console.log(currentIndex);
               if (index === currentIndex) {
                 return (
-                  <View key={index} style={{width: '100%', height: '100%'}}>
-                    <ImageBackground
-                      resizeMode="cover"
-                      source={
-                        image === 1
-                          ? user.image1
-                          : image === 2
-                          ? user.image2
-                          : image === 3
-                          ? user.image3
-                          : image === 4
-                          ? user.image4
-                          : image === 5
-                          ? user.image5
-                          : image === 6
-                          ? user.image6
-                          : user.image1
-                      }
+                  <ImageBackground
+                    key={index}
+                    resizeMode="cover"
+                    source={
+                      image === 1
+                        ? user.image1
+                        : image === 2
+                        ? user.image2
+                        : image === 3
+                        ? user.image3
+                        : image === 4
+                        ? user.image4
+                        : image === 5
+                        ? user.image5
+                        : image === 6
+                        ? user.image6
+                        : user.image1
+                    }
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                    }}>
+                    <TouchableOpacity
+                      onPress={() => {
+                        handleImagePrevious();
+                      }}
                       style={{
-                        width: '100%',
-                        height: '100%',
+                        position: 'absolute',
+                        top: 100,
+                        width: width / 2,
+                        height: 550,
+                        alignSelf: 'flex-start',
+                        backgroundColor: 'transparent',
+                      }}
+                    />
+                    <TouchableOpacity
+                      onPress={() => {
+                        handleImageNext();
+                      }}
+                      style={{
+                        position: 'absolute',
+                        top: 100,
+                        width: width / 2,
+                        height: 550,
+                        alignSelf: 'flex-end',
+                        backgroundColor: 'transparent',
+                      }}
+                    />
+                    <Spotlight navigation={navigation} />
+                    <View
+                      style={{
+                        justifyContent: 'space-around',
+                        flexDirection: 'row',
                       }}>
-                      <TouchableOpacity
-                        onPress={() => {
-                          handleImagePrevious();
-                        }}
+                      {tabToDisplay.map((colors, viewIndex) => (
+                        <View
+                          key={viewIndex}
+                          style={{
+                            width: 140,
+                            height: 4,
+                            backgroundColor:
+                              currentIndex % 2 === viewIndex
+                                ? '#000'
+                                : '#fff',
+                            marginVertical: 20,
+                            marginHorizontal: 8,
+                          }}
+                        />
+                      ))}
+                    </View>
+                    <View
+                      style={{
+                        justifyContent: 'space-around',
+                        flexDirection: 'row',
+                        marginRight: 300,
+                      }}>
+                      <Image
+                        source={
+                          user.on
+                            ? require('../../../assets/images/ico-on.png')
+                            : require('../../../assets/images/ico-off.png')
+                        }
                         style={{
-                          position: 'absolute',
-                          top: 100,
-                          width: width / 2,
-                          height: 550,
-                          alignSelf: 'flex-start',
-                          backgroundColor: 'transparent',
+                          top: 4,
+                          width: 9,
+                          height: 8,
                         }}
                       />
-                      <TouchableOpacity
-                        onPress={() => {
-                          handleImageNext();
-                        }}
+                      <Text
                         style={{
-                          position: 'absolute',
-                          top: 100,
-                          width: width / 2,
-                          height: 550,
-                          alignSelf: 'flex-end',
-                          backgroundColor: 'transparent',
+                          fontSize: 13,
+                          fontFamily: 'Comfortaa',
+                          fontWeight: '700',
+                          color: '#0019A7',
+                          letterSpacing: 1,
+                        }}>
+                        {user.on ? 'En ligne' : 'Hors ligne'}
+                      </Text>
+                    </View>
+                    <More username={user.name} />
+                    <PopUpMessage
+                      cercle={cercle}
+                      ptCommun={user.ptCommun}
+                      txtPartenaire={txtPartenaire}
+                      navigation={navigation}
+                    />
+                    <View
+                      style={{
+                        justifyContent: 'space-around',
+                        flexDirection: 'row',
+                        bottom: 40,
+                        marginRight: 315,
+                      }}>
+                      <Image
+                        source={require('../../../assets/images/localisateur-1.png')}
+                        style={{
+                          top: 2,
+                          width: 15,
+                          height: 13,
                         }}
                       />
-                      <Spotlight navigation={navigation} />
+                      <Text
+                        style={{
+                          fontSize: 13,
+                          fontFamily: 'Comfortaa',
+                          fontWeight: '700',
+                          color: '#0019A7',
+                          letterSpacing: 1,
+                        }}>
+                        À {user.distance}km
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        position: 'absolute',
+                        top: 450,
+                      }}>
                       <View
                         style={{
                           justifyContent: 'space-around',
                           flexDirection: 'row',
+                          left: 10,
                         }}>
-                        {tabToDisplay.map((colors, viewIndex) => (
-                          <View
-                            key={viewIndex}
+                        <Text
+                          style={{
+                            fontSize: 48,
+                            fontFamily: 'Comfortaa',
+                            color: '#fff',
+                            letterSpacing: 1,
+                          }}>
+                          {user.name}
+                        </Text>
+                        {user.quality ? (
+                          <Image
+                            source={require('../../../assets/images/quality-2.png')}
                             style={{
-                              width: 140,
-                              height: 4,
-                              backgroundColor:
-                                currentIndex % 2 === viewIndex
-                                  ? '#000'
-                                  : '#fff',
-                              marginVertical: 20,
-                              marginHorizontal: 8,
+                              top: 24,
+                              left: 20,
+                              width: 30,
+                              height: 30,
                             }}
                           />
-                        ))}
+                        ) : null}
+                        {user.medaille ? (
+                          <Image
+                            source={require('../../../assets/images/Médaille.png')}
+                            style={{
+                              top: 24,
+                              left: 40,
+                              width: 30,
+                              height: 44,
+                            }}
+                          />
+                        ) : null}
                       </View>
                       <View
                         style={{
-                          justifyContent: 'space-around',
-                          flexDirection: 'row',
-                          marginRight: 300,
+                          bottom: 10,
+                          left: 15,
                         }}>
-                        <Image
-                          source={
-                            user.on
-                              ? require('../../../assets/images/ico-on.png')
-                              : require('../../../assets/images/ico-off.png')
-                          }
-                          style={{
-                            top: 4,
-                            width: 9,
-                            height: 8,
-                          }}
-                        />
                         <Text
                           style={{
-                            fontSize: 13,
+                            fontSize: 20,
                             fontFamily: 'Comfortaa',
                             fontWeight: '700',
-                            color: '#0019A7',
+                            color: '#fff',
                             letterSpacing: 1,
                           }}>
-                          {user.on ? 'En ligne' : 'Hors ligne'}
-                        </Text>
-                      </View>
-                      <More username={user.name} />
-                      <PopUpMessage
-                        cercle={cercle}
-                        ptCommun={user.ptCommun}
-                        txtPartenaire={txtPartenaire}
-                        navigation={navigation}
-                      />
-                      <View
-                        style={{
-                          justifyContent: 'space-around',
-                          flexDirection: 'row',
-                          bottom: 40,
-                          marginRight: 315,
-                        }}>
-                        <Image
-                          source={require('../../../assets/images/localisateur-1.png')}
-                          style={{
-                            top: 2,
-                            width: 15,
-                            height: 13,
-                          }}
-                        />
-                        <Text
-                          style={{
-                            fontSize: 13,
-                            fontFamily: 'Comfortaa',
-                            fontWeight: '700',
-                            color: '#0019A7',
-                            letterSpacing: 1,
-                          }}>
-                          À {user.distance}km
+                          {user.age}, {user.location}
                         </Text>
                       </View>
                       <View
                         style={{
-                          position: 'absolute',
-                          top: 450,
+                          top: 5,
+                          left: 15,
                         }}>
-                        <View
+                        <Text
                           style={{
-                            justifyContent: 'space-around',
-                            flexDirection: 'row',
-                            left: 10,
+                            fontSize: 14,
+                            fontFamily: 'Comfortaa',
+                            fontWeight: '700',
+                            color: '#fff',
+                            letterSpacing: 1,
                           }}>
-                          <Text
-                            style={{
-                              fontSize: 48,
-                              fontFamily: 'Comfortaa',
-                              color: '#fff',
-                              letterSpacing: 1,
-                            }}>
-                            {user.name}
-                          </Text>
-                          {user.quality ? (
-                            <Image
-                              source={require('../../../assets/images/quality-2.png')}
-                              style={{
-                                top: 24,
-                                left: 20,
-                                width: 30,
-                                height: 30,
-                              }}
-                            />
-                          ) : null}
-                          {user.medaille ? (
-                            <Image
-                              source={require('../../../assets/images/Médaille.png')}
-                              style={{
-                                top: 24,
-                                left: 40,
-                                width: 30,
-                                height: 44,
-                              }}
-                            />
-                          ) : null}
-                        </View>
-                        <View
-                          style={{
-                            bottom: 10,
-                            left: 15,
-                          }}>
-                          <Text
-                            style={{
-                              fontSize: 20,
-                              fontFamily: 'Comfortaa',
-                              fontWeight: '700',
-                              color: '#fff',
-                              letterSpacing: 1,
-                            }}>
-                            {user.age}, {user.location}
-                          </Text>
-                        </View>
+                          Croisé plusieurs fois
+                        </Text>
                         <View
                           style={{
                             top: 5,
-                            left: 15,
                           }}>
-                          <Text
-                            style={{
-                              fontSize: 14,
-                              fontFamily: 'Comfortaa',
-                              fontWeight: '700',
-                              color: '#fff',
-                              letterSpacing: 1,
-                            }}>
-                            Croisé plusieurs fois
-                          </Text>
-                          <View
-                            style={{
-                              top: 5,
-                            }}>
-                            <TouchableOpacity
-                              onPress={() => {
-                                handlePlay();
-                              }}
-                              style={{
-                                width: 40,
-                                height: 40,
-                              }}>
-                              <Image
-                                source={
-                                  buttonPressed === 'Stop'
-                                    ? require('../../../assets/boutons/Stop-P.png')
-                                    : require('../../../assets/boutons/Play-P.png')
-                                }
-                                style={{
-                                  top: 10,
-                                  alignSelf: 'center',
-                                }}
-                              />
-                            </TouchableOpacity>
-                          </View>
-                        </View>
-                      </View>
-                      <View
-                        style={{
-                          position: 'absolute',
-                          top:
-                            userMedaille && user.partenaire
-                              ? 250
-                              : userMedaille
-                              ? 300
-                              : user.partenaire
-                              ? 300
-                              : 360,
-                          left: 300,
-                          height:
-                            userMedaille && user.partenaire
-                              ? 400
-                              : userMedaille
-                              ? 340
-                              : user.partenaire
-                              ? 330
-                              : 280,
-                          right: 20,
-                          flexDirection: 'column',
-                          justifyContent: 'space-between',
-                          alignItems: 'center',
-                        }}>
-                        {user.partenaire ? (
-                          <Image
-                            source={
-                              user.partenaire === 'OpenBetween'
-                                ? require('../../../assets/images/openBetween-cache.png')
-                                : user.partenaire === 'CheerFlakes'
-                                ? require('../../../assets/images/cheerflakes-cache.png')
-                                : user.partenaire === 'WineGap'
-                                ? require('../../../assets/images/winegap-cache.png')
-                                : user.partenaire === 'GoPride'
-                                ? require('../../../assets/images/gopride-cache.png')
-                                : require('../../../assets/images/gopride-cache.png')
-                            }
-                            style={{
-                              zIndex: 0,
-                              alignSelf: 'flex-end',
-                              width: 100,
-                              height: 50,
-                              resizeMode: 'contain',
-                            }}
-                          />
-                        ) : null}
-                        <TouchableOpacity
-                          onPress={() => {
-                            animNext();
-                          }}
-                          style={{
-                            backgroundColor: 'red',
-                            width: 78,
-                            height: 78,
-                            borderRadius: 100,
-                          }}>
-                          <Image
-                            source={require('../../../assets/images/Oeil.png')}
-                            style={{
-                              width: 78,
-                              height: 78,
-                            }}
-                          />
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                          onPress={() => {
-                            navigation.navigate('C_est_match');
-                          }}
-                          style={{
-                            backgroundColor: 'red',
-                            width: 78,
-                            height: 78,
-                            borderRadius: 100,
-                          }}>
-                          <Image
-                            source={require('../../../assets/images/Pouce-Disc.png')}
-                            style={{
-                              width: 78,
-                              height: 78,
-                            }}
-                          />
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                          onPress={() => {
-                            animNext();
-                          }}
-                          style={{
-                            backgroundColor: 'red',
-                            alignSelf: 'flex-end',
-                            width: 78,
-                            height: 78,
-                            borderRadius: 100,
-                          }}>
-                          <Image
-                            source={require('../../../assets/images/profil_croix.png')}
-                            style={{
-                              width: 78,
-                              height: 78,
-                            }}
-                          />
-                        </TouchableOpacity>
-                        {userMedaille ? (
                           <TouchableOpacity
                             onPress={() => {
-                              animLast();
+                              handlePlay();
                             }}
                             style={{
-                              backgroundColor: 'red',
-                              width: 78,
-                              height: 78,
-                              borderRadius: 100,
+                              width: 40,
+                              height: 40,
                             }}>
                             <Image
-                              source={require('../../../assets/boutons/back.png')}
+                              source={
+                                buttonPressed === 'Stop'
+                                  ? require('../../../assets/boutons/Stop-P.png')
+                                  : require('../../../assets/boutons/Play-P.png')
+                              }
                               style={{
-                                width: 78,
-                                height: 78,
+                                top: 10,
+                                alignSelf: 'center',
                               }}
                             />
                           </TouchableOpacity>
-                        ) : null}
-                        {/* <View style={{ flexDirection: 'column', position: 'absolute', width: 78, alignItems: 'center', alignSelf: 'flex-end', justifyContent: 'space-between', backgroundColor: 'red', right: user.partenaire ? 0 : 2, top: user.partenaire ? 240 : !user.medaille ? 607 : 180, height: user.partenaire ? 78 : !user.medaille ? 0 : 173.4, }}> */}
-                        {/* <TouchableOpacity
-                onPress={() => { animNext(); }}
-                  style={{
-                      backgroundColor: 'red',
-                      alignSelf: 'flex-end',
-                      width: 78,
-                      height: 78,
-                      borderRadius: 100,
-                    }}>
-                    <Image
-                      source={require('../../../assets/images/profil_croix.png')}
+                        </View>
+                      </View>
+                    </View>
+                    <View
                       style={{
-                        width: 78,
-                        height: 78,
-                      }}
-                    />
-                </TouchableOpacity> */}
-                        {/* {user.medaille ?
-              <TouchableOpacity
-                  onPress={() => { animLast(); }}
-                  style={{
+                        position: 'absolute',
+                        top:
+                          userMedaille && user.partenaire
+                            ? 250
+                            : userMedaille
+                            ? 300
+                            : user.partenaire
+                            ? 300
+                            : 360,
+                        left: 300,
+                        height:
+                          userMedaille && user.partenaire
+                            ? 400
+                            : userMedaille
+                            ? 340
+                            : user.partenaire
+                            ? 330
+                            : 280,
+                        right: 20,
+                        flexDirection: 'column',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                      }}>
+                      {user.partenaire ? (
+                        <Image
+                          source={
+                            user.partenaire === 'OpenBetween'
+                              ? require('../../../assets/images/openBetween-cache.png')
+                              : user.partenaire === 'CheerFlakes'
+                              ? require('../../../assets/images/cheerflakes-cache.png')
+                              : user.partenaire === 'WineGap'
+                              ? require('../../../assets/images/winegap-cache.png')
+                              : user.partenaire === 'GoPride'
+                              ? require('../../../assets/images/gopride-cache.png')
+                              : require('../../../assets/images/gopride-cache.png')
+                          }
+                          style={{
+                            zIndex: 0,
+                            alignSelf: 'flex-end',
+                            width: 100,
+                            height: 50,
+                            resizeMode: 'contain',
+                          }}
+                        />
+                      ) : null}
+                      <TouchableOpacity
+                        onPress={() => {
+                          animNext();
+                        }}
+                        style={{
+                          backgroundColor: 'red',
+                          width: 78,
+                          height: 78,
+                          borderRadius: 100,
+                        }}>
+                        <Image
+                          source={require('../../../assets/images/Oeil.png')}
+                          style={{
+                            width: 78,
+                            height: 78,
+                          }}
+                        />
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={() => {
+                          navigation.navigate('C_est_match');
+                        }}
+                        style={{
+                          backgroundColor: 'red',
+                          width: 78,
+                          height: 78,
+                          borderRadius: 100,
+                        }}>
+                        <Image
+                          source={require('../../../assets/images/Pouce-Disc.png')}
+                          style={{
+                            width: 78,
+                            height: 78,
+                          }}
+                        />
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={() => {
+                          animNext();
+                        }}
+                        style={{
+                          backgroundColor: 'red',
+                          alignSelf: 'flex-end',
+                          width: 78,
+                          height: 78,
+                          borderRadius: 100,
+                        }}>
+                        <Image
+                          source={require('../../../assets/images/profil_croix.png')}
+                          style={{
+                            width: 78,
+                            height: 78,
+                          }}
+                        />
+                      </TouchableOpacity>
+                      {userMedaille ? (
+                        <TouchableOpacity
+                          onPress={() => {
+                            animLast();
+                          }}
+                          style={{
+                            backgroundColor: 'red',
+                            width: 78,
+                            height: 78,
+                            borderRadius: 100,
+                          }}>
+                          <Image
+                            source={require('../../../assets/boutons/back.png')}
+                            style={{
+                              width: 78,
+                              height: 78,
+                            }}
+                          />
+                        </TouchableOpacity>
+                      ) : null}
+                      {/* <View style={{ flexDirection: 'column', position: 'absolute', width: 78, alignItems: 'center', alignSelf: 'flex-end', justifyContent: 'space-between', backgroundColor: 'red', right: user.partenaire ? 0 : 2, top: user.partenaire ? 240 : !user.medaille ? 607 : 180, height: user.partenaire ? 78 : !user.medaille ? 0 : 173.4, }}> */}
+                      {/* <TouchableOpacity
+              onPress={() => { animNext(); }}
+                style={{
                     backgroundColor: 'red',
+                    alignSelf: 'flex-end',
                     width: 78,
                     height: 78,
                     borderRadius: 100,
                   }}>
                   <Image
-                    source={require('../../../assets/boutons/back.png')}
+                    source={require('../../../assets/images/profil_croix.png')}
                     style={{
                       width: 78,
                       height: 78,
                     }}
                   />
-              </TouchableOpacity> : null} */}
-                        {/* </View> */}
-                      </View>
-                    </ImageBackground>
-                  </View>
+              </TouchableOpacity> */}
+                      {/* {user.medaille ?
+            <TouchableOpacity
+                onPress={() => { animLast(); }}
+                style={{
+                  backgroundColor: 'red',
+                  width: 78,
+                  height: 78,
+                  borderRadius: 100,
+                }}>
+                <Image
+                  source={require('../../../assets/boutons/back.png')}
+                  style={{
+                    width: 78,
+                    height: 78,
+                  }}
+                />
+            </TouchableOpacity> : null} */}
+                      {/* </View> */}
+                    </View>
+                  </ImageBackground>
                 );
               }
               return null; // Masquer les autres utilisateurs
             })}
           </View>
         </Animated.View>
-      </View>
     </ImageBackground>
   );
 };

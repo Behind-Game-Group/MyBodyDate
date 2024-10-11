@@ -110,7 +110,6 @@ const settingsStyles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-around',
     width: '100%',
-    height: 200,
   },
   logoutButton: {
     width: 331,
@@ -123,7 +122,7 @@ const settingsStyles = StyleSheet.create({
     color: '#383A39',
     fontSize: 16,
     textAlign: 'center',
-    bottom: 25,
+    top: 80,
   },
   textLogoutButton: {
     top: -40,
@@ -136,7 +135,7 @@ const settingsStyles = StyleSheet.create({
     width: 200,
     // height: 74,
     flexShrink: 0,
-    top: 10,
+    top: 35,
     alignSelf: 'center',
     resizeMode: 'contain',
   },
@@ -145,7 +144,7 @@ const settingsStyles = StyleSheet.create({
     color: '#383A39',
     fontSize: 16,
     textAlign: 'center',
-    bottom: 30,
+    bottom: 20,
   },
 });
 
