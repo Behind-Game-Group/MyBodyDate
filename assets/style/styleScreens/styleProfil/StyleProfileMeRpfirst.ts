@@ -1,0 +1,108 @@
+import {StyleSheet} from 'react-native';
+const StylesProfileMeRpfirst = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  txtTitle: {
+    fontFamily: 'Gilroy',
+    fontWeight: '700',
+    fontSize: 24,
+    color: 'black',
+    textAlign: 'center',
+  },
+  viewContent: {
+    marginTop: 50,
+  },
+  txtSubTitle: {
+    fontFamily: 'Gilroy',
+    fontWeight: '700',
+    fontSize: 20,
+    color: 'black',
+    left: 20,
+  },
+  txtDescription: {
+    fontFamily: 'Comfortaa-Bold',
+    fontWeight: '700',
+    fontSize: 14,
+    color: 'black',
+    top: 10,
+    left: 20,
+  },
+  viewPhoto: {
+    justifyContent: 'space-around',
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'center',
+    width: '98%',
+    height: 129,
+    top: 20,
+  },
+  btnAddPhoto: {
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  viewUserPhoto: {
+    top: 30,
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  userPhoto: {
+    borderRadius: 30,
+    resizeMode: 'contain',
+  },
+  contentDeleteImage: {
+    width: 36,
+    height: 36,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.60)',
+  },
+  imageDelete: {
+    width: 15,
+    height: 15,
+    resizeMode: 'contain',
+    alignSelf: 'center',
+  },
+  txtAddImage: {
+    fontFamily: 'Comfortaa',
+    fontWeight: '500',
+    fontSize: 36,
+    color: 'black',
+  },
+  intitulateInput: {
+    fontFamily: 'Comfortaa-Bold',
+    fontWeight: '500',
+    fontSize: 14,
+    color: 'black',
+    top: 20,
+    left: 20,
+    width: '95%',
+  },
+  descriptionInput: {
+    top: 20,
+    color: 'black',
+    paddingHorizontal: 20,
+    paddingVertical: 20,
+    textAlign: 'left',
+    alignSelf: 'center',
+    fontFamily: 'Comfortaa-Bold',
+    textAlignVertical: 'top',
+    borderWidth: 2,
+    borderColor: '#E0BDFF',
+    borderRadius: 30,
+    marginTop: 20,
+    width: '95%',
+    minHeight: 100,
+  },
+  contentInfo: {
+    top: 420,
+    height: 600,
+    left: 20,
+  },
+});
+
+export default StylesProfileMeRpfirst;
